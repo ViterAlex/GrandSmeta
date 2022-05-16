@@ -28,7 +28,7 @@ Partial Class MainForm
         Me.cmbSpreadSheets = New System.Windows.Forms.ComboBox()
         Me.lblOne = New System.Windows.Forms.Label()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.lblSecond = New System.Windows.Forms.Label()
+        Me.lblTwo = New System.Windows.Forms.Label()
         Me.lblThree = New System.Windows.Forms.Label()
         Me.lblFour = New System.Windows.Forms.Label()
         Me.btnFillIn = New System.Windows.Forms.Button()
@@ -93,7 +93,7 @@ Partial Class MainForm
         Me.FlowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.FlowLayoutPanel1.Controls.Add(Me.lblOne)
         Me.FlowLayoutPanel1.Controls.Add(Me.btnConnect)
-        Me.FlowLayoutPanel1.Controls.Add(Me.lblSecond)
+        Me.FlowLayoutPanel1.Controls.Add(Me.lblTwo)
         Me.FlowLayoutPanel1.Controls.Add(Me.cmbSpreadSheets)
         Me.FlowLayoutPanel1.Controls.Add(Me.lblThree)
         Me.FlowLayoutPanel1.Controls.Add(Me.cmbSheets)
@@ -107,13 +107,13 @@ Partial Class MainForm
         '
         'lblSecond
         '
-        Me.lblSecond.AutoSize = True
-        Me.lblSecond.Enabled = False
-        Me.lblSecond.Location = New System.Drawing.Point(103, 0)
-        Me.lblSecond.Name = "lblSecond"
-        Me.lblSecond.Size = New System.Drawing.Size(13, 13)
-        Me.lblSecond.TabIndex = 4
-        Me.lblSecond.Text = "2"
+        Me.lblTwo.AutoSize = True
+        Me.lblTwo.Enabled = False
+        Me.lblTwo.Location = New System.Drawing.Point(103, 0)
+        Me.lblTwo.Name = "lblSecond"
+        Me.lblTwo.Size = New System.Drawing.Size(13, 13)
+        Me.lblTwo.TabIndex = 4
+        Me.lblTwo.Text = "2"
         '
         'lblThree
         '
@@ -168,7 +168,7 @@ Partial Class MainForm
     Friend WithEvents cmbSpreadSheets As ComboBox
     Friend WithEvents lblOne As Label
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
-    Friend WithEvents lblSecond As Label
+    Friend WithEvents lblTwo As Label
     Friend WithEvents lblThree As Label
     Friend WithEvents lblFour As Label
     Friend WithEvents btnFillIn As Button

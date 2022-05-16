@@ -12,25 +12,24 @@ Imports File = Google.Apis.Drive.v3.Data.File
 
 Public Class GoogleAPI
     Private ReadOnly token As String
-    Private sheetName As String
-    Private Scopes As IEnumerable(Of String) = New String() {
+
+    Private ReadOnly Scopes As IEnumerable(Of String) = New String() {
         DriveService.Scope.Drive,
         SheetsService.Scope.Spreadsheets
     }
+
     Private credentials As UserCredential
     Private driveService As DriveService
     Private sheetService As SheetsService
-    Private sheetId As String
 
     ''' <summary>
     ''' Создание нового сеанса с GoogleAPI
     ''' </summary>
-    ''' <param name="token">Токен авторизации</param>
-    ''' <param name="sheetName">Имя файла</param>
-    Public Sub New(token As String, sheetName As String)
+    ''' <param name="token">Токен авторизации.</param>
+    Public Sub New(token As String)
         Me.token = token
-        Me.sheetName = sheetName
     End Sub
+
     ''' <summary>
     ''' Получить доступные для редактирования файлы SpreadSheets
     ''' </summary>
@@ -41,7 +40,6 @@ Public Class GoogleAPI
                                     Return f.MimeType = "application/vnd.google-apps.spreadsheet"
                                 End Function).ToList()
     End Function
-
 
     ''' <summary>
     ''' Установить соединение с Google API
@@ -66,25 +64,14 @@ Public Class GoogleAPI
                                            .HttpClientInitializer = credentials,
                                            .ApplicationName = Application.ProductName
                                         })
-        Dim reqDrive = driveService.Files.List()
-        Dim respDrive = reqDrive.Execute()
-        Dim file = respDrive.Files.First(Function(f)
-                                             Return f.Name = sheetName
-                                         End Function)
-        If file IsNot Nothing Then
-            sheetId = file.Id
-            Dim reqSheets = sheetService.Spreadsheets.Get(sheetId)
-            Dim respSheets = reqSheets.Execute()
-            sheetName = respSheets.Sheets(0).Properties.Title
-            Return True
-        End If
-        Return False
+        Return True
     End Function
 
     ''' <summary>
     ''' Получить листы указанной книги
     ''' </summary>
-    ''' <param name="fileId">Id файла</param>
+    ''' <param name="fileId">Id файла.</param>
+    ''' <remarks>Оборачиваем в класс <see cref="SheetInfo"/>, чтобы было удобно отображать имя листа</remarks>
     Friend Function GetSheets(fileId As String) As IList(Of SheetInfo)
         Dim req = sheetService.Spreadsheets.Get(fileId)
         Dim resp = req.Execute()
@@ -100,28 +87,29 @@ Public Class GoogleAPI
     ''' <summary>
     ''' Экспортировать данные из <see cref="DataGridView"/>
     ''' </summary>
-    ''' <param name="dgv">Источник данных</param>
-    ''' <param name="rng">Адрес ячейки, с которой начинать таблицу</param>
-    Public Sub Export(dgv As DataGridView, sheetId As String, rng As String)
+    ''' <param name="dgv">Источник данных.</param>
+    ''' <param name="spreadSheetId">Идентификатор книги.</param>
+    ''' <param name="rng">Адрес ячейки, с которой начинать таблицу. В формате ИмяЛиста!А1.</param>
+    Public Sub Export(dgv As DataGridView, spreadSheetId As String, rng As String)
         If dgv.Columns.Count = 0 Then
             Return
         End If
-
-        Dim values = DirectCast(dgv.Rows.OfType(Of DataGridViewRow) _
+        'Получение данных из DataGridView в виде массива массивов
+        Dim values = dgv.Rows.OfType(Of DataGridViewRow) _
             .Where(Function(r)
                        Return Not r.IsNewRow
                    End Function) _
                    .Select(Function(r)
-                               Return DirectCast(r.Cells.OfType(Of DataGridViewCell) _
+                               Dim cells = r.Cells.OfType(Of DataGridViewCell) _
                                .Select(Function(c)
                                            Return c.Value
-                                       End Function).ToList(), IList(Of Object))
-                           End Function).ToList(), IList(Of IList(Of Object)))
-
-        Dim req = sheetService.Spreadsheets.Values.Update(New ValueRange() With {
-                                                          .Values = values
-        }, sheetId, rng)
+                                       End Function).ToList()
+                               Return DirectCast(cells, IList(Of Object))
+                           End Function).ToList()
+        Dim valRange = New ValueRange With {.Values = values}
+        Dim req = sheetService.Spreadsheets.Values.Update(valRange, spreadSheetId, rng)
         req.ValueInputOption = ValueInputOptionEnum.USERENTERED
         req.Execute()
     End Sub
+
 End Class
