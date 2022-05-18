@@ -11,7 +11,7 @@ Imports Google.Apis.Sheets.v4.SpreadsheetsResource.ValuesResource.UpdateRequest
 Imports Google.Apis.Util.Store
 Imports File = Google.Apis.Drive.v3.Data.File
 
-Public Class GoogleAPI
+Partial Public Class GoogleAPI
 
 #Region "Fields"
 
@@ -19,7 +19,7 @@ Public Class GoogleAPI
         DriveService.Scope.Drive,
         SheetsService.Scope.Spreadsheets,
         ScriptService.Scope.ScriptProjects,
-        ScriptService.Scope.ScriptProjectsReadonly
+        ScriptService.Scope.ScriptDeployments
     }
 
     Private ReadOnly token As String
@@ -47,18 +47,17 @@ Public Class GoogleAPI
     ''' <summary>
     ''' Установить соединение с Google API
     ''' </summary>
-    ''' <returns></returns>
     Public Async Function Connect() As Task(Of Boolean)
         Dim credPath = Path.Combine(Environment.CurrentDirectory, ".cred", Application.ProductName)
         Try
 
             Using s As New MemoryStream(Encoding.UTF8.GetBytes(token))
                 credentials = Await GoogleWebAuthorizationBroker.AuthorizeAsync(
-        clientSecrets:=GoogleClientSecrets.FromStream(s).Secrets,
-        scopes:=Scopes,
-        user:="user",
-        taskCancellationToken:=CancellationToken.None,
-        dataStore:=New FileDataStore(credPath, True))
+                    clientSecrets:=GoogleClientSecrets.FromStream(s).Secrets,
+                    scopes:=Scopes,
+                    user:="user",
+                    taskCancellationToken:=CancellationToken.None,
+                    dataStore:=New FileDataStore(credPath, True))
             End Using
 
             driveService = New DriveService(New BaseClientService.Initializer() With {
@@ -135,6 +134,12 @@ Public Class GoogleAPI
                                 End Function).ToList()
     End Function
 
+    ''' <summary>
+    '''     Импорт листа из книги
+    ''' </summary>
+    ''' <param name="spreadSheetId">ID книги</param>
+    ''' <param name="sheetName">Имя листа</param>
+    ''' <returns></returns>
     Public Function Import(spreadSheetId As Object, sheetName As String) As List(Of List(Of String))
         Dim req = sheetService.Spreadsheets.Values.Get(spreadSheetId, sheetName)
         Dim resp = req.Execute()
@@ -144,14 +149,7 @@ Public Class GoogleAPI
                                                  Return Not String.IsNullOrEmpty(s)
                                              End Function).ToList()
                                   End Function).ToList()
-        'Throw New NotImplementedException()
     End Function
-
-    Public Sub RunScript(id As String, ParamArray param() As String)
-        Throw New NotImplementedException()
-        Dim req = scriptService.Projects.Get(id)
-        Dim resp = req.Execute()
-    End Sub
 
 #End Region
 
