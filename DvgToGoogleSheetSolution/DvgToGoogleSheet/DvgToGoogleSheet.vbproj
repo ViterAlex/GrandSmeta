@@ -109,6 +109,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Compile Include="GoogleAPI.Scripts.vb" />
+    <Compile Include="GoogleAPI.vb" />
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>

@@ -1,42 +1,64 @@
 ﻿Imports Google.Apis.Script.v1.Data
 Imports ScriptFile = Google.Apis.Script.v1.Data.File
 
-Public Class GoogleAPI
+Partial Public Class GoogleAPI
 
-#Region "Internal Methods"
+#Region "Fields"
+
+    Private loadedScriptFiles As IList(Of ScriptFile)
+
+#End Region
+
+#Region "Public Methods"
+
+    Public Sub DeployNewVersion(scriptId As String, Optional description As String = "")
+        If loadedScriptFiles Is Nothing OrElse loadedScriptFiles.Count = 0 Then
+            Return
+        End If
+        Dim versions = GetVersions(scriptId)
+        Dim n = versions.Max(Function(v)
+                                 Return v.VersionNumber.Value
+                             End Function)
+        Dim body = New DeploymentConfig With {
+        .VersionNumber = n + 1,
+        .Description = description
+        }
+        Dim req = scriptService.Projects.Deployments.Create(body, scriptId)
+        Dim resp = req.Execute()
+    End Sub
 
     ''' <summary>
-    ''' Получить функции из файла исходного кода
+    ''' Получить функции из файла исходного кода.
     ''' </summary>
-    ''' <param name="file">Ссылка на файл исходного кода</param>
-    Friend Function GetFunctions(file As ScriptFile) As IList(Of GoogleAppsScriptTypeFunction)
+    ''' <param name="file">Ссылка на файл исходного кода.</param>
+    Public Function GetFunctions(file As ScriptFile) As IList(Of GoogleAppsScriptTypeFunction)
         If file.FunctionSet.Values IsNot Nothing Then
             Return file.FunctionSet.Values
         End If
         Return New List(Of GoogleAppsScriptTypeFunction)
     End Function
 
-#End Region
-
-#Region "Public Methods"
-
     ''' <summary>
     ''' Получить файлы с исходным кодом из проекта
     ''' </summary>
     ''' <param name="scriptId">ID проекта скриптов</param>
-    Public Function GetSourceCodeFiles(scriptId As String) As IList(Of ScriptInfo)
+    Public Function GetSourceCodeFiles(scriptId) As IList(Of ScriptInfo)
+
         Dim req = scriptService.Projects.GetContent(scriptId)
         Dim resp = req.Execute()
-        Return resp.Files.Select(Function(f)
-                                     Return New ScriptInfo With {.Name = f.Name, .File = f}
-                                 End Function).ToList()
+        loadedScriptFiles = resp.Files
+        Return loadedScriptFiles.Select(Function(f)
+                                            Return New ScriptInfo With {
+                                     .Name = f.Name,
+                                     .File = f
+                                     }
+                                        End Function).ToList()
         'resp.Files.
     End Function
 
     ''' <summary>
     ''' Получить версии приложении для проекта
     ''' </summary>
-    ''' <param name="scriptId">ID проекта скриптов</param>
     Public Function GetVersions(scriptId As String) As IList(Of Version)
         Dim req = scriptService.Projects.Versions.List(scriptId)
         Dim resp = req.Execute()
@@ -46,41 +68,47 @@ Public Class GoogleAPI
     ''' <summary>
     ''' Запуск указанного скрипта
     ''' </summary>
-    ''' <param name="id"></param>
-    ''' <param name="param"></param>
-    Public Function RunScript(v As Version, f As String, id As String, ParamArray param() As String) As Boolean
-        'Получить текущию версию
-        Dim deplReq = scriptService.Projects.Deployments.List(id)
-        Dim deplResp = deplReq.Execute()
-
-        Dim deploy = deplResp.Deployments.First(Function(dep)
-                                                    Return dep.DeploymentConfig.VersionNumber.HasValue
-                                                End Function)
-        If deploy Is Nothing Then
-            Return False
-        End If
-
-        Dim config = New UpdateDeploymentRequest With {
-        .DeploymentConfig = New DeploymentConfig With {
-        .Description = v.Description,
-        .ManifestFileName = deploy.DeploymentConfig.ManifestFileName,
-        .ScriptId = id,
-        .VersionNumber = v.VersionNumber
-                }
-        }
-
-        Dim deplUpdateReq = scriptService.Projects.Deployments.Update(config, id, deploy.DeploymentId)
-        Dim deplUpdateResp = deplUpdateReq.Execute()
+    ''' <param name="v">Версия развёртывания.</param>
+    ''' <param name="f">Имя функции.</param>
+    ''' <param name="param">Параметры функции.</param>
+    Public Function RunScript(v As Version, f As String, scriptId As String, ParamArray param() As String) As Boolean
 
         Dim exreq = New ExecutionRequest With {
             .[Function] = f,
-            .Parameters = param
+            .Parameters = param,
+            .DevMode = True
         }
 
-        Dim req = scriptService.Scripts.Run(exreq, deploy.DeploymentId)
+        'Dim req = scriptService.Scripts.Run(exreq, deploy.DeploymentId)
+        Dim req = scriptService.Scripts.Run(exreq, scriptId)
         Dim resp = req.Execute()
         Return resp.Done
     End Function
+
+    ''' <summary>
+    ''' Обновление исходных файлов проекта.
+    ''' </summary>
+    ''' <param name="scriptId">ID проекта скриптов</param>
+    ''' <param name="sourceFileName">Имя файла, который нужно обновить.</param>
+    ''' <param name="sourceCode">Исходный код файла.</param>
+    Public Sub UpdateSourceFiles(scriptId As String, sourceFileName As String, sourceCode As String)
+        If loadedScriptFiles Is Nothing OrElse loadedScriptFiles.Count = 0 Then
+            Return
+        End If
+        For Each file In loadedScriptFiles
+            If file.Name = sourceFileName Then
+                file.Source = sourceCode
+                Exit For
+            End If
+        Next
+
+        Dim body = New Content With {
+        .Files = loadedScriptFiles,
+        .ScriptId = scriptId
+        }
+        Dim req = scriptService.Projects.UpdateContent(body, scriptId)
+        Dim resp = req.Execute()
+    End Sub
 
 #End Region
 

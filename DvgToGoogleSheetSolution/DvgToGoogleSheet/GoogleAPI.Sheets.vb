@@ -1,82 +1,11 @@
-﻿Imports System.IO
-Imports System.Text
-Imports System.Threading
-Imports Google.Apis.Auth.OAuth2
-Imports Google.Apis.Drive.v3
-Imports Google.Apis.Script.v1
-Imports Google.Apis.Services
-Imports Google.Apis.Sheets.v4
+﻿Imports Google.Apis.Drive.v3
 Imports Google.Apis.Sheets.v4.Data
 Imports Google.Apis.Sheets.v4.SpreadsheetsResource.ValuesResource.UpdateRequest
-Imports Google.Apis.Util.Store
 Imports File = Google.Apis.Drive.v3.Data.File
 
 Partial Public Class GoogleAPI
 
-#Region "Fields"
-
-    Private ReadOnly Scopes As IEnumerable(Of String) = New String() {
-        DriveService.Scope.Drive,
-        SheetsService.Scope.Spreadsheets,
-        ScriptService.Scope.ScriptProjects,
-        ScriptService.Scope.ScriptDeployments
-    }
-
-    Private ReadOnly token As String
-    Private credentials As UserCredential
-    Private driveService As DriveService
-    Private scriptService As ScriptService
-    Private sheetService As SheetsService
-
-#End Region
-
-#Region "Public Constructors"
-
-    ''' <summary>
-    ''' Создание нового сеанса с GoogleAPI
-    ''' </summary>
-    ''' <param name="token">Токен авторизации.</param>
-    Public Sub New(token As String)
-        Me.token = token
-    End Sub
-
-#End Region
-
 #Region "Public Methods"
-
-    ''' <summary>
-    ''' Установить соединение с Google API
-    ''' </summary>
-    Public Async Function Connect() As Task(Of Boolean)
-        Dim credPath = Path.Combine(Environment.CurrentDirectory, ".cred", Application.ProductName)
-        Try
-
-            Using s As New MemoryStream(Encoding.UTF8.GetBytes(token))
-                credentials = Await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    clientSecrets:=GoogleClientSecrets.FromStream(s).Secrets,
-                    scopes:=Scopes,
-                    user:="user",
-                    taskCancellationToken:=CancellationToken.None,
-                    dataStore:=New FileDataStore(credPath, True))
-            End Using
-
-            driveService = New DriveService(New BaseClientService.Initializer() With {
-                                            .HttpClientInitializer = credentials,
-                                            .ApplicationName = Application.ProductName
-                                            })
-            sheetService = New SheetsService(New BaseClientService.Initializer() With {
-                                             .HttpClientInitializer = credentials,
-                                             .ApplicationName = Application.ProductName
-                                             })
-            scriptService = New ScriptService(New BaseClientService.Initializer() With {
-                                              .HttpClientInitializer = credentials,
-                                              .ApplicationName = Application.ProductName
-                                              })
-        Catch ex As Exception
-            Return False
-        End Try
-        Return True
-    End Function
 
     ''' <summary>
     ''' Экспортировать данные из <see cref="DataGridView"/>
@@ -147,9 +76,11 @@ Partial Public Class GoogleAPI
                                       Return l.OfType(Of String) _
                                       .Where(Function(s)
                                                  Return Not String.IsNullOrEmpty(s)
-                                             End Function).ToList()
+                                             End Function) _
+                                      .ToList()
                                   End Function).ToList()
     End Function
+
 
 #End Region
 

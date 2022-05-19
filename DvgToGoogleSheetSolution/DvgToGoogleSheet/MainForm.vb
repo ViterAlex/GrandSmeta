@@ -25,17 +25,13 @@ Public Class MainForm
         If result Then
             'Включаем нужные контролы, задаём текст и т.д.
             lblConnectionStatus.Text = "Connected"
-            txtProjectId.Enabled = True
+            txtScriptId.Enabled = True
             btnGetSource.Enabled = True
-            btnRun.Enabled = True
 
             'В выпадающий список выводим список доступных книг
             cmbSpreadSheets.DisplayMember = "Name"
             cmbSpreadSheets.ValueMember = "Id"
             cmbSpreadSheets.DataSource = gapi.GetSpreadsheets()
-            If txtProjectId.Text.Length > 0 Then
-                btnGetSource_Click(sender, EventArgs.Empty)
-            End If
         End If
 
     End Sub
@@ -49,19 +45,24 @@ Public Class MainForm
 
     'Заполнение списка с файлами исходников
     Private Sub btnGetSource_Click(sender As Object, e As EventArgs) Handles btnGetSource.Click
-        Dim files = gapi.GetSourceCodeFiles(txtProjectId.Text)
+        Dim files = gapi.GetSourceCodeFiles(txtScriptId.Text)
         If files Is Nothing OrElse files.Count = 0 Then
             Return
         End If
         cmbSourceFiles.Enabled = True
         cmbFunctions.Enabled = True
         cmbVersions.Enabled = True
-
+        btnSave.Enabled = True
+        Dim selSourceIndex = cmbSourceFiles.SelectedIndex
         cmbSourceFiles.DisplayMember = "Name"
         cmbSourceFiles.ValueMember = "File"
         cmbSourceFiles.DataSource = files
 
-        Dim versions = gapi.GetVersions(txtProjectId.Text)
+        If selSourceIndex <> -1 Then
+            cmbSourceFiles.SelectedIndex = selSourceIndex
+        End If
+
+        Dim versions = gapi.GetVersions(txtScriptId.Text)
         cmbVersions.DisplayMember = "VersionNumber"
         cmbVersions.DataSource = versions
     End Sub
@@ -95,7 +96,7 @@ Public Class MainForm
             Return
         End If
 
-        gapi.RunScript(v, cmbFunctions.SelectedValue.Name, txtProjectId.Text, GetParams())
+        gapi.RunScript(v, cmbFunctions.SelectedValue.Name, txtScriptId.Text, GetParams())
     End Sub
 
     ''' <summary>
@@ -224,6 +225,11 @@ Public Class MainForm
         MyBase.OnLoad(e)
         lblConnectionStatus.Text = "Disconnected"
         FillDataGridView()
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        gapi.UpdateSourceFiles(txtScriptId.Text, cmbSourceFiles.SelectedItem.Name, ChangeLineEndings(txtSource.Text, vbCrLf, vbLf))
+        btnGetSource_Click(btnGetSource, EventArgs.Empty)
     End Sub
 
 #End Region

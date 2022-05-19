@@ -48,7 +48,7 @@ Partial Class MainForm
         Me.btnRun = New System.Windows.Forms.Button()
         Me.FlowLayoutPanel3 = New System.Windows.Forms.FlowLayoutPanel()
         Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.txtProjectId = New System.Windows.Forms.TextBox()
+        Me.txtScriptId = New System.Windows.Forms.TextBox()
         Me.btnGetSource = New System.Windows.Forms.Button()
         Me.menu = New System.Windows.Forms.MenuStrip()
         Me.ConnectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -131,11 +131,11 @@ Partial Class MainForm
         Me.FlowLayoutPanel1.TabIndex = 5
         Me.FlowLayoutPanel1.WrapContents = False
         '
-        'lblTwo
+        'lblSheets
         '
         Me.lblSheets.Enabled = False
         Me.lblSheets.Location = New System.Drawing.Point(218, 0)
-        Me.lblSheets.Name = "lblTwo"
+        Me.lblSheets.Name = "lblSheets"
         Me.lblSheets.Size = New System.Drawing.Size(47, 21)
         Me.lblSheets.TabIndex = 4
         Me.lblSheets.Text = "Sheets:"
@@ -342,7 +342,7 @@ Partial Class MainForm
         '
         Me.FlowLayoutPanel2.AutoSize = True
         Me.FlowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.FlowLayoutPanel2.Controls.Add(Me.txtProjectId)
+        Me.FlowLayoutPanel2.Controls.Add(Me.txtScriptId)
         Me.FlowLayoutPanel2.Controls.Add(Me.btnGetSource)
         Me.FlowLayoutPanel2.Location = New System.Drawing.Point(6, 6)
         Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
@@ -352,11 +352,11 @@ Partial Class MainForm
         '
         'txtProjectId
         '
-        Me.txtProjectId.Location = New System.Drawing.Point(3, 3)
-        Me.txtProjectId.Name = "txtProjectId"
-        Me.txtProjectId.Size = New System.Drawing.Size(578, 20)
-        Me.txtProjectId.TabIndex = 1
-        Me.txtProjectId.Text = "1Vue7ijdkqpj-yrh_fAU8t8GOVD30E-ppTXm4saGYuwjbkT508IDlE4be"
+        Me.txtScriptId.Location = New System.Drawing.Point(3, 3)
+        Me.txtScriptId.Name = "txtProjectId"
+        Me.txtScriptId.Size = New System.Drawing.Size(578, 20)
+        Me.txtScriptId.TabIndex = 1
+        Me.txtScriptId.Text = "1Vue7ijdkqpj-yrh_fAU8t8GOVD30E-ppTXm4saGYuwjbkT508IDlE4be"
         '
         'btnGetSource
         '
@@ -450,7 +450,7 @@ Partial Class MainForm
     Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
     Friend WithEvents menu As MenuStrip
     Friend WithEvents ConnectToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents txtProjectId As TextBox
+    Friend WithEvents txtScriptId As TextBox
     Friend WithEvents btnRead As Button
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents lblConnectionStatus As ToolStripStatusLabel
