@@ -1,5 +1,4 @@
 ﻿Imports System.IO
-
 Public Class MainForm
 
 #Region "Fields"

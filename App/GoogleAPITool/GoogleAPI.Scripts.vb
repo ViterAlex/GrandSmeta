@@ -1,6 +1,5 @@
 ﻿Imports Google.Apis.Script.v1.Data
 Imports ScriptFile = Google.Apis.Script.v1.Data.File
-
 Partial Public Class GoogleAPI
 
 #Region "Fields"

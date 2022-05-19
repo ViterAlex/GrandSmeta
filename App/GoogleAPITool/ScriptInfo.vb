@@ -1,4 +1,5 @@
-﻿Public Class ScriptInfo
+﻿
+Public Class ScriptInfo
 
 #Region "Properties"
 

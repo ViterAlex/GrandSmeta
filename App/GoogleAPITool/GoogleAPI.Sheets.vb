@@ -7,18 +7,18 @@ Partial Public Class GoogleAPI
 
 #Region "Public Methods"
 
-    ''' <summary>
-    ''' Экспортировать данные из <see cref="DataGridView"/>
-    ''' </summary>
-    ''' <param name="dgv">Источник данных.</param>
-    ''' <param name="spreadSheetId">Идентификатор книги.</param>
-    ''' <param name="rng">Адрес ячейки, с которой начинать таблицу. В формате ИмяЛиста!А1.</param>
-    Public Sub Export(dgv As DataGridView, spreadSheetId As String, rng As String)
-        If dgv.Columns.Count = 0 Then
-            Return
-        End If
-        'Получение данных из DataGridView в виде массива массивов
-        Dim values = dgv.Rows.OfType(Of DataGridViewRow) _
+        ''' <summary>
+        ''' Экспортировать данные из <see cref="DataGridView"/>
+        ''' </summary>
+        ''' <param name="dgv">Источник данных.</param>
+        ''' <param name="spreadSheetId">Идентификатор книги.</param>
+        ''' <param name="rng">Адрес ячейки, с которой начинать таблицу. В формате ИмяЛиста!А1.</param>
+        Public Sub Export(dgv As DataGridView, spreadSheetId As String, rng As String)
+            If dgv.Columns.Count = 0 Then
+                Return
+            End If
+            'Получение данных из DataGridView в виде массива массивов
+            Dim values = dgv.Rows.OfType(Of DataGridViewRow) _
             .Where(Function(r)
                        Return Not r.IsNewRow
                    End Function) _
@@ -29,58 +29,58 @@ Partial Public Class GoogleAPI
                                        End Function).ToList()
                                Return DirectCast(cells, IList(Of Object))
                            End Function).ToList()
-        Dim valRange = New ValueRange With {.Values = values}
-        Dim req = sheetService.Spreadsheets.Values.Update(valRange, spreadSheetId, rng)
-        req.ValueInputOption = ValueInputOptionEnum.USERENTERED
-        req.Execute()
-    End Sub
+            Dim valRange = New ValueRange With {.Values = values}
+            Dim req = sheetService.Spreadsheets.Values.Update(valRange, spreadSheetId, rng)
+            req.ValueInputOption = ValueInputOptionEnum.USERENTERED
+            req.Execute()
+        End Sub
 
-    ''' <summary>
-    ''' Получить листы указанной книги
-    ''' </summary>
-    ''' <param name="fileId">Id файла.</param>
-    ''' <remarks>Оборачиваем в класс <see cref="SheetInfo"/>, чтобы было удобно отображать имя листа</remarks>
-    Public Function GetSheets(fileId As String) As IList(Of SheetInfo)
-        Dim req = sheetService.Spreadsheets.Get(fileId)
-        Dim resp = req.Execute()
-        Return resp.Sheets().Select(Function(s)
-                                        Return New SheetInfo With {
+        ''' <summary>
+        ''' Получить листы указанной книги
+        ''' </summary>
+        ''' <param name="fileId">Id файла.</param>
+        ''' <remarks>Оборачиваем в класс <see cref="SheetInfo"/>, чтобы было удобно отображать имя листа</remarks>
+        Public Function GetSheets(fileId As String) As IList(Of SheetInfo)
+            Dim req = sheetService.Spreadsheets.Get(fileId)
+            Dim resp = req.Execute()
+            Return resp.Sheets().Select(Function(s)
+                                            Return New SheetInfo With {
                                         .Title = s.Properties.Title,
                                         .SheetId = s.Properties.SheetId,
                                         .Sheet = s
                                         }
+                                        End Function).ToList()
+        End Function
+
+        ''' <summary>
+        ''' Получить доступные для редактирования файлы SpreadSheets
+        ''' </summary>
+        Public Function GetSpreadsheets() As IList(Of File)
+            Dim req = DriveService.Files.List()
+            Dim resp = req.Execute()
+            Return resp.Files.Where(Function(f)
+                                        Return f.MimeType = "application/vnd.google-apps.spreadsheet"
                                     End Function).ToList()
-    End Function
+        End Function
 
-    ''' <summary>
-    ''' Получить доступные для редактирования файлы SpreadSheets
-    ''' </summary>
-    Public Function GetSpreadsheets() As IList(Of File)
-        Dim req = driveService.Files.List()
-        Dim resp = req.Execute()
-        Return resp.Files.Where(Function(f)
-                                    Return f.MimeType = "application/vnd.google-apps.spreadsheet"
-                                End Function).ToList()
-    End Function
-
-    ''' <summary>
-    '''     Импорт листа из книги
-    ''' </summary>
-    ''' <param name="spreadSheetId">ID книги</param>
-    ''' <param name="sheetName">Имя листа</param>
-    ''' <returns></returns>
-    Public Function Import(spreadSheetId As Object, sheetName As String) As List(Of List(Of String))
-        Dim req = sheetService.Spreadsheets.Values.Get(spreadSheetId, sheetName)
-        Dim resp = req.Execute()
-        Return resp.Values.Select(Function(l)
-                                      Return l.OfType(Of String) _
+        ''' <summary>
+        '''     Импорт листа из книги
+        ''' </summary>
+        ''' <param name="spreadSheetId">ID книги</param>
+        ''' <param name="sheetName">Имя листа</param>
+        ''' <returns></returns>
+        Public Function Import(spreadSheetId As Object, sheetName As String) As List(Of List(Of String))
+            Dim req = sheetService.Spreadsheets.Values.Get(spreadSheetId, sheetName)
+            Dim resp = req.Execute()
+            Return resp.Values.Select(Function(l)
+                                          Return l.OfType(Of String) _
                                       .Where(Function(s)
                                                  Return Not String.IsNullOrEmpty(s)
                                              End Function) _
                                       .ToList()
-                                  End Function).ToList()
-    End Function
+                                      End Function).ToList()
+        End Function
 
 #End Region
 
-End Class
+    End Class
