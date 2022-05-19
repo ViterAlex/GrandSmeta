@@ -91,12 +91,12 @@ Public Class MainForm
     End Sub
 
     Private Sub btnRun_Click(sender As Object, e As EventArgs) Handles btnRun.Click
-        Dim v = cmbVersions.SelectedItem
-        If v Is Nothing Then
-            Return
-        End If
+        gapi.RunScript(cmbFunctions.SelectedValue.Name, txtScriptId.Text, GetParams())
+    End Sub
 
-        gapi.RunScript(v, cmbFunctions.SelectedValue.Name, txtScriptId.Text, GetParams())
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        gapi.UpdateSourceFiles(txtScriptId.Text, cmbSourceFiles.SelectedItem.Name, ChangeLineEndings(txtSource.Text, vbCrLf, vbLf))
+        btnGetSource_Click(btnGetSource, EventArgs.Empty)
     End Sub
 
     ''' <summary>
@@ -225,11 +225,6 @@ Public Class MainForm
         MyBase.OnLoad(e)
         lblConnectionStatus.Text = "Disconnected"
         FillDataGridView()
-    End Sub
-
-    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
-        gapi.UpdateSourceFiles(txtScriptId.Text, cmbSourceFiles.SelectedItem.Name, ChangeLineEndings(txtSource.Text, vbCrLf, vbLf))
-        btnGetSource_Click(btnGetSource, EventArgs.Empty)
     End Sub
 
 #End Region

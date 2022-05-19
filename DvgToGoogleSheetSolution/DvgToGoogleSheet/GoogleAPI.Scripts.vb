@@ -11,22 +11,6 @@ Partial Public Class GoogleAPI
 
 #Region "Public Methods"
 
-    Public Sub DeployNewVersion(scriptId As String, Optional description As String = "")
-        If loadedScriptFiles Is Nothing OrElse loadedScriptFiles.Count = 0 Then
-            Return
-        End If
-        Dim versions = GetVersions(scriptId)
-        Dim n = versions.Max(Function(v)
-                                 Return v.VersionNumber.Value
-                             End Function)
-        Dim body = New DeploymentConfig With {
-        .VersionNumber = n + 1,
-        .Description = description
-        }
-        Dim req = scriptService.Projects.Deployments.Create(body, scriptId)
-        Dim resp = req.Execute()
-    End Sub
-
     ''' <summary>
     ''' Получить функции из файла исходного кода.
     ''' </summary>
@@ -53,7 +37,6 @@ Partial Public Class GoogleAPI
                                      .File = f
                                      }
                                         End Function).ToList()
-        'resp.Files.
     End Function
 
     ''' <summary>
@@ -68,19 +51,16 @@ Partial Public Class GoogleAPI
     ''' <summary>
     ''' Запуск указанного скрипта
     ''' </summary>
-    ''' <param name="v">Версия развёртывания.</param>
     ''' <param name="f">Имя функции.</param>
     ''' <param name="param">Параметры функции.</param>
-    Public Function RunScript(v As Version, f As String, scriptId As String, ParamArray param() As String) As Boolean
+    Public Function RunScript(f As String, scriptId As String, ParamArray param() As String) As Boolean
 
-        Dim exreq = New ExecutionRequest With {
+        Dim body = New ExecutionRequest With {
             .[Function] = f,
             .Parameters = param,
             .DevMode = True
         }
-
-        'Dim req = scriptService.Scripts.Run(exreq, deploy.DeploymentId)
-        Dim req = scriptService.Scripts.Run(exreq, scriptId)
+        Dim req = scriptService.Scripts.Run(body, scriptId)
         Dim resp = req.Execute()
         Return resp.Done
     End Function

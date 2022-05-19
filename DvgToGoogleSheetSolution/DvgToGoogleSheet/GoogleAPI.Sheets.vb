@@ -81,7 +81,6 @@ Partial Public Class GoogleAPI
                                   End Function).ToList()
     End Function
 
-
 #End Region
 
 End Class

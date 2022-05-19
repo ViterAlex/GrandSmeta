@@ -1,7 +1,13 @@
 ﻿Imports Google.Apis.Sheets.v4.Data
 
 Public Class SheetInfo
-    Public Property Title() As String
-    Public Property SheetId() As String
+
+#Region "Properties"
+
     Public Property Sheet() As Sheet
+    Public Property SheetId() As String
+    Public Property Title() As String
+
+#End Region
+
 End Class

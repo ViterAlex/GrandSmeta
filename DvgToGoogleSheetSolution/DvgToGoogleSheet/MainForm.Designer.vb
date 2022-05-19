@@ -290,6 +290,7 @@ Partial Class MainForm
         Me.cmbVersions.Size = New System.Drawing.Size(89, 21)
         Me.cmbVersions.TabIndex = 10
         Me.ToolTip1.SetToolTip(Me.cmbVersions, "Версии приложения")
+        Me.cmbVersions.Visible = False
         '
         'btnSave
         '
@@ -350,10 +351,10 @@ Partial Class MainForm
         Me.FlowLayoutPanel2.TabIndex = 6
         Me.FlowLayoutPanel2.WrapContents = False
         '
-        'txtProjectId
+        'txtScriptId
         '
         Me.txtScriptId.Location = New System.Drawing.Point(3, 3)
-        Me.txtScriptId.Name = "txtProjectId"
+        Me.txtScriptId.Name = "txtScriptId"
         Me.txtScriptId.Size = New System.Drawing.Size(578, 20)
         Me.txtScriptId.TabIndex = 1
         Me.txtScriptId.Text = "1Vue7ijdkqpj-yrh_fAU8t8GOVD30E-ppTXm4saGYuwjbkT508IDlE4be"
@@ -365,7 +366,7 @@ Partial Class MainForm
         Me.btnGetSource.Name = "btnGetSource"
         Me.btnGetSource.Size = New System.Drawing.Size(75, 20)
         Me.btnGetSource.TabIndex = 0
-        Me.btnGetSource.Text = "Get"
+        Me.btnGetSource.Text = "Get project"
         Me.btnGetSource.UseVisualStyleBackColor = True
         '
         'menu
