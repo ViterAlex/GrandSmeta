@@ -7,10 +7,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("DvgToGoogleSheet")>
-<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyTitle("Google API Tools")>
+<Assembly: AssemblyDescription("Tools to demonstrate some cases of using Google Spreadsheet API and Google Script API")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("DvgToGoogleSheet")>
+<Assembly: AssemblyProduct("GapiTools")>
 <Assembly: AssemblyCopyright("Copyright ©  2022")>
 <Assembly: AssemblyTrademark("")>
 

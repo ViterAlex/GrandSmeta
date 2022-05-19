@@ -171,7 +171,7 @@ Partial Class MainForm
         Me.tabControl.Location = New System.Drawing.Point(12, 31)
         Me.tabControl.Name = "tabControl"
         Me.tabControl.SelectedIndex = 0
-        Me.tabControl.Size = New System.Drawing.Size(896, 411)
+        Me.tabControl.Size = New System.Drawing.Size(960, 445)
         Me.tabControl.TabIndex = 6
         '
         'tabSpreadSheets
@@ -195,13 +195,16 @@ Partial Class MainForm
         Me.tabSripts.Location = New System.Drawing.Point(4, 22)
         Me.tabSripts.Name = "tabSripts"
         Me.tabSripts.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabSripts.Size = New System.Drawing.Size(888, 385)
+        Me.tabSripts.Size = New System.Drawing.Size(952, 419)
         Me.tabSripts.TabIndex = 1
         Me.tabSripts.Text = "Scripts"
         Me.tabSripts.UseVisualStyleBackColor = True
         '
         'SplitContainer1
         '
+        Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.SplitContainer1.Location = New System.Drawing.Point(6, 65)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
@@ -212,8 +215,8 @@ Partial Class MainForm
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.dgvParams)
-        Me.SplitContainer1.Size = New System.Drawing.Size(876, 314)
-        Me.SplitContainer1.SplitterDistance = 656
+        Me.SplitContainer1.Size = New System.Drawing.Size(943, 354)
+        Me.SplitContainer1.SplitterDistance = 706
         Me.SplitContainer1.TabIndex = 13
         '
         'txtSource
@@ -224,7 +227,7 @@ Partial Class MainForm
         Me.txtSource.Multiline = True
         Me.txtSource.Name = "txtSource"
         Me.txtSource.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtSource.Size = New System.Drawing.Size(656, 314)
+        Me.txtSource.Size = New System.Drawing.Size(706, 354)
         Me.txtSource.TabIndex = 8
         '
         'dgvParams
@@ -237,7 +240,7 @@ Partial Class MainForm
         Me.dgvParams.Location = New System.Drawing.Point(0, 0)
         Me.dgvParams.Name = "dgvParams"
         Me.dgvParams.RowHeadersVisible = False
-        Me.dgvParams.Size = New System.Drawing.Size(216, 314)
+        Me.dgvParams.Size = New System.Drawing.Size(233, 354)
         Me.dgvParams.TabIndex = 12
         '
         'colParam
@@ -374,7 +377,7 @@ Partial Class MainForm
         Me.menu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectToolStripMenuItem})
         Me.menu.Location = New System.Drawing.Point(0, 0)
         Me.menu.Name = "menu"
-        Me.menu.Size = New System.Drawing.Size(920, 24)
+        Me.menu.Size = New System.Drawing.Size(984, 24)
         Me.menu.TabIndex = 7
         Me.menu.Text = "MenuStrip1"
         '
@@ -387,9 +390,9 @@ Partial Class MainForm
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblConnectionStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 445)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 479)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(920, 23)
+        Me.StatusStrip1.Size = New System.Drawing.Size(984, 23)
         Me.StatusStrip1.TabIndex = 8
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -406,7 +409,7 @@ Partial Class MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(920, 468)
+        Me.ClientSize = New System.Drawing.Size(984, 502)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.tabControl)
         Me.Controls.Add(Me.menu)
