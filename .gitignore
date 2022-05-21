@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 
 cred.json
+/App/WordTools/sample.docx
+/App/WordToolsDemo/sample.docx
