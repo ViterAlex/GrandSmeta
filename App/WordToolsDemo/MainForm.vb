@@ -3,14 +3,19 @@ Imports WordTools
 
 Public Class MainForm
 
-#Region "Fields"
-
-    'Допустимые расширения файлов
-    Private permitted As String() = New String() {"*.docx", "*.docm", "*.dotx", "*.dotm"}
-
-#End Region
-
 #Region "Private Methods"
+
+    Private Async Sub btnAsyncOpenFile_Click(sender As Object, e As EventArgs) Handles btnAsyncOpenFile.Click
+        If ofd.ShowDialog <> DialogResult.OK Then
+            Return
+        End If
+        lvwDocsInfo.Items.Clear()
+        lvwDocsInfo.Visible = True
+        For Each file In ofd.FileNames
+            Dim n = Await WordTool.AsyncCharactersWithoutSpaces(file)
+            lvwDocsInfo.Items.Add(New ListViewItem(New String() {file, n}))
+        Next
+    End Sub
 
     Private Sub menuOpenFile_Click(sender As Object, e As EventArgs) Handles menuOpenFile.Click
         If ofd.ShowDialog <> DialogResult.OK Then
@@ -31,18 +36,6 @@ Public Class MainForm
         lvwDocsInfo.Visible = True
         For Each kvp In info
             lvwDocsInfo.Items.Add(New ListViewItem(New String() {kvp.Key, kvp.Value}))
-        Next
-    End Sub
-
-    Private Async Sub btnAsyncOpenFile_Click(sender As Object, e As EventArgs) Handles btnAsyncOpenFile.Click
-        If ofd.ShowDialog <> DialogResult.OK Then
-            Return
-        End If
-        lvwDocsInfo.Items.Clear()
-        lvwDocsInfo.Visible = True
-        For Each file In ofd.FileNames
-            Dim n = Await WordTool.AsyncCharactersWithoutSpaces(file)
-            lvwDocsInfo.Items.Add(New ListViewItem(New String() {file, n}))
         Next
     End Sub
 

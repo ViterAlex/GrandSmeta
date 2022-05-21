@@ -25,7 +25,6 @@ Partial Class MainForm
         Me.lvwDocsInfo = New System.Windows.Forms.ListView()
         Me.colFileName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colCharCount = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.fbd = New System.Windows.Forms.FolderBrowserDialog()
         Me.ofd = New System.Windows.Forms.OpenFileDialog()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.menuOpenFile = New System.Windows.Forms.ToolStripMenuItem()
@@ -59,14 +58,10 @@ Partial Class MainForm
         Me.colCharCount.Text = "Кол-во символов"
         Me.colCharCount.Width = 108
         '
-        'fbd
-        '
-        Me.fbd.Description = "Выбрать папку с документами"
-        Me.fbd.ShowNewFolderButton = False
-        '
         'ofd
         '
-        Me.ofd.Filter = "Документы|*.docx;*.docm"
+        Me.ofd.Filter = "Все документы Word|*.docx;*.docm;*.dotx;*.dotm|Документы Word|*.docx|Документы Wo" &
+    "rd с макросами|*.docm|Шаблоны Word|*.dotx|Шаблоны Word с макросами|*.dotm"
         Me.ofd.Multiselect = True
         Me.ofd.RestoreDirectory = True
         Me.ofd.SupportMultiDottedExtensions = True
@@ -111,7 +106,6 @@ Partial Class MainForm
     Friend WithEvents lvwDocsInfo As ListView
     Friend WithEvents colFileName As ColumnHeader
     Friend WithEvents colCharCount As ColumnHeader
-    Friend WithEvents fbd As FolderBrowserDialog
     Friend WithEvents ofd As OpenFileDialog
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents menuOpenFile As ToolStripMenuItem
