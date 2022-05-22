@@ -29,6 +29,7 @@ Partial Class MainForm
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.menuOpenFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnAsyncOpenFile = New System.Windows.Forms.ToolStripMenuItem()
+        Me.prbProcess = New System.Windows.Forms.ProgressBar()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -42,7 +43,7 @@ Partial Class MainForm
         Me.lvwDocsInfo.HideSelection = False
         Me.lvwDocsInfo.Location = New System.Drawing.Point(0, 28)
         Me.lvwDocsInfo.Name = "lvwDocsInfo"
-        Me.lvwDocsInfo.Size = New System.Drawing.Size(768, 404)
+        Me.lvwDocsInfo.Size = New System.Drawing.Size(768, 383)
         Me.lvwDocsInfo.TabIndex = 0
         Me.lvwDocsInfo.UseCompatibleStateImageBehavior = False
         Me.lvwDocsInfo.View = System.Windows.Forms.View.Details
@@ -60,8 +61,9 @@ Partial Class MainForm
         '
         'ofd
         '
-        Me.ofd.Filter = "Все документы Word|*.docx;*.docm;*.dotx;*.dotm|Документы Word|*.docx|Документы Wo" &
-    "rd с макросами|*.docm|Шаблоны Word|*.dotx|Шаблоны Word с макросами|*.dotm"
+        Me.ofd.Filter = "Все документы Word|*.docx;*.docm;*.dotx;*.dotm;*.doc|Документы Word|*.docx|Докуме" &
+    "нты Word с макросами|*.docm|Шаблоны Word|*.dotx|Шаблоны Word с макросами|*.dotm|" &
+    "Документы Word 97-2003|*.doc"
         Me.ofd.Multiselect = True
         Me.ofd.RestoreDirectory = True
         Me.ofd.SupportMultiDottedExtensions = True
@@ -87,11 +89,23 @@ Partial Class MainForm
         Me.btnAsyncOpenFile.Size = New System.Drawing.Size(194, 20)
         Me.btnAsyncOpenFile.Text = "Открыть файл(ы) асинхронно..."
         '
+        'prbProcess
+        '
+        Me.prbProcess.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.prbProcess.Location = New System.Drawing.Point(0, 414)
+        Me.prbProcess.Name = "prbProcess"
+        Me.prbProcess.Size = New System.Drawing.Size(768, 16)
+        Me.prbProcess.Step = 1
+        Me.prbProcess.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        Me.prbProcess.TabIndex = 2
+        Me.prbProcess.Visible = False
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(768, 430)
+        Me.Controls.Add(Me.prbProcess)
         Me.Controls.Add(Me.lvwDocsInfo)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Name = "MainForm"
@@ -110,4 +124,5 @@ Partial Class MainForm
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents menuOpenFile As ToolStripMenuItem
     Friend WithEvents btnAsyncOpenFile As ToolStripMenuItem
+    Friend WithEvents prbProcess As ProgressBar
 End Class

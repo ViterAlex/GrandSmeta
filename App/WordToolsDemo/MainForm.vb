@@ -11,10 +11,23 @@ Public Class MainForm
         End If
         lvwDocsInfo.Items.Clear()
         lvwDocsInfo.Visible = True
+        SetupProgressBar(ofd.FileNames)
         For Each file In ofd.FileNames
             Dim n = Await WordTool.AsyncCharactersWithoutSpaces(file)
             lvwDocsInfo.Items.Add(New ListViewItem(New String() {file, n}))
+            prbProcess.PerformStep()
+#If DEBUG Then
+            Threading.Thread.Sleep(500)
+#End If
         Next
+        prbProcess.Visible = False
+    End Sub
+
+    Private Sub SetupProgressBar(items() As String)
+        prbProcess.Visible = True
+        prbProcess.Minimum = 0
+        prbProcess.Maximum = items.Count
+        prbProcess.Value = prbProcess.Minimum
     End Sub
 
     Private Sub menuOpenFile_Click(sender As Object, e As EventArgs) Handles menuOpenFile.Click
