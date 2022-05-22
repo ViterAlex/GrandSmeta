@@ -52,6 +52,12 @@
         Dim n = WordTool.CharactersWithoutSpaces(file)
         Assert.IsTrue(n = 8311, $"n={n}")
     End Sub
+    <TestMethod()>
+    Public Sub DocFileTest()
+        Dim file = IO.Path.GetFullPath("SampleDocs\doc_8311.doc")
+        Dim n = WordTool.CharactersWithoutSpaces(file)
+        Assert.IsTrue(n = 8311, $"n={n}")
+    End Sub
 
 #End Region
 
