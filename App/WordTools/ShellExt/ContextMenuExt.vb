@@ -216,17 +216,23 @@ Namespace ShellExtContextMenuHandler
                         args &= String.Format(" {0}{1}{0} ", quote, selectedFiles(n))
                     Next
                 End If
-                Dim result As New StringBuilder
-                Dim sw As New Stopwatch()
-                For Each file In selectedFiles
-                    sw.Reset()
-                    sw.Start()
-                    Dim n = WordTool.CharactersWithoutSpaces(file)
-                    sw.Stop()
-                    logger.Log($"{file} processed in {sw.ElapsedMilliseconds} ms")
-                    result.AppendLine($"{file}{vbTab}{n}")
-                Next
-                Clipboard.SetText(result.ToString())
+                Dim pi As New ProcessStartInfo With {
+                    .Arguments = args,
+                    .FileName = "wtd.exe",
+                    .WorkingDirectory = Path.GetDirectoryName(Assembly.GetAssembly(Me.GetType).Location)
+                }
+                Process.Start(pi)
+                'Dim result As New StringBuilder
+                'Dim sw As New Stopwatch()
+                'For Each file In selectedFiles
+                '    sw.Reset()
+                '    sw.Start()
+                '    Dim n = WordTool.CharactersWithoutSpaces(file)
+                '    sw.Stop()
+                '    logger.Log($"{file} processed in {sw.ElapsedMilliseconds} ms")
+                '    result.AppendLine($"{file}{vbTab}{n}")
+                'Next
+                'Clipboard.SetText(result.ToString())
                 ' MS-PL test stand-in for feeding a full command line to Some Other App
                 ' if you really, really need to.
                 'MessageBox.Show("Cmd to execute: " & Environment.NewLine & " args: [" & args & "]", "ShellExtContextMenuHandler")

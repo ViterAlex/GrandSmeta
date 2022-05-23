@@ -15,68 +15,68 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_5A4874A787264DE5BCF6FE8707E4B8D5"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_628DBFFACCDA9757CC4564482005BDBE"
+        "OwnerKey" = "8:_7334A8CB1C9445139A503E81CDE046C6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_628DBFFACCDA9757CC4564482005BDBE"
-        "OwnerKey" = "8:_5A4874A787264DE5BCF6FE8707E4B8D5"
+        "OwnerKey" = "8:_9E282CE9852BE4D3540C4B3528619E77"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_628DBFFACCDA9757CC4564482005BDBE"
-        "OwnerKey" = "8:_CC05F2CD318830C22DAEED614E96CED5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_628DBFFACCDA9757CC4564482005BDBE"
-        "OwnerKey" = "8:_9AF7D386139A4A74A7B4CFF6A27C6AA2"
+        "OwnerKey" = "8:_777C85340DAF48F7AB1B82D243A196A7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_6FCAD3193BBDA4911563434121F26DFC"
-        "OwnerKey" = "8:_5A4874A787264DE5BCF6FE8707E4B8D5"
+        "OwnerKey" = "8:_7334A8CB1C9445139A503E81CDE046C6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_6FCAD3193BBDA4911563434121F26DFC"
-        "OwnerKey" = "8:_9AF7D386139A4A74A7B4CFF6A27C6AA2"
+        "OwnerKey" = "8:_777C85340DAF48F7AB1B82D243A196A7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_9AF7D386139A4A74A7B4CFF6A27C6AA2"
+        "MsmKey" = "8:_7334A8CB1C9445139A503E81CDE046C6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_CC05F2CD318830C22DAEED614E96CED5"
-        "OwnerKey" = "8:_9AF7D386139A4A74A7B4CFF6A27C6AA2"
+        "MsmKey" = "8:_777C85340DAF48F7AB1B82D243A196A7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9E282CE9852BE4D3540C4B3528619E77"
+        "OwnerKey" = "8:_777C85340DAF48F7AB1B82D243A196A7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5A4874A787264DE5BCF6FE8707E4B8D5"
+        "OwnerKey" = "8:_7334A8CB1C9445139A503E81CDE046C6"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9AF7D386139A4A74A7B4CFF6A27C6AA2"
+        "OwnerKey" = "8:_777C85340DAF48F7AB1B82D243A196A7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_CC05F2CD318830C22DAEED614E96CED5"
+        "OwnerKey" = "8:_9E282CE9852BE4D3540C4B3528619E77"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -158,36 +158,68 @@
                 }
             }
         }
+        "WordToolsRelease"
+        {
+        "DisplayName" = "8:WordToolsRelease"
+        "IsDebugOnly" = "11:FALSE"
+        "IsReleaseOnly" = "11:FALSE"
+        "OutputFilename" = "8:WordToolsRelease\\WordToolsInstaller(x64).msi"
+        "PackageFilesAs" = "3:2"
+        "PackageFileSize" = "3:-2147483648"
+        "CabType" = "3:1"
+        "Compression" = "3:2"
+        "SignOutput" = "11:FALSE"
+        "CertificateFile" = "8:"
+        "PrivateKeyFile" = "8:"
+        "TimeStampServer" = "8:"
+        "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:FALSE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
+        }
     }
     "Deployable"
     {
         "CustomAction"
         {
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_1CE7E34BD9DA489EA6A234C2188D8415"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_2A73C0514AD2435AADFA35E23700DCE6"
             {
-            "Name" = "8:Primary output from WordTools (Active)"
+            "Name" = "8:Primary output from WordTools (WordToolsRelease Any CPU)"
             "Condition" = "8:"
-            "Object" = "8:_5A4874A787264DE5BCF6FE8707E4B8D5"
+            "Object" = "8:_7334A8CB1C9445139A503E81CDE046C6"
             "FileType" = "3:1"
             "InstallAction" = "3:1"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_C7728FD0_81D5_4EE0_9E75_A71A585E2548"
+            "Identifier" = "8:_0606A5AC_BC40_4818_B5A4_48CAB3F9E4FC"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
-            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_30BC46CE2C4F4F6B9DB7EDF0BDC6E10C"
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_DAE2132873C144B68297E4DFACCDAE17"
             {
-            "Name" = "8:Primary output from WordTools (Active)"
+            "Name" = "8:Primary output from WordTools (WordToolsRelease Any CPU)"
             "Condition" = "8:"
-            "Object" = "8:_5A4874A787264DE5BCF6FE8707E4B8D5"
+            "Object" = "8:_7334A8CB1C9445139A503E81CDE046C6"
             "FileType" = "3:1"
             "InstallAction" = "3:4"
             "Arguments" = "8:"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
-            "Identifier" = "8:_3E6D3B89_3562_4903_9456_01519A3135A5"
+            "Identifier" = "8:_825BC229_6DE4_45FB_A3EB_6287959852DE"
             "InstallerClass" = "11:TRUE"
             "CustomActionData" = "8:"
             }
@@ -276,14 +308,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_CC05F2CD318830C22DAEED614E96CED5"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9E282CE9852BE4D3540C4B3528619E77"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:wt, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc9708c0d1380d35, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_CC05F2CD318830C22DAEED614E96CED5"
+                    "_9E282CE9852BE4D3540C4B3528619E77"
                     {
                     "Name" = "8:wt.dll"
                     "Attributes" = "3:512"
@@ -375,7 +407,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WordTools"
         "ProductCode" = "8:{DF31005D-866F-4E12-BBD2-D8CBE1811D20}"
-        "PackageCode" = "8:{EB713619-3ACA-41AF-9A32-DED8ABD02FAF}"
+        "PackageCode" = "8:{AE32FBDA-B41C-4A3F-B385-F9BC7E529508}"
         "UpgradeCode" = "8:{BA1FF25C-EFE6-4281-986D-C7189FDC483B}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
@@ -503,7 +535,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_9AF7D386139A4A74A7B4CFF6A27C6AA2"
+            "Target" = "8:_777C85340DAF48F7AB1B82D243A196A7"
             "Folder" = "8:_BAC03D9C99D744D397E6743CCC4476B6"
             "WorkingFolder" = "8:_1B850D58ACD34F7C8E20D572F4EA86DA"
             "Icon" = "8:"
@@ -517,7 +549,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_9AF7D386139A4A74A7B4CFF6A27C6AA2"
+            "Target" = "8:_777C85340DAF48F7AB1B82D243A196A7"
             "Folder" = "8:_5F2A4A1EB4444C85ADA79B48294FC97E"
             "WorkingFolder" = "8:_1B850D58ACD34F7C8E20D572F4EA86DA"
             "Icon" = "8:"
@@ -821,9 +853,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5A4874A787264DE5BCF6FE8707E4B8D5"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_7334A8CB1C9445139A503E81CDE046C6"
             {
-            "SourcePath" = "8:..\\WordTools\\obj\\Release\\wt.dll"
+            "SourcePath" = "8:..\\WordTools\\obj\\WordToolsRelease\\wt.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_1B850D58ACD34F7C8E20D572F4EA86DA"
@@ -841,7 +873,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
+            "OutputConfiguration" = "8:WordToolsRelease|Any CPU"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{608D9619-8EC8-4209-8300-EC05852F5476}"
             "ShowKeyOutput" = "11:TRUE"
@@ -849,9 +881,9 @@
                 {
                 }
             }
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_9AF7D386139A4A74A7B4CFF6A27C6AA2"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_777C85340DAF48F7AB1B82D243A196A7"
             {
-            "SourcePath" = "8:..\\WordToolsDemo\\obj\\Release\\wtd.exe"
+            "SourcePath" = "8:..\\WordToolsDemo\\obj\\WordToolsRelease\\wtd.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_1B850D58ACD34F7C8E20D572F4EA86DA"
@@ -869,7 +901,7 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:Release|Any CPU"
+            "OutputConfiguration" = "8:WordToolsRelease|Any CPU"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{FF413AB3-FE9B-4218-8061-0DEF9BF6F7B4}"
             "ShowKeyOutput" = "11:TRUE"

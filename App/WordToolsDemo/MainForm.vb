@@ -9,10 +9,15 @@ Public Class MainForm
         If ofd.ShowDialog <> DialogResult.OK Then
             Return
         End If
+
+        Await ProcessFilesAsync(ofd.FileNames)
+    End Sub
+
+    Private Async Function ProcessFilesAsync(files As String()) As Task
         lvwDocsInfo.Items.Clear()
         lvwDocsInfo.Visible = True
-        SetupProgressBar(ofd.FileNames)
-        For Each file In ofd.FileNames
+        SetupProgressBar(files)
+        For Each file In files
             Dim n = Await WordTool.AsyncCharactersWithoutSpaces(file)
             lvwDocsInfo.Items.Add(New ListViewItem(New String() {file, n}))
             prbProcess.PerformStep()
@@ -21,7 +26,7 @@ Public Class MainForm
 #End If
         Next
         prbProcess.Visible = False
-    End Sub
+    End Function
 
     Private Sub SetupProgressBar(items() As String)
         prbProcess.Visible = True
@@ -53,5 +58,10 @@ Public Class MainForm
     End Sub
 
 #End Region
-
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        MyBase.OnLoad(e)
+        If My.Application.CommandLineArgs.Count > 0 Then
+            ProcessFilesAsync(My.Application.CommandLineArgs.ToArray)
+        End If
+    End Sub
 End Class
