@@ -365,3 +365,5 @@ FodyWeavers.xsd
 cred.json
 /App/WordTools/sample.docx
 /App/WordToolsDemo/sample.docx
+App/WordToolsInstaller(x64)/WordToolsRelease/
+App/WordToolsInstaller(x86)/WordToolsRelease/
