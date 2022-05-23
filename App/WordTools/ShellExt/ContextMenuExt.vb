@@ -130,6 +130,7 @@ Namespace ShellExtContextMenuHandler
 
                 ' write dated header
                 logger = New Logger(logFile)
+                logger.Open()
                 logger.Separator()
                 logger.LogMethod()
                 'WriteToLog($"@{MethodBase.GetCurrentMethod().Name}")
