@@ -8,6 +8,9 @@ Public Class WordTool
     ''' </summary>
     ''' <param name="path">Путь к файлу</param>
     Public Shared Function CharactersWithoutSpaces(path As String) As Integer
+        If path.EndsWith(".doc") Then
+            Return ProcessDocFile(path)
+        End If
         Using doc = WordprocessingDocument.Open(path, False)
             Dim fn = doc.MainDocumentPart.FootnotesPart
             Dim en = doc.MainDocumentPart.EndnotesPart
@@ -17,6 +20,31 @@ Public Class WordTool
             Dim en_count = ProcessEndnotes(en)
             Return md_count + fn_count + en_count
         End Using
+    End Function
+
+    ''' <summary>
+    ''' Обработка документа формата *.doc
+    ''' </summary>
+    ''' <param name="path"></param>
+    ''' <returns></returns>
+    Private Shared Function ProcessDocFile(path As String) As Integer
+        Const wdStatisticCharacters As Integer = 3
+        'Используем позднее связывание, чтобы не привязываться к версии Word
+        Dim t = Type.GetTypeFromProgID("Word.Application")
+        Dim wdApp As Object
+        Dim wdDoc As Object
+        Try
+            wdApp = Activator.CreateInstance(t)
+#If DEBUG Then
+            wdApp.Visible = True
+#End If
+            wdDoc = wdApp.Documents.Open(path, AddToRecentFiles:=False)
+        Catch ex As Exception
+            Return -1
+        End Try
+        Dim result = wdDoc.Range.ComputeStatistics(wdStatisticCharacters)
+        wdApp.Quit(False)
+        Return result
     End Function
 
     Public Shared Async Function AsyncCharactersWithoutSpaces(path As String) As Task(Of Integer)
