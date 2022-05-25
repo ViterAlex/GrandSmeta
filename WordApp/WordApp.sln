@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WordTools", "WordTools\WordTools.vbproj", "{608D9619-8EC8-4209-8300-EC05852F5476}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WordToolsDemo", "WordToolsDemo\WordToolsDemo.vbproj", "{FF413AB3-FE9B-4218-8061-0DEF9BF6F7B4}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WordToolsInstaller(x64)", "WordToolsInstaller(x64)\WordToolsInstaller(x64).vdproj", "{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WordToolsInstaller(x86)", "WordToolsInstaller(x86)\WordToolsInstaller(x86).vdproj", "{953DD629-552F-4280-83F5-515763240805}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WordToolsTests", "WordToolsTests\WordToolsTests.vbproj", "{7BB836DE-5A98-4180-BF92-510FC04D3C50}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		WordToolsRelease|Any CPU = WordToolsRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{608D9619-8EC8-4209-8300-EC05852F5476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{608D9619-8EC8-4209-8300-EC05852F5476}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{608D9619-8EC8-4209-8300-EC05852F5476}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{608D9619-8EC8-4209-8300-EC05852F5476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{608D9619-8EC8-4209-8300-EC05852F5476}.WordToolsRelease|Any CPU.ActiveCfg = WordToolsRelease|Any CPU
+		{608D9619-8EC8-4209-8300-EC05852F5476}.WordToolsRelease|Any CPU.Build.0 = WordToolsRelease|Any CPU
+		{FF413AB3-FE9B-4218-8061-0DEF9BF6F7B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF413AB3-FE9B-4218-8061-0DEF9BF6F7B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF413AB3-FE9B-4218-8061-0DEF9BF6F7B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF413AB3-FE9B-4218-8061-0DEF9BF6F7B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF413AB3-FE9B-4218-8061-0DEF9BF6F7B4}.WordToolsRelease|Any CPU.ActiveCfg = WordToolsRelease|Any CPU
+		{FF413AB3-FE9B-4218-8061-0DEF9BF6F7B4}.WordToolsRelease|Any CPU.Build.0 = WordToolsRelease|Any CPU
+		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.Debug|Any CPU.ActiveCfg = Debug
+		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.Debug|Any CPU.Build.0 = Debug
+		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.Release|Any CPU.ActiveCfg = Release
+		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.Release|Any CPU.Build.0 = Release
+		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.WordToolsRelease|Any CPU.ActiveCfg = WordToolsRelease
+		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.WordToolsRelease|Any CPU.Build.0 = WordToolsRelease
+		{953DD629-552F-4280-83F5-515763240805}.Debug|Any CPU.ActiveCfg = Debug
+		{953DD629-552F-4280-83F5-515763240805}.Debug|Any CPU.Build.0 = Debug
+		{953DD629-552F-4280-83F5-515763240805}.Release|Any CPU.ActiveCfg = Release
+		{953DD629-552F-4280-83F5-515763240805}.Release|Any CPU.Build.0 = Release
+		{953DD629-552F-4280-83F5-515763240805}.WordToolsRelease|Any CPU.ActiveCfg = WordToolsRelease
+		{953DD629-552F-4280-83F5-515763240805}.WordToolsRelease|Any CPU.Build.0 = WordToolsRelease
+		{7BB836DE-5A98-4180-BF92-510FC04D3C50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BB836DE-5A98-4180-BF92-510FC04D3C50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BB836DE-5A98-4180-BF92-510FC04D3C50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BB836DE-5A98-4180-BF92-510FC04D3C50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BB836DE-5A98-4180-BF92-510FC04D3C50}.WordToolsRelease|Any CPU.ActiveCfg = WordToolsRelease|Any CPU
+		{7BB836DE-5A98-4180-BF92-510FC04D3C50}.WordToolsRelease|Any CPU.Build.0 = WordToolsRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2278B6BF-2E2D-4C24-A0B5-7BA3D800A32B}
+	EndGlobalSection
+EndGlobal
