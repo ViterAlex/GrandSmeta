@@ -83,7 +83,7 @@
 
     Public Sub PrepareEditingControlForEdit(ByVal selectAll As Boolean) _
         Implements IDataGridViewEditingControl.PrepareEditingControlForEdit
-
+        OnValueChanged(EventArgs.Empty)
         ' No preparation needs to be done.
 
     End Sub
@@ -117,7 +117,7 @@
             Return valueIsChanged
         End Get
         Set(ByVal value As Boolean)
-            valueIsChanged = value
+            OnValueChanged(EventArgs.Empty)
         End Set
 
     End Property

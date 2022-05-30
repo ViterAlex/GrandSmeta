@@ -57,4 +57,9 @@
         End Get
     End Property
 
+    Protected Overrides Sub OnEnter(rowIndex As Integer, throughMouseClick As Boolean)
+        MyBase.OnEnter(rowIndex, throughMouseClick)
+        DataGridView.BeginEdit(False)
+    End Sub
+
 End Class
