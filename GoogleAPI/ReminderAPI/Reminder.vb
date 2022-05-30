@@ -5,39 +5,34 @@ Imports System.Text
 Imports Newtonsoft.Json.Linq
 
 Public Class Reminder
+
+#Region "Private Fields"
+
     Private Const BASE_URI As String = "https://reminders-pa.clients6.google.com/v1internalOP/reminders/"
-    Public Property Id() As String
-
-    <DisplayName("Заголовок")>
-    Public Property Title() As String
-
-    <DisplayName("Время")>
-    Public Property RemindAt() As DateTimeOffset
-
-    <DisplayName("Создан")>
-    Public Property CreatedAt() As DateTimeOffset
-
-    <DisplayName("Выполнено")>
-    Public Property Done() As Boolean
-
-    <DisplayName("Весь день")>
-    Public Property AllDay() As Boolean
 
     Private Shared gapi As GoogleAPI
+
     Private Shared token As String
 
-    Public Overrides Function ToString() As String
-        Return $"{NameOf(Title)}: {Title}{vbCrLf}" &
-            $"{NameOf(RemindAt)}: {RemindAt:G}{vbCrLf}" &
-            $"{NameOf(CreatedAt)}: {CreatedAt:G}{vbCrLf}" &
-            $"{NameOf(Done)}: {Done}{vbCrLf}" &
-            $"{NameOf(AllDay)}: {AllDay}{vbCrLf}" &
-            $"{NameOf(Id)}: {Id}"
-    End Function
+#End Region
 
-    Public Shared Function NewId() As String
-        Return $"client-reminder-{DateTimeOffset.Now.ToUnixTimeMilliseconds}"
-    End Function
+#Region "Public Constructors"
+
+    Public Sub New()
+
+    End Sub
+
+    ''' <summary>
+    '''     Создание ного сервиса напоминаний
+    ''' </summary>
+    ''' <param name="path">Путь к файлу cred.json</param>
+    Public Sub New(path As String)
+        gapi = New GoogleAPI(path)
+    End Sub
+
+#End Region
+
+#Region "Private Properties"
 
     Private ReadOnly Property CreateRequestBody As String
         Get
@@ -54,6 +49,14 @@ Public Class Reminder
             jo("4")("5")("4")("2") = RemindAt.ToString("mm")
             jo("4")("5")("4")("3") = RemindAt.ToString("ss")
 
+            Return jo.Stringify()
+        End Get
+    End Property
+
+    Private ReadOnly Property DeleteRequestBody As String
+        Get
+            Dim jo = JObject.Parse("{'2':[{'2':''}]}")
+            jo("2")(0)("2") = Id
             Return jo.Stringify()
         End Get
     End Property
@@ -95,103 +98,54 @@ Public Class Reminder
         End Get
     End Property
 
-    Private ReadOnly Property DeleteRequestBody As String
-        Get
-            Dim jo = JObject.Parse("{'2':[{'2':''}]}")
-            jo("2")(0)("2") = Id
-            Return jo.Stringify()
-        End Get
-    End Property
+#End Region
 
-    Private Shared Function ListRequestBody() As String
-        Dim max_timestamp_msec As Integer
-        'Empirically, when requesting with a certain timestamp, reminders with the given timestamp
-        'or even a bit smaller timestamp are not returned.
-        'Therefore we increase the timestamp by 15 hours, which seems to solve this...  ~~voodoo~~
-        '(I wish Google had a normal API for reminders)
-        If max_timestamp_msec <> 0 Then
-            max_timestamp_msec += 15 * 3600 * 1000
-        End If
+#Region "Public Properties"
 
-        Dim jo = New JObject()
+    ''' <summary>
+    ''' На весь день
+    ''' </summary>
+    ''' <returns></returns>
+    <DisplayName("Весь день")>
+    Public Property AllDay() As Boolean
 
-        jo("5") = 1
-        jo("6") = 500
-        jo("16") = max_timestamp_msec
+    ''' <summary>
+    '''     Время создания
+    ''' </summary>
+    ''' <returns></returns>
+    <DisplayName("Создан")>
+    Public Property CreatedAt() As DateTimeOffset
 
-        Return jo.Stringify()
+    ''' <summary>
+    '''     Отмечено как выполненное
+    ''' </summary>
+    ''' <returns></returns>
+    <DisplayName("Выполнено")>
+    Public Property Done() As Boolean
 
-    End Function
+    ''' <summary>
+    ''' Id напоминания
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property Id() As String
 
-    Public Sub New()
+    ''' <summary>
+    '''     Время напоминания
+    ''' </summary>
+    ''' <returns></returns>
+    <DisplayName("Время")>
+    Public Property RemindAt() As DateTimeOffset
 
-    End Sub
+    ''' <summary>
+    '''     Заголовок напоминания
+    ''' </summary>
+    ''' <returns></returns>
+    <DisplayName("Заголовок")>
+    Public Property Title() As String
 
-    Public Sub New(path As String)
-        gapi = New GoogleAPI(path)
-    End Sub
+#End Region
 
-    Public Async Function Connect() As Task(Of Boolean)
-        token = Await gapi.Connect("reminder")
-        Return True
-    End Function
-
-    Public Function Create(title As String, delayMinutes As Integer, Optional id As String = "") As Reminder
-        Me.Title = title
-        Me.RemindAt = Now.AddMinutes(delayMinutes)
-        Me.Id = IIf(String.IsNullOrEmpty(id), NewId(), id)
-        Dim body = CreateRequestBody
-
-        If Execute("create", body) Then
-            Return [Get](id)
-        End If
-
-        Return Nothing
-
-    End Function
-
-    Public Function Update() As Boolean
-        Dim body = UpdateRequestBody
-        Return Execute("update", body)
-    End Function
-
-    Public Function Delete(id As String) As Boolean
-        Me.Id = id
-        Dim body = DeleteRequestBody
-        Return Execute("delete", body)
-    End Function
-
-    Public Function [Get](id As String) As Reminder
-        Me.Id = id
-        Dim body = GetRequestBody
-        If Execute("get", body) Then
-            Return Parse(body)
-        End If
-        Return Nothing
-    End Function
-
-    Public Shared Function List() As IList(Of Reminder)
-        Dim body = ListRequestBody()
-
-        If Execute("list", body) Then
-            Dim jo = JObject.Parse(body)
-            If jo("1") Is Nothing Then
-                Return Enumerable.Empty(Of Reminder).ToList()
-            End If
-            Dim ja = jo("1").
-                Value(Of JArray).
-                AsEnumerable().
-                Select(Function(j)
-                           Return Parse(j.Stringify())
-                       End Function).
-                       OrderBy(Function(r)
-                                   Return r.RemindAt
-                               End Function).
-                               ToList()
-            Return ja
-        End If
-        Return Enumerable.Empty(Of Reminder).ToList()
-    End Function
+#Region "Private Methods"
 
     Private Shared Function Execute(action As String, ByRef body As String) As Boolean
         Dim url = $"{BASE_URI}{action}?access_token={token}"
@@ -223,6 +177,26 @@ Public Class Reminder
         End If
         body = resp.StatusCode.ToString()
         Return False
+    End Function
+
+    Private Shared Function ListRequestBody() As String
+        Dim max_timestamp_msec As Integer
+        'Empirically, when requesting with a certain timestamp, reminders with the given timestamp
+        'or even a bit smaller timestamp are not returned.
+        'Therefore we increase the timestamp by 15 hours, which seems to solve this...  ~~voodoo~~
+        '(I wish Google had a normal API for reminders)
+        If max_timestamp_msec <> 0 Then
+            max_timestamp_msec += 15 * 3600 * 1000
+        End If
+
+        Dim jo = New JObject()
+
+        jo("5") = 1
+        jo("6") = 500
+        jo("16") = max_timestamp_msec
+
+        Return jo.Stringify()
+
     End Function
 
     Private Shared Function Parse(json As String) As Reminder
@@ -263,5 +237,119 @@ Public Class Reminder
             .Done = jo("8") IsNot Nothing AndAlso jo("8").Value(Of Integer) = 1
             }
     End Function
+
+#End Region
+
+#Region "Public Methods"
+
+    ''' <summary>
+    '''     Получить список всех напоминаний из календаря
+    ''' </summary>
+    ''' <returns></returns>
+    Public Shared Function List() As IList(Of Reminder)
+        Dim body = ListRequestBody()
+
+        If Execute("list", body) Then
+            Dim jo = JObject.Parse(body)
+            If jo("1") Is Nothing Then
+                Return Enumerable.Empty(Of Reminder).ToList()
+            End If
+            Dim ja = jo("1").
+                Value(Of JArray).
+                AsEnumerable().
+                Select(Function(j)
+                           Return Parse(j.Stringify())
+                       End Function).
+                       OrderBy(Function(r)
+                                   Return r.RemindAt
+                               End Function).
+                               ToList()
+            Return ja
+        End If
+        Return Enumerable.Empty(Of Reminder).ToList()
+    End Function
+
+    ''' <summary>
+    '''     Генерация нового Id
+    ''' </summary>
+    ''' <returns></returns>
+    Public Shared Function NewId() As String
+        Return $"client-reminder-{DateTimeOffset.Now.ToUnixTimeMilliseconds}"
+    End Function
+
+    ''' <summary>
+    '''     Получить напоминание по заданному Id
+    ''' </summary>
+    ''' <param name="id">Id напоминания, которое нужно получить</param>
+    ''' <returns></returns>
+    Public Function [Get](id As String) As Reminder
+        Me.Id = id
+        Dim body = GetRequestBody
+        If Execute("get", body) Then
+            Return Parse(body)
+        End If
+        Return Nothing
+    End Function
+
+    ''' <summary>
+    '''     Авторизоваться в Google API
+    ''' </summary>
+    ''' <returns></returns>
+    Public Async Function Connect() As Task(Of Boolean)
+        token = Await gapi.Connect("reminder")
+        Return True
+    End Function
+
+    ''' <summary>
+    '''     Создание нового напоминания
+    ''' </summary>
+    ''' <param name="title">Текст напоминания</param>
+    ''' <param name="delayMinutes">Задержка в минутах</param>
+    ''' <param name="id">Id. Необязательный</param>
+    ''' <returns></returns>
+    Public Function Create(title As String, delayMinutes As Integer, Optional id As String = "") As Reminder
+        Me.Title = title
+        Me.RemindAt = Now.AddMinutes(delayMinutes)
+        Me.Id = IIf(String.IsNullOrEmpty(id), NewId(), id)
+        Dim body = CreateRequestBody
+
+        If Execute("create", body) Then
+            Return [Get](id)
+        End If
+
+        Return Nothing
+
+    End Function
+
+    ''' <summary>
+    ''' Удалить напоминание по заданному Id
+    ''' </summary>
+    ''' <param name="id">Id напоминания, которое нужно удалить</param>
+    ''' <returns></returns>
+    Public Function Delete(id As String) As Boolean
+        Me.Id = id
+        Dim body = DeleteRequestBody
+        Return Execute("delete", body)
+    End Function
+
+    Public Overrides Function ToString() As String
+        Return $"{NameOf(Title)}: {Title}{vbCrLf}" &
+            $"{NameOf(RemindAt)}: {RemindAt:G}{vbCrLf}" &
+            $"{NameOf(CreatedAt)}: {CreatedAt:G}{vbCrLf}" &
+            $"{NameOf(Done)}: {Done}{vbCrLf}" &
+            $"{NameOf(AllDay)}: {AllDay}{vbCrLf}" &
+            $"{NameOf(Id)}: {Id}"
+    End Function
+
+    ''' <summary>
+    ''' Обновить напоминание.
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function Update() As Boolean
+        Dim body = UpdateRequestBody
+        Return Execute("update", body)
+    End Function
+
+#End Region
 
 End Class
