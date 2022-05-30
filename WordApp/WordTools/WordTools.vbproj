@@ -87,6 +87,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DocInfo.vb" />
     <Compile Include="Installer.Designer.vb">
       <DependentUpon>Installer.vb</DependentUpon>
     </Compile>
@@ -108,6 +109,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ProgressInfo.vb" />
     <Compile Include="ShellExt\ContextMenuExt.vb" />
     <Compile Include="ShellExt\Helpers.vb" />
     <Compile Include="ShellExt\Logger.vb" />

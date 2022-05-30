@@ -25,12 +25,15 @@ Partial Class MainForm
         Me.lvwDocsInfo = New System.Windows.Forms.ListView()
         Me.colFileName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.colCharCount = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.colIsCleared = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ofd = New System.Windows.Forms.OpenFileDialog()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.menuOpenFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnAsyncOpenFile = New System.Windows.Forms.ToolStripMenuItem()
-        Me.prbProcess = New System.Windows.Forms.ProgressBar()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.prbProcess = New WordToolsDemo.ProgressBarEx()
+        Me.colNumber = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.MenuStrip1.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lvwDocsInfo
@@ -38,12 +41,12 @@ Partial Class MainForm
         Me.lvwDocsInfo.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lvwDocsInfo.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colFileName, Me.colCharCount})
+        Me.lvwDocsInfo.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colNumber, Me.colFileName, Me.colCharCount, Me.colIsCleared})
         Me.lvwDocsInfo.FullRowSelect = True
         Me.lvwDocsInfo.HideSelection = False
-        Me.lvwDocsInfo.Location = New System.Drawing.Point(0, 28)
+        Me.lvwDocsInfo.Location = New System.Drawing.Point(3, 3)
         Me.lvwDocsInfo.Name = "lvwDocsInfo"
-        Me.lvwDocsInfo.Size = New System.Drawing.Size(768, 383)
+        Me.lvwDocsInfo.Size = New System.Drawing.Size(762, 371)
         Me.lvwDocsInfo.TabIndex = 0
         Me.lvwDocsInfo.UseCompatibleStateImageBehavior = False
         Me.lvwDocsInfo.View = System.Windows.Forms.View.Details
@@ -52,12 +55,18 @@ Partial Class MainForm
         'colFileName
         '
         Me.colFileName.Text = "Имя файла"
-        Me.colFileName.Width = 428
+        Me.colFileName.Width = 517
         '
         'colCharCount
         '
         Me.colCharCount.Text = "Кол-во символов"
+        Me.colCharCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.colCharCount.Width = 108
+        '
+        'colIsCleared
+        '
+        Me.colIsCleared.Text = "Очищен"
+        Me.colIsCleared.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'ofd
         '
@@ -70,48 +79,63 @@ Partial Class MainForm
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuOpenFile, Me.btnAsyncOpenFile})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnAsyncOpenFile})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(768, 24)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'menuOpenFile
-        '
-        Me.menuOpenFile.Name = "menuOpenFile"
-        Me.menuOpenFile.Size = New System.Drawing.Size(124, 20)
-        Me.menuOpenFile.Text = "Открыть файл(ы)..."
-        '
         'btnAsyncOpenFile
         '
         Me.btnAsyncOpenFile.Name = "btnAsyncOpenFile"
-        Me.btnAsyncOpenFile.Size = New System.Drawing.Size(194, 20)
-        Me.btnAsyncOpenFile.Text = "Открыть файл(ы) асинхронно..."
+        Me.btnAsyncOpenFile.Size = New System.Drawing.Size(75, 20)
+        Me.btnAsyncOpenFile.Text = "Открыть..."
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.AutoSize = True
+        Me.TableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.lvwDocsInfo, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.prbProcess, 0, 1)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 24)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(768, 406)
+        Me.TableLayoutPanel1.TabIndex = 3
         '
         'prbProcess
         '
-        Me.prbProcess.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.prbProcess.Location = New System.Drawing.Point(0, 414)
+        Me.prbProcess.Dock = System.Windows.Forms.DockStyle.Top
+        Me.prbProcess.Format = ""
+        Me.prbProcess.Location = New System.Drawing.Point(3, 380)
         Me.prbProcess.Name = "prbProcess"
-        Me.prbProcess.Size = New System.Drawing.Size(768, 16)
-        Me.prbProcess.Step = 1
-        Me.prbProcess.Style = System.Windows.Forms.ProgressBarStyle.Continuous
-        Me.prbProcess.TabIndex = 2
+        Me.prbProcess.ShowText = True
+        Me.prbProcess.Size = New System.Drawing.Size(762, 23)
+        Me.prbProcess.TabIndex = 1
         Me.prbProcess.Visible = False
+        '
+        'colNumber
+        '
+        Me.colNumber.Text = "#"
         '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(768, 430)
-        Me.Controls.Add(Me.prbProcess)
-        Me.Controls.Add(Me.lvwDocsInfo)
+        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Name = "MainForm"
         Me.Text = "WordTool"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -122,7 +146,9 @@ Partial Class MainForm
     Friend WithEvents colCharCount As ColumnHeader
     Friend WithEvents ofd As OpenFileDialog
     Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents menuOpenFile As ToolStripMenuItem
     Friend WithEvents btnAsyncOpenFile As ToolStripMenuItem
-    Friend WithEvents prbProcess As ProgressBar
+    Friend WithEvents colIsCleared As ColumnHeader
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents prbProcess As ProgressBarEx
+    Friend WithEvents colNumber As ColumnHeader
 End Class

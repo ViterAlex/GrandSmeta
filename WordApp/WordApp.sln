@@ -33,15 +33,11 @@ Global
 		{FF413AB3-FE9B-4218-8061-0DEF9BF6F7B4}.WordToolsRelease|Any CPU.ActiveCfg = WordToolsRelease|Any CPU
 		{FF413AB3-FE9B-4218-8061-0DEF9BF6F7B4}.WordToolsRelease|Any CPU.Build.0 = WordToolsRelease|Any CPU
 		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.Debug|Any CPU.ActiveCfg = Debug
-		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.Debug|Any CPU.Build.0 = Debug
 		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.Release|Any CPU.ActiveCfg = Release
-		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.Release|Any CPU.Build.0 = Release
 		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.WordToolsRelease|Any CPU.ActiveCfg = WordToolsRelease
 		{5C7430DA-99DF-47F8-8F4D-DB719CEAA665}.WordToolsRelease|Any CPU.Build.0 = WordToolsRelease
 		{953DD629-552F-4280-83F5-515763240805}.Debug|Any CPU.ActiveCfg = Debug
-		{953DD629-552F-4280-83F5-515763240805}.Debug|Any CPU.Build.0 = Debug
 		{953DD629-552F-4280-83F5-515763240805}.Release|Any CPU.ActiveCfg = Release
-		{953DD629-552F-4280-83F5-515763240805}.Release|Any CPU.Build.0 = Release
 		{953DD629-552F-4280-83F5-515763240805}.WordToolsRelease|Any CPU.ActiveCfg = WordToolsRelease
 		{953DD629-552F-4280-83F5-515763240805}.WordToolsRelease|Any CPU.Build.0 = WordToolsRelease
 		{7BB836DE-5A98-4180-BF92-510FC04D3C50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
