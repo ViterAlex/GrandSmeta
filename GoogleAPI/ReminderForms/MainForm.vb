@@ -5,10 +5,10 @@ Public Class MainForm
     Private reminder As Reminder
     Private dt As RemindersDataTable
 
-    Protected Overrides Async Sub OnLoad(e As EventArgs)
+    Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
         reminder = New Reminder("cred.json")
-        Await reminder.Connect()
+        Dim result = reminder.Connect().Result
         ReloadData()
         AddHandler ReminderDataGridView.RowPrePaint, AddressOf RowPrePaint
         AddHandler ReminderDataGridView.CellEndEdit, AddressOf CellEndEdit
