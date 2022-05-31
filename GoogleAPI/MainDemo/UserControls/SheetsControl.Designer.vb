@@ -39,10 +39,12 @@ Partial Class SheetsControl
         Me.dgvSpreadSheet.AllowUserToAddRows = False
         Me.dgvSpreadSheet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSpreadSheet.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgvSpreadSheet.Location = New System.Drawing.Point(0, 27)
+        Me.dgvSpreadSheet.Location = New System.Drawing.Point(0, 30)
+        Me.dgvSpreadSheet.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.dgvSpreadSheet.Name = "dgvSpreadSheet"
-        Me.dgvSpreadSheet.Size = New System.Drawing.Size(830, 487)
+        Me.dgvSpreadSheet.Size = New System.Drawing.Size(968, 534)
         Me.dgvSpreadSheet.TabIndex = 6
+        Me.dgvSpreadSheet.VirtualMode = True
         '
         'FlowLayoutPanel1
         '
@@ -56,16 +58,18 @@ Partial Class SheetsControl
         Me.FlowLayoutPanel1.Controls.Add(Me.btnFillIn)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(830, 27)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(968, 30)
         Me.FlowLayoutPanel1.TabIndex = 7
         Me.FlowLayoutPanel1.WrapContents = False
         '
         'lblOne
         '
-        Me.lblOne.Location = New System.Drawing.Point(3, 0)
+        Me.lblOne.Location = New System.Drawing.Point(4, 0)
+        Me.lblOne.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblOne.Name = "lblOne"
-        Me.lblOne.Size = New System.Drawing.Size(82, 21)
+        Me.lblOne.Size = New System.Drawing.Size(96, 24)
         Me.lblOne.TabIndex = 4
         Me.lblOne.Text = "Spreadsheets:"
         Me.lblOne.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -76,17 +80,19 @@ Partial Class SheetsControl
         Me.cmbSpreadSheets.Enabled = False
         Me.cmbSpreadSheets.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmbSpreadSheets.FormattingEnabled = True
-        Me.cmbSpreadSheets.Location = New System.Drawing.Point(91, 3)
+        Me.cmbSpreadSheets.Location = New System.Drawing.Point(108, 3)
+        Me.cmbSpreadSheets.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbSpreadSheets.Name = "cmbSpreadSheets"
-        Me.cmbSpreadSheets.Size = New System.Drawing.Size(121, 21)
+        Me.cmbSpreadSheets.Size = New System.Drawing.Size(140, 23)
         Me.cmbSpreadSheets.TabIndex = 3
         '
         'lblSheets
         '
         Me.lblSheets.Enabled = False
-        Me.lblSheets.Location = New System.Drawing.Point(218, 0)
+        Me.lblSheets.Location = New System.Drawing.Point(256, 0)
+        Me.lblSheets.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblSheets.Name = "lblSheets"
-        Me.lblSheets.Size = New System.Drawing.Size(47, 21)
+        Me.lblSheets.Size = New System.Drawing.Size(55, 24)
         Me.lblSheets.TabIndex = 4
         Me.lblSheets.Text = "Sheets:"
         Me.lblSheets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -97,17 +103,19 @@ Partial Class SheetsControl
         Me.cmbSheets.Enabled = False
         Me.cmbSheets.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmbSheets.FormattingEnabled = True
-        Me.cmbSheets.Location = New System.Drawing.Point(271, 3)
+        Me.cmbSheets.Location = New System.Drawing.Point(319, 3)
+        Me.cmbSheets.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbSheets.Name = "cmbSheets"
-        Me.cmbSheets.Size = New System.Drawing.Size(121, 21)
+        Me.cmbSheets.Size = New System.Drawing.Size(140, 23)
         Me.cmbSheets.TabIndex = 1
         '
         'btnRead
         '
         Me.btnRead.Enabled = False
-        Me.btnRead.Location = New System.Drawing.Point(398, 3)
+        Me.btnRead.Location = New System.Drawing.Point(467, 3)
+        Me.btnRead.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnRead.Name = "btnRead"
-        Me.btnRead.Size = New System.Drawing.Size(75, 21)
+        Me.btnRead.Size = New System.Drawing.Size(88, 24)
         Me.btnRead.TabIndex = 0
         Me.btnRead.Text = "Read"
         Me.btnRead.UseVisualStyleBackColor = True
@@ -115,21 +123,24 @@ Partial Class SheetsControl
         'btnFillIn
         '
         Me.btnFillIn.Enabled = False
-        Me.btnFillIn.Location = New System.Drawing.Point(479, 3)
+        Me.btnFillIn.Location = New System.Drawing.Point(563, 3)
+        Me.btnFillIn.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnFillIn.Name = "btnFillIn"
-        Me.btnFillIn.Size = New System.Drawing.Size(75, 21)
+        Me.btnFillIn.Size = New System.Drawing.Size(88, 24)
         Me.btnFillIn.TabIndex = 0
         Me.btnFillIn.Text = "Write"
         Me.btnFillIn.UseVisualStyleBackColor = True
         '
         'SheetsControl
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.dgvSpreadSheet)
         Me.Controls.Add(Me.FlowLayoutPanel1)
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Name = "SheetsControl"
-        Me.Size = New System.Drawing.Size(830, 514)
+        Me.Size = New System.Drawing.Size(968, 564)
         CType(Me.dgvSpreadSheet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)

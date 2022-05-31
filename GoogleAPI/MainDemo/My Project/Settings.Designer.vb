@@ -53,6 +53,17 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property EmailSettings() As Global.EmailLib.EmailSettings
+            Get
+                Return CType(Me("EmailSettings"),Global.EmailLib.EmailSettings)
+            End Get
+            Set
+                Me("EmailSettings") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

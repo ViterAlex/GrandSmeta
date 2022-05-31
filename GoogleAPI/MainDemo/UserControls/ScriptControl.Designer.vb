@@ -50,7 +50,7 @@ Partial Class ScriptControl
         Me.SplitContainer1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SplitContainer1.Location = New System.Drawing.Point(3, 53)
+        Me.SplitContainer1.Location = New System.Drawing.Point(4, 61)
         Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
@@ -61,8 +61,9 @@ Partial Class ScriptControl
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.dgvParams)
-        Me.SplitContainer1.Size = New System.Drawing.Size(813, 373)
-        Me.SplitContainer1.SplitterDistance = 608
+        Me.SplitContainer1.Size = New System.Drawing.Size(948, 430)
+        Me.SplitContainer1.SplitterDistance = 708
+        Me.SplitContainer1.SplitterWidth = 5
         Me.SplitContainer1.TabIndex = 16
         '
         'txtSource
@@ -74,7 +75,7 @@ Partial Class ScriptControl
         Me.txtSource.Multiline = True
         Me.txtSource.Name = "txtSource"
         Me.txtSource.ScrollBars = System.Windows.Forms.ScrollBars.Both
-        Me.txtSource.Size = New System.Drawing.Size(608, 373)
+        Me.txtSource.Size = New System.Drawing.Size(708, 430)
         Me.txtSource.TabIndex = 8
         '
         'dgvParams
@@ -88,7 +89,7 @@ Partial Class ScriptControl
         Me.dgvParams.Margin = New System.Windows.Forms.Padding(0)
         Me.dgvParams.Name = "dgvParams"
         Me.dgvParams.RowHeadersVisible = False
-        Me.dgvParams.Size = New System.Drawing.Size(201, 373)
+        Me.dgvParams.Size = New System.Drawing.Size(235, 430)
         Me.dgvParams.TabIndex = 12
         '
         'colParam
@@ -113,10 +114,10 @@ Partial Class ScriptControl
         Me.FlowLayoutPanel4.Controls.Add(Me.btnSave)
         Me.FlowLayoutPanel4.Controls.Add(Me.cmbFunctions)
         Me.FlowLayoutPanel4.Controls.Add(Me.btnRun)
-        Me.FlowLayoutPanel4.Location = New System.Drawing.Point(0, 26)
+        Me.FlowLayoutPanel4.Location = New System.Drawing.Point(0, 30)
         Me.FlowLayoutPanel4.Margin = New System.Windows.Forms.Padding(0)
         Me.FlowLayoutPanel4.Name = "FlowLayoutPanel4"
-        Me.FlowLayoutPanel4.Size = New System.Drawing.Size(639, 27)
+        Me.FlowLayoutPanel4.Size = New System.Drawing.Size(749, 29)
         Me.FlowLayoutPanel4.TabIndex = 15
         '
         'cmbSourceFiles
@@ -125,9 +126,10 @@ Partial Class ScriptControl
         Me.cmbSourceFiles.Enabled = False
         Me.cmbSourceFiles.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmbSourceFiles.FormattingEnabled = True
-        Me.cmbSourceFiles.Location = New System.Drawing.Point(3, 3)
+        Me.cmbSourceFiles.Location = New System.Drawing.Point(4, 3)
+        Me.cmbSourceFiles.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbSourceFiles.Name = "cmbSourceFiles"
-        Me.cmbSourceFiles.Size = New System.Drawing.Size(185, 21)
+        Me.cmbSourceFiles.Size = New System.Drawing.Size(215, 23)
         Me.cmbSourceFiles.TabIndex = 9
         '
         'cmbVersions
@@ -136,9 +138,10 @@ Partial Class ScriptControl
         Me.cmbVersions.Enabled = False
         Me.cmbVersions.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmbVersions.FormattingEnabled = True
-        Me.cmbVersions.Location = New System.Drawing.Point(194, 3)
+        Me.cmbVersions.Location = New System.Drawing.Point(227, 3)
+        Me.cmbVersions.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbVersions.Name = "cmbVersions"
-        Me.cmbVersions.Size = New System.Drawing.Size(89, 21)
+        Me.cmbVersions.Size = New System.Drawing.Size(103, 23)
         Me.cmbVersions.TabIndex = 10
         Me.cmbVersions.Visible = False
         '
@@ -146,9 +149,10 @@ Partial Class ScriptControl
         '
         Me.btnSave.Enabled = False
         Me.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnSave.Location = New System.Drawing.Point(289, 3)
+        Me.btnSave.Location = New System.Drawing.Point(338, 3)
+        Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(75, 20)
+        Me.btnSave.Size = New System.Drawing.Size(88, 23)
         Me.btnSave.TabIndex = 0
         Me.btnSave.Text = "Save"
         Me.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -160,18 +164,20 @@ Partial Class ScriptControl
         Me.cmbFunctions.Enabled = False
         Me.cmbFunctions.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.cmbFunctions.FormattingEnabled = True
-        Me.cmbFunctions.Location = New System.Drawing.Point(370, 3)
+        Me.cmbFunctions.Location = New System.Drawing.Point(434, 3)
+        Me.cmbFunctions.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.cmbFunctions.Name = "cmbFunctions"
-        Me.cmbFunctions.Size = New System.Drawing.Size(185, 21)
+        Me.cmbFunctions.Size = New System.Drawing.Size(215, 23)
         Me.cmbFunctions.TabIndex = 10
         '
         'btnRun
         '
         Me.btnRun.Enabled = False
         Me.btnRun.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnRun.Location = New System.Drawing.Point(561, 3)
+        Me.btnRun.Location = New System.Drawing.Point(657, 3)
+        Me.btnRun.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnRun.Name = "btnRun"
-        Me.btnRun.Size = New System.Drawing.Size(75, 20)
+        Me.btnRun.Size = New System.Drawing.Size(88, 23)
         Me.btnRun.TabIndex = 0
         Me.btnRun.Text = "Run"
         Me.btnRun.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -186,37 +192,41 @@ Partial Class ScriptControl
         Me.FlowLayoutPanel2.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel2.Margin = New System.Windows.Forms.Padding(0)
         Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
-        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(665, 26)
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(778, 29)
         Me.FlowLayoutPanel2.TabIndex = 14
         Me.FlowLayoutPanel2.WrapContents = False
         '
         'txtScriptId
         '
-        Me.txtScriptId.Location = New System.Drawing.Point(3, 3)
+        Me.txtScriptId.Location = New System.Drawing.Point(4, 3)
+        Me.txtScriptId.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtScriptId.Name = "txtScriptId"
-        Me.txtScriptId.Size = New System.Drawing.Size(578, 20)
+        Me.txtScriptId.Size = New System.Drawing.Size(674, 23)
         Me.txtScriptId.TabIndex = 1
         Me.txtScriptId.Text = "1Vue7ijdkqpj-yrh_fAU8t8GOVD30E-ppTXm4saGYuwjbkT508IDlE4be"
         '
         'btnGetProject
         '
         Me.btnGetProject.Enabled = False
-        Me.btnGetProject.Location = New System.Drawing.Point(587, 3)
+        Me.btnGetProject.Location = New System.Drawing.Point(686, 3)
+        Me.btnGetProject.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnGetProject.Name = "btnGetProject"
-        Me.btnGetProject.Size = New System.Drawing.Size(75, 20)
+        Me.btnGetProject.Size = New System.Drawing.Size(88, 23)
         Me.btnGetProject.TabIndex = 0
         Me.btnGetProject.Text = "Get project"
         Me.btnGetProject.UseVisualStyleBackColor = True
         '
         'ScriptControl
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.FlowLayoutPanel4)
         Me.Controls.Add(Me.FlowLayoutPanel2)
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Name = "ScriptControl"
-        Me.Size = New System.Drawing.Size(816, 426)
+        Me.Size = New System.Drawing.Size(952, 492)
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)

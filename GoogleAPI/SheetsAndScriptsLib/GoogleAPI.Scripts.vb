@@ -103,7 +103,7 @@ Partial Public Class GoogleAPI
 
         Dim body = New Content With {
         .Files = loadedScriptFiles,
-        .scriptId = scriptId
+        .ScriptId = scriptId
         }
         Dim req = scriptService.Projects.UpdateContent(body, scriptId)
         Dim resp = req.Execute()

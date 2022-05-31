@@ -123,6 +123,18 @@
     <Compile Include="UserControls\BaseUC.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserControls\EmailControl.Designer.vb">
+      <DependentUpon>EmailControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EmailControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EmailSettingsForm.Designer.vb">
+      <DependentUpon>EmailSettingsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="EmailSettingsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UserControls\ScriptControl.Designer.vb">
       <DependentUpon>ScriptControl.vb</DependentUpon>
     </Compile>
@@ -145,6 +157,15 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\BaseUC.resx">
+      <DependentUpon>BaseUC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\EmailControl.resx">
+      <DependentUpon>EmailControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmailSettingsForm.resx">
+      <DependentUpon>EmailSettingsForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ScriptControl.resx">
       <DependentUpon>ScriptControl.vb</DependentUpon>
@@ -175,6 +196,10 @@
     <Content Include="Images\icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmailLib\EmailLib.vbproj">
+      <Project>{4E6E7EC5-1C2F-4E39-A53F-0568228BAE83}</Project>
+      <Name>EmailLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SheetsAndScriptsLib\SheetsAndScriptsLib.vbproj">
       <Project>{a3456844-50d3-4141-886f-e8c7814f10c4}</Project>
       <Name>SheetsAndScriptsLib</Name>

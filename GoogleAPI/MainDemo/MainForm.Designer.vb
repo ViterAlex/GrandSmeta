@@ -24,62 +24,109 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
-        Me.tabControl = New System.Windows.Forms.TabControl()
+        Me.TabControl = New System.Windows.Forms.TabControl()
         Me.tabSpreadSheets = New System.Windows.Forms.TabPage()
+        Me.SheetsControl1 = New GapiTools.SheetsControl()
         Me.tabSripts = New System.Windows.Forms.TabPage()
+        Me.ScriptControl1 = New GapiTools.ScriptControl()
+        Me.tabEmail = New System.Windows.Forms.TabPage()
+        Me.EmailControl1 = New GapiTools.EmailControl()
         Me.menu = New System.Windows.Forms.MenuStrip()
         Me.ConnectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblConnectionStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.SheetsControl1 = New GapiTools.SheetsControl()
-        Me.ScriptControl1 = New GapiTools.ScriptControl()
-        Me.tabControl.SuspendLayout()
+        Me.TabControl.SuspendLayout()
         Me.tabSpreadSheets.SuspendLayout()
         Me.tabSripts.SuspendLayout()
+        Me.tabEmail.SuspendLayout()
         Me.menu.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
-        'tabControl
+        'TabControl
         '
-        Me.tabControl.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.TabControl.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.tabControl.Controls.Add(Me.tabSpreadSheets)
-        Me.tabControl.Controls.Add(Me.tabSripts)
-        Me.tabControl.Location = New System.Drawing.Point(12, 31)
-        Me.tabControl.Name = "tabControl"
-        Me.tabControl.SelectedIndex = 0
-        Me.tabControl.Size = New System.Drawing.Size(960, 445)
-        Me.tabControl.TabIndex = 6
+        Me.TabControl.Controls.Add(Me.tabSpreadSheets)
+        Me.TabControl.Controls.Add(Me.tabSripts)
+        Me.TabControl.Controls.Add(Me.tabEmail)
+        Me.TabControl.Location = New System.Drawing.Point(0, 28)
+        Me.TabControl.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.TabControl.Name = "TabControl"
+        Me.TabControl.SelectedIndex = 0
+        Me.TabControl.Size = New System.Drawing.Size(1148, 594)
+        Me.TabControl.TabIndex = 6
         '
         'tabSpreadSheets
         '
         Me.tabSpreadSheets.Controls.Add(Me.SheetsControl1)
-        Me.tabSpreadSheets.Location = New System.Drawing.Point(4, 22)
+        Me.tabSpreadSheets.Location = New System.Drawing.Point(4, 24)
+        Me.tabSpreadSheets.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.tabSpreadSheets.Name = "tabSpreadSheets"
-        Me.tabSpreadSheets.Size = New System.Drawing.Size(952, 419)
+        Me.tabSpreadSheets.Size = New System.Drawing.Size(1140, 566)
         Me.tabSpreadSheets.TabIndex = 0
         Me.tabSpreadSheets.Text = "Spreadsheets"
         Me.tabSpreadSheets.UseVisualStyleBackColor = True
+        '
+        'SheetsControl1
+        '
+        Me.SheetsControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SheetsControl1.Location = New System.Drawing.Point(0, 0)
+        Me.SheetsControl1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.SheetsControl1.Name = "SheetsControl1"
+        Me.SheetsControl1.Size = New System.Drawing.Size(1140, 566)
+        Me.SheetsControl1.TabIndex = 0
         '
         'tabSripts
         '
         Me.tabSripts.Controls.Add(Me.ScriptControl1)
         Me.tabSripts.Location = New System.Drawing.Point(4, 22)
+        Me.tabSripts.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.tabSripts.Name = "tabSripts"
-        Me.tabSripts.Size = New System.Drawing.Size(952, 419)
+        Me.tabSripts.Size = New System.Drawing.Size(1140, 568)
         Me.tabSripts.TabIndex = 1
         Me.tabSripts.Text = "Scripts"
         Me.tabSripts.UseVisualStyleBackColor = True
+        '
+        'ScriptControl1
+        '
+        Me.ScriptControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ScriptControl1.Location = New System.Drawing.Point(0, 0)
+        Me.ScriptControl1.Margin = New System.Windows.Forms.Padding(0)
+        Me.ScriptControl1.Name = "ScriptControl1"
+        Me.ScriptControl1.Size = New System.Drawing.Size(1140, 568)
+        Me.ScriptControl1.TabIndex = 0
+        '
+        'tabEmail
+        '
+        Me.tabEmail.Controls.Add(Me.EmailControl1)
+        Me.tabEmail.Location = New System.Drawing.Point(4, 22)
+        Me.tabEmail.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.tabEmail.Name = "tabEmail"
+        Me.tabEmail.Size = New System.Drawing.Size(1140, 568)
+        Me.tabEmail.TabIndex = 2
+        Me.tabEmail.Text = "Email"
+        Me.tabEmail.UseVisualStyleBackColor = True
+        '
+        'EmailControl1
+        '
+        Me.EmailControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.EmailControl1.Location = New System.Drawing.Point(0, 0)
+        Me.EmailControl1.Margin = New System.Windows.Forms.Padding(0)
+        Me.EmailControl1.MinimumSize = New System.Drawing.Size(490, 190)
+        Me.EmailControl1.Name = "EmailControl1"
+        Me.EmailControl1.Size = New System.Drawing.Size(1140, 568)
+        Me.EmailControl1.TabIndex = 0
         '
         'menu
         '
         Me.menu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ConnectToolStripMenuItem})
         Me.menu.Location = New System.Drawing.Point(0, 0)
         Me.menu.Name = "menu"
-        Me.menu.Size = New System.Drawing.Size(984, 24)
+        Me.menu.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
+        Me.menu.Size = New System.Drawing.Size(1148, 24)
         Me.menu.TabIndex = 7
         Me.menu.Text = "MenuStrip1"
         '
@@ -92,9 +139,10 @@ Partial Class MainForm
         'StatusStrip1
         '
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblConnectionStatus})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 479)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 629)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(984, 23)
+        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 16, 0)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1148, 23)
         Me.StatusStrip1.TabIndex = 8
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -107,38 +155,24 @@ Partial Class MainForm
         Me.lblConnectionStatus.Size = New System.Drawing.Size(132, 18)
         Me.lblConnectionStatus.Text = "lblConnectionStatus"
         '
-        'SheetsControl1
-        '
-        Me.SheetsControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SheetsControl1.Location = New System.Drawing.Point(0, 0)
-        Me.SheetsControl1.Name = "SheetsControl1"
-        Me.SheetsControl1.Size = New System.Drawing.Size(952, 419)
-        Me.SheetsControl1.TabIndex = 0
-        '
-        'ScriptControl1
-        '
-        Me.ScriptControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ScriptControl1.Location = New System.Drawing.Point(0, 0)
-        Me.ScriptControl1.Margin = New System.Windows.Forms.Padding(0)
-        Me.ScriptControl1.Name = "ScriptControl1"
-        Me.ScriptControl1.Size = New System.Drawing.Size(952, 419)
-        Me.ScriptControl1.TabIndex = 0
-        '
         'MainForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(984, 502)
+        Me.ClientSize = New System.Drawing.Size(1148, 652)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.tabControl)
+        Me.Controls.Add(Me.TabControl)
         Me.Controls.Add(Me.menu)
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.menu
+        Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Name = "MainForm"
         Me.Text = "Google API Demo"
-        Me.tabControl.ResumeLayout(False)
+        Me.TabControl.ResumeLayout(False)
         Me.tabSpreadSheets.ResumeLayout(False)
         Me.tabSripts.ResumeLayout(False)
+        Me.tabEmail.ResumeLayout(False)
         Me.menu.ResumeLayout(False)
         Me.menu.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
@@ -147,7 +181,7 @@ Partial Class MainForm
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents tabControl As TabControl
+    Friend WithEvents TabControl As TabControl
     Friend WithEvents tabSpreadSheets As TabPage
     Friend WithEvents tabSripts As TabPage
     Friend WithEvents menu As MenuStrip
@@ -157,4 +191,6 @@ Partial Class MainForm
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents SheetsControl1 As SheetsControl
     Friend WithEvents ScriptControl1 As ScriptControl
+    Friend WithEvents tabEmail As TabPage
+    Friend WithEvents EmailControl1 As EmailControl
 End Class

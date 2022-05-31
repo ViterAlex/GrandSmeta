@@ -22,8 +22,18 @@ Partial Class BaseUC
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container()
+        Me.SuspendLayout()
+        '
+        'BaseUC
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.Name = "BaseUC"
+        Me.Size = New System.Drawing.Size(175, 173)
+        Me.ResumeLayout(False)
+
     End Sub
 
 End Class
