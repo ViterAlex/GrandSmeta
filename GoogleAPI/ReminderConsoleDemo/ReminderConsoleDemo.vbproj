@@ -125,9 +125,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReminderAPI\ReminderAPI.vbproj">
+    <ProjectReference Include="..\ReminderLib\ReminderLib.vbproj">
       <Project>{ebd5be62-5015-4596-9952-d1ad21e2f113}</Project>
-      <Name>ReminderAPI</Name>
+      <Name>ReminderLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

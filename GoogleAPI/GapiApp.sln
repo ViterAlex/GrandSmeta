@@ -3,39 +3,67 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32505.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SheetsAndScripts", "SheetAndScripts\SheetsAndScripts.vbproj", "{A3456844-50D3-4141-886F-E8C7814F10C4}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "SheetsAndScriptsLib", "SheetsAndScriptsLib\SheetsAndScriptsLib.vbproj", "{A3456844-50D3-4141-886F-E8C7814F10C4}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ReminderAPI", "ReminderAPI\ReminderAPI.vbproj", "{EBD5BE62-5015-4596-9952-D1AD21E2F113}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ReminderLib", "ReminderLib\ReminderLib.vbproj", "{EBD5BE62-5015-4596-9952-D1AD21E2F113}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ReminderDemo", "ReminderDemo\ReminderDemo.vbproj", "{2E114B1C-C588-40CC-B0C9-BFF5AEC78BA2}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ReminderConsoleDemo", "ReminderConsoleDemo\ReminderConsoleDemo.vbproj", "{2E114B1C-C588-40CC-B0C9-BFF5AEC78BA2}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ReminderForms", "ReminderForms\ReminderForms.vbproj", "{2FDE4412-F3D7-457B-AA55-5779157E309A}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ReminderFormsDemo", "ReminderFormsDemo\ReminderFormsDemo.vbproj", "{2FDE4412-F3D7-457B-AA55-5779157E309A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{BDBD00A9-30A4-4DB6-A7F7-A8FABB1671B0}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MainDemo", "MainDemo\MainDemo.vbproj", "{683CCA7E-2580-4F6E-8807-05C562EA23FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{A293ED97-9725-4C17-8C8F-F415B6771513}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		WordToolsRelease|Any CPU = WordToolsRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A3456844-50D3-4141-886F-E8C7814F10C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3456844-50D3-4141-886F-E8C7814F10C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3456844-50D3-4141-886F-E8C7814F10C4}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{A3456844-50D3-4141-886F-E8C7814F10C4}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{A3456844-50D3-4141-886F-E8C7814F10C4}.WordToolsRelease|Any CPU.ActiveCfg = WordToolsRelease|Any CPU
+		{A3456844-50D3-4141-886F-E8C7814F10C4}.WordToolsRelease|Any CPU.Build.0 = WordToolsRelease|Any CPU
 		{EBD5BE62-5015-4596-9952-D1AD21E2F113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EBD5BE62-5015-4596-9952-D1AD21E2F113}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBD5BE62-5015-4596-9952-D1AD21E2F113}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBD5BE62-5015-4596-9952-D1AD21E2F113}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD5BE62-5015-4596-9952-D1AD21E2F113}.WordToolsRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD5BE62-5015-4596-9952-D1AD21E2F113}.WordToolsRelease|Any CPU.Build.0 = Release|Any CPU
 		{2E114B1C-C588-40CC-B0C9-BFF5AEC78BA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E114B1C-C588-40CC-B0C9-BFF5AEC78BA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E114B1C-C588-40CC-B0C9-BFF5AEC78BA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E114B1C-C588-40CC-B0C9-BFF5AEC78BA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E114B1C-C588-40CC-B0C9-BFF5AEC78BA2}.WordToolsRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{2E114B1C-C588-40CC-B0C9-BFF5AEC78BA2}.WordToolsRelease|Any CPU.Build.0 = Release|Any CPU
 		{2FDE4412-F3D7-457B-AA55-5779157E309A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2FDE4412-F3D7-457B-AA55-5779157E309A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FDE4412-F3D7-457B-AA55-5779157E309A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FDE4412-F3D7-457B-AA55-5779157E309A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FDE4412-F3D7-457B-AA55-5779157E309A}.WordToolsRelease|Any CPU.ActiveCfg = Release|Any CPU
+		{2FDE4412-F3D7-457B-AA55-5779157E309A}.WordToolsRelease|Any CPU.Build.0 = Release|Any CPU
+		{683CCA7E-2580-4F6E-8807-05C562EA23FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{683CCA7E-2580-4F6E-8807-05C562EA23FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{683CCA7E-2580-4F6E-8807-05C562EA23FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{683CCA7E-2580-4F6E-8807-05C562EA23FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{683CCA7E-2580-4F6E-8807-05C562EA23FA}.WordToolsRelease|Any CPU.ActiveCfg = WordToolsRelease|Any CPU
+		{683CCA7E-2580-4F6E-8807-05C562EA23FA}.WordToolsRelease|Any CPU.Build.0 = WordToolsRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A3456844-50D3-4141-886F-E8C7814F10C4} = {A293ED97-9725-4C17-8C8F-F415B6771513}
+		{EBD5BE62-5015-4596-9952-D1AD21E2F113} = {A293ED97-9725-4C17-8C8F-F415B6771513}
+		{2E114B1C-C588-40CC-B0C9-BFF5AEC78BA2} = {BDBD00A9-30A4-4DB6-A7F7-A8FABB1671B0}
+		{2FDE4412-F3D7-457B-AA55-5779157E309A} = {BDBD00A9-30A4-4DB6-A7F7-A8FABB1671B0}
+		{683CCA7E-2580-4F6E-8807-05C562EA23FA} = {BDBD00A9-30A4-4DB6-A7F7-A8FABB1671B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF1A74F2-CD5E-4857-9DD9-CD458A561FBC}
