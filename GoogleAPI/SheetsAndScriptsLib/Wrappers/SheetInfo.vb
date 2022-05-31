@@ -1,5 +1,7 @@
 ﻿Imports Google.Apis.Sheets.v4.Data
-
+''' <summary>
+'''     Wrapper for <see cref="Google.Apis.Sheets.v4.Data.Sheet"/>
+''' </summary>
 Public Class SheetInfo
 
 #Region "Properties"

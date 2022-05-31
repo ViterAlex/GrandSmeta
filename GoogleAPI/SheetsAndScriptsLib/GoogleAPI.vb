@@ -45,7 +45,9 @@ Partial Public Class GoogleAPI
     ''' Установить соединение с Google API
     ''' </summary>
     Public Async Function Connect() As Task(Of Boolean)
-        Dim credPath = Path.Combine(Environment.CurrentDirectory, ".cred", Application.ProductName)
+        Dim productName As String = My.Application.Info.ProductName
+
+        Dim credPath = Path.Combine(Environment.CurrentDirectory, ".cred", productName)
         Try
 
             Using s As New MemoryStream(Encoding.UTF8.GetBytes(token))
@@ -59,15 +61,15 @@ Partial Public Class GoogleAPI
 
             driveService = New DriveService(New BaseClientService.Initializer() With {
                                             .HttpClientInitializer = credentials,
-                                            .ApplicationName = Application.ProductName
+                                            .ApplicationName = productName
                                             })
             sheetService = New SheetsService(New BaseClientService.Initializer() With {
                                              .HttpClientInitializer = credentials,
-                                             .ApplicationName = Application.ProductName
+                                             .ApplicationName = productName
                                              })
             scriptService = New ScriptService(New BaseClientService.Initializer() With {
                                               .HttpClientInitializer = credentials,
-                                              .ApplicationName = Application.ProductName
+                                              .ApplicationName = productName
                                               })
         Catch ex As Exception
             Return False

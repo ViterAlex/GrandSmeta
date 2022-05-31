@@ -5,34 +5,30 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{A3456844-50D3-4141-886F-E8C7814F10C4}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <StartupObject>GapiTools.My.MyApplication</StartupObject>
-    <RootNamespace>GapiTools</RootNamespace>
-    <AssemblyName>gapitools</AssemblyName>
+    <OutputType>Library</OutputType>
+    <RootNamespace>SheetsAndScriptsLib</RootNamespace>
+    <AssemblyName>SheetsAndScriptsLib</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>gapitools.xml</DocumentationFile>
+    <DocumentationFile>SheetsAndScriptsLib.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>gapitools.xml</DocumentationFile>
+    <DocumentationFile>SheetsAndScriptsLib.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -46,22 +42,6 @@
   </PropertyGroup>
   <PropertyGroup>
     <OptionInfer>On</OptionInfer>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Images\icon.ico</ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'WordToolsRelease|AnyCPU'">
-    <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\WordToolsRelease\</OutputPath>
-    <DocumentationFile>gapitools.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Apis, Version=1.57.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
@@ -93,8 +73,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -108,34 +86,19 @@
     <Import Include="System.Collections" />
     <Import Include="System.Collections.Generic" />
     <Import Include="System.Data" />
-    <Import Include="System.Drawing" />
     <Import Include="System.Diagnostics" />
-    <Import Include="System.Windows.Forms" />
     <Import Include="System.Linq" />
     <Import Include="System.Xml.Linq" />
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
-  <ItemDefinitionGroup>
-    <ReferenceCopyLocalPaths>
-      <DestinationSubDirectory>lib\</DestinationSubDirectory>
-    </ReferenceCopyLocalPaths>
-  </ItemDefinitionGroup>
   <ItemGroup>
     <Compile Include="GoogleAPI.Scripts.vb" />
-    <Compile Include="GoogleAPI.vb" />
-    <Compile Include="MainForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.vb">
-      <DependentUpon>MainForm.vb</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="GoogleAPI.Sheets.vb" />
+    <Compile Include="GoogleAPI.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -147,13 +110,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ScriptInfo.vb" />
-    <Compile Include="SheetInfo.vb" />
+    <Compile Include="Wrappers\FunctionInfo.vb" />
+    <Compile Include="Wrappers\ScriptInfo.vb" />
+    <Compile Include="Wrappers\SheetInfo.vb" />
+    <Compile Include="Wrappers\SpreadsheetInfo.vb" />
+    <Compile Include="Wrappers\VersionInfo.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -162,10 +125,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="cred.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -175,13 +134,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Images\disconnected.bmp" />
-    <Content Include="Images\connected.bmp" />
-    <Content Include="Images\icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

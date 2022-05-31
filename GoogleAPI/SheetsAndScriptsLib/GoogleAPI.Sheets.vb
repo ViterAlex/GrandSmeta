@@ -1,4 +1,5 @@
-﻿Imports Google.Apis.Drive.v3
+﻿Imports System.Windows.Forms
+Imports Google.Apis.Drive.v3
 Imports Google.Apis.Sheets.v4.Data
 Imports Google.Apis.Sheets.v4.SpreadsheetsResource.ValuesResource.UpdateRequest
 Imports File = Google.Apis.Drive.v3.Data.File
@@ -58,12 +59,16 @@ Partial Public Class GoogleAPI
     ''' <summary>
     ''' Получить доступные для редактирования файлы SpreadSheets
     ''' </summary>
-    Public Function GetSpreadsheets() As IList(Of File)
+    Public Function GetSpreadsheets() As IList(Of SpreadsheetInfo)
         Dim req = driveService.Files.List()
         Dim resp = req.Execute()
         Return resp.Files.Where(Function(f)
                                     Return f.MimeType = "application/vnd.google-apps.spreadsheet"
-                                End Function).ToList()
+                                End Function).
+                                Select(Function(f)
+                                           Return New SpreadsheetInfo With {.Id = f.Id, .Name = f.Name}
+                                       End Function).
+                                       ToList()
     End Function
 
     ''' <summary>

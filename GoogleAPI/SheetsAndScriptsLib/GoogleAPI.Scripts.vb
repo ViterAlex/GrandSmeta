@@ -1,10 +1,10 @@
 ﻿Imports Google.Apis.Script.v1.Data
-Imports ScriptFile = Google.Apis.Script.v1.Data.File
+Imports GoogleScriptFile = Google.Apis.Script.v1.Data.File
 Partial Public Class GoogleAPI
 
 #Region "Fields"
 
-    Private loadedScriptFiles As IList(Of ScriptFile)
+    Private loadedScriptFiles As IList(Of GoogleScriptFile)
 
 #End Region
 
@@ -14,11 +14,15 @@ Partial Public Class GoogleAPI
     ''' Получить функции из файла исходного кода.
     ''' </summary>
     ''' <param name="file">Ссылка на файл исходного кода.</param>
-    Public Function GetFunctions(file As ScriptFile) As IList(Of GoogleAppsScriptTypeFunction)
-        If file.FunctionSet.Values IsNot Nothing Then
-            Return file.FunctionSet.Values
+    Public Function GetFunctions(file As ScriptInfo) As IList(Of FunctionInfo)
+        If file.Functions IsNot Nothing Then
+            Return file.Functions
+            'Return file.FunctionSet.Values.Select(Function(f)
+            '                                          Return New FunctionInfo With {.Name = f.Name, .Parameters = f.Parameters}
+            '                                      End Function).
+            '                                      ToList()
         End If
-        Return New List(Of GoogleAppsScriptTypeFunction)
+        Return New List(Of FunctionInfo)
     End Function
 
     ''' <summary>
@@ -31,20 +35,36 @@ Partial Public Class GoogleAPI
         Dim resp = req.Execute()
         loadedScriptFiles = resp.Files
         Return loadedScriptFiles.Select(Function(f)
-                                            Return New ScriptInfo With {
-                                     .Name = f.Name,
-                                     .File = f
-                                     }
+                                            Return GetScriptInfo(f)
                                         End Function).ToList()
+    End Function
+
+    Private Function GetScriptInfo(file As GoogleScriptFile) As ScriptInfo
+        Dim result = New ScriptInfo With {
+            .Name = file.Name,
+            .Source = file.Source,
+            .Type = file.Type
+            }
+        If file.FunctionSet IsNot Nothing AndAlso file.FunctionSet.Values IsNot Nothing Then
+            result.Functions = file.FunctionSet.Values.Select(Function(v)
+                                                                  Return New FunctionInfo With {
+                                                                                        .Name = v.Name,
+                                                                                        .Parameters = v.Parameters
+                                                                                      }
+                                                              End Function).ToList()
+        End If
+        Return result
     End Function
 
     ''' <summary>
     ''' Получить версии приложении для проекта
     ''' </summary>
-    Public Function GetVersions(scriptId As String) As IList(Of Version)
+    Public Function GetVersions(scriptId As String) As IList(Of VersionInfo)
         Dim req = scriptService.Projects.Versions.List(scriptId)
         Dim resp = req.Execute()
-        Return resp.Versions
+        Return resp.Versions.Select(Function(v)
+                                        Return New VersionInfo With {.VersionNumber = v.VersionNumber, .Description = v.Description}
+                                    End Function).ToList()
     End Function
 
     ''' <summary>
