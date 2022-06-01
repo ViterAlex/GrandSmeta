@@ -41,12 +41,29 @@ Public Class Email
         If String.IsNullOrEmpty(settings.JunkMail) Then
             Return "Не указана папка ""Спам"""
         End If
+        Dim inboxMessage As Net.Mail.MailMessage
+        Dim junkMessage As Net.Mail.MailMessage
+
         'Последнее письмо из Входящих
-        Dim inboxUid = imap.Search(SearchCondition.All, settings.Inbox).Last()
-        Dim inboxMessage = imap.GetMessage(inboxUid, False, settings.Inbox)
+        Dim inboxUid = imap.Search(SearchCondition.All, settings.Inbox).LastOrDefault()
+        If inboxUid <> 0 Then
+            inboxMessage = imap.GetMessage(inboxUid, False, settings.Inbox)
+        End If
+
         'Последнее письмо из Спама
-        Dim junkUid = imap.Search(SearchCondition.All, settings.JunkMail).Last()
-        Dim junkMessage = imap.GetMessage(junkUid, False, settings.JunkMail)
+        Dim junkUid = imap.Search(SearchCondition.All, settings.JunkMail).LastOrDefault()
+        If junkUid <> 0 Then
+            junkMessage = imap.GetMessage(junkUid, False, settings.JunkMail)
+        End If
+
+        If junkMessage Is Nothing Then
+            _lastFolder = settings.Inbox
+            Return inboxMessage.Body
+        End If
+        If inboxMessage Is Nothing Then
+            _lastFolder = settings.JunkMail
+            Return junkMessage.Body
+        End If
         'Возвращаем то, которое пришло позже и запоминаем последнюю папку
         If inboxMessage.Date < junkMessage.Date Then
             _lastFolder = settings.JunkMail
