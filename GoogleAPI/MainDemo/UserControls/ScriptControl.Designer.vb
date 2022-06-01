@@ -81,7 +81,6 @@ Partial Class ScriptControl
         Me.txtSource.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtSource.DisabledColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
         Me.txtSource.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtSource.Font = New System.Drawing.Font("Courier New", 9.75!)
         Me.txtSource.HighlightingRangeType = FastColoredTextBoxNS.HighlightingRangeType.VisibleRange
         Me.txtSource.IsReplaceMode = False
         Me.txtSource.Language = FastColoredTextBoxNS.Language.JS
@@ -145,7 +144,7 @@ Partial Class ScriptControl
         '
         Me.cmbSourceFiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbSourceFiles.Enabled = False
-        Me.cmbSourceFiles.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.cmbSourceFiles.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbSourceFiles.FormattingEnabled = True
         Me.cmbSourceFiles.Location = New System.Drawing.Point(4, 3)
         Me.cmbSourceFiles.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -157,7 +156,7 @@ Partial Class ScriptControl
         '
         Me.cmbVersions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbVersions.Enabled = False
-        Me.cmbVersions.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.cmbVersions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbVersions.FormattingEnabled = True
         Me.cmbVersions.Location = New System.Drawing.Point(227, 3)
         Me.cmbVersions.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -169,6 +168,8 @@ Partial Class ScriptControl
         'btnSave
         '
         Me.btnSave.Enabled = False
+        Me.btnSave.FlatAppearance.BorderSize = 0
+        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnSave.Location = New System.Drawing.Point(338, 3)
         Me.btnSave.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -183,7 +184,7 @@ Partial Class ScriptControl
         '
         Me.cmbFunctions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbFunctions.Enabled = False
-        Me.cmbFunctions.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.cmbFunctions.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.cmbFunctions.FormattingEnabled = True
         Me.cmbFunctions.Location = New System.Drawing.Point(434, 3)
         Me.cmbFunctions.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -194,6 +195,8 @@ Partial Class ScriptControl
         'btnRun
         '
         Me.btnRun.Enabled = False
+        Me.btnRun.FlatAppearance.BorderSize = 0
+        Me.btnRun.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRun.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnRun.Location = New System.Drawing.Point(657, 3)
         Me.btnRun.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
@@ -229,6 +232,8 @@ Partial Class ScriptControl
         'btnGetProject
         '
         Me.btnGetProject.Enabled = False
+        Me.btnGetProject.FlatAppearance.BorderSize = 0
+        Me.btnGetProject.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnGetProject.Location = New System.Drawing.Point(686, 3)
         Me.btnGetProject.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnGetProject.Name = "btnGetProject"

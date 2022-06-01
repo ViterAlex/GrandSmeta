@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.ComponentModel.DataAnnotations
 
 Public Class EmailSettings
     ''' <summary>
@@ -44,12 +45,38 @@ Public Class EmailSettings
     ''' </summary>
     <Browsable(False)>
     <EditorBrowsable(EditorBrowsableState.Advanced)>
+    <DefaultValue(False)>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
     Public Property ResetFolders() As Boolean
+    ''' <summary>
+    '''     Имя учётной записи.
+    ''' </summary>
+    <DisplayName("Имя")>
+    <Description("Имя учётной записи для удобства пользования")>
+    Public Property Name() As String
 
     ''' <summary>
     '''     Создание независимой копии класса.
     ''' </summary>
     Public Function Clone() As EmailSettings
         Return DirectCast(Me.MemberwiseClone(), EmailSettings)
+    End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean
+        If obj.GetType IsNot GetType(EmailSettings) Then
+            Return False
+        End If
+        Dim s = DirectCast(obj, EmailSettings)
+        Return s.Hostname = Hostname AndAlso
+            s.Port = Port AndAlso
+            s.Name = Name AndAlso
+            s.Login = Login AndAlso
+            s.Password = Password AndAlso
+            s.Inbox = Inbox AndAlso
+            s.JunkMail = JunkMail
+    End Function
+
+    Public Overrides Function ToString() As String
+        Return $"{Name}:{Login}"
     End Function
 End Class

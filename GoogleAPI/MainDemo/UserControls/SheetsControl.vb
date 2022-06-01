@@ -8,7 +8,9 @@ Public Class SheetsControl
         ' This call is required by the designer.
         InitializeComponent()
 #If DEBUG Then
-        FillWithRandomData()
+        If Not DesignMode Then
+            FillWithRandomData()
+        End If
 #End If
         ' Add any initialization after the InitializeComponent() call.
         dgvSpreadSheet.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
