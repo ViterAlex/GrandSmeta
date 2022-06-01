@@ -48,7 +48,7 @@ Public Class Email
         Dim junkUid = imap.Search(SearchCondition.All, settings.JunkMail).Last()
         Dim junkMessage = imap.GetMessage(junkUid, False, settings.JunkMail)
         'Возвращаем то, которое пришло позже и запоминаем последнюю папку
-        If inboxMessage.Date > junkMessage.Date Then
+        If inboxMessage.Date < junkMessage.Date Then
             _lastFolder = settings.JunkMail
             Return junkMessage.Body
         End If
