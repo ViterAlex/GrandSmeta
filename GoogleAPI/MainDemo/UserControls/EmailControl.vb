@@ -33,12 +33,12 @@ Public Class EmailControl
         txtEmailContent.ReadOnly = False
 
         If email.LastFolder = emailSettings.Inbox Then
-            lblFolder.ForeColor = Color.DarkGreen
+            lblLastFolder.ForeColor = Color.DarkGreen
         Else
-            lblFolder.ForeColor = Color.DarkRed
+            lblLastFolder.ForeColor = Color.DarkRed
         End If
-        lblFolder.Text = email.LastFolder
-        lblFolder.Visible = True
+        lblLastFolder.Text = email.LastFolder
+        lblLastFolder.Visible = True
     End Sub
 
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click

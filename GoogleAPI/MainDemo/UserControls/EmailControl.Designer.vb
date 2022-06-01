@@ -25,7 +25,7 @@ Partial Class EmailControl
         Me.btnGetLastEmail = New System.Windows.Forms.Button()
         Me.txtEmailContent = New System.Windows.Forms.TextBox()
         Me.btnSettings = New System.Windows.Forms.Button()
-        Me.lblFolder = New System.Windows.Forms.Label()
+        Me.lblLastFolder = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'btnGetLastEmail
@@ -72,23 +72,23 @@ Partial Class EmailControl
         Me.btnSettings.Text = "⚙"
         Me.btnSettings.UseVisualStyleBackColor = True
         '
-        'lblFolder
+        'lblLastFolder
         '
-        Me.lblFolder.AutoSize = True
-        Me.lblFolder.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.lblFolder.Location = New System.Drawing.Point(206, 11)
-        Me.lblFolder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblFolder.Name = "lblFolder"
-        Me.lblFolder.Size = New System.Drawing.Size(65, 25)
-        Me.lblFolder.TabIndex = 5
-        Me.lblFolder.Text = "Label1"
-        Me.lblFolder.Visible = False
+        Me.lblLastFolder.AutoSize = True
+        Me.lblLastFolder.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.lblLastFolder.Location = New System.Drawing.Point(206, 11)
+        Me.lblLastFolder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblLastFolder.Name = "lblLastFolder"
+        Me.lblLastFolder.Size = New System.Drawing.Size(96, 25)
+        Me.lblLastFolder.TabIndex = 5
+        Me.lblLastFolder.Text = "lastFolder"
+        Me.lblLastFolder.Visible = False
         '
         'EmailControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.lblFolder)
+        Me.Controls.Add(Me.lblLastFolder)
         Me.Controls.Add(Me.txtEmailContent)
         Me.Controls.Add(Me.btnGetLastEmail)
         Me.Controls.Add(Me.btnSettings)
@@ -104,5 +104,5 @@ Partial Class EmailControl
     Friend WithEvents btnGetLastEmail As Button
     Friend WithEvents txtEmailContent As TextBox
     Friend WithEvents btnSettings As Button
-    Friend WithEvents lblFolder As Label
+    Friend WithEvents lblLastFolder As Label
 End Class
