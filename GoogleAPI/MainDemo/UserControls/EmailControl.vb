@@ -44,7 +44,11 @@ Public Class EmailControl
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
         'Показываем диалог редактирования настроек почты
         Using f As New EmailSettingsForm()
-            f.Settings = emailSettings.Clone()
+            If emailSettings IsNot Nothing Then
+                f.Settings = emailSettings.Clone()
+            Else
+                f.Settings = New EmailSettings()
+            End If
             If f.ShowDialog() <> DialogResult.OK Then
                 Return
             End If
