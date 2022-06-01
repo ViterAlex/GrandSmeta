@@ -22,8 +22,10 @@ Partial Class ScriptControl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ScriptControl))
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.txtSource = New System.Windows.Forms.TextBox()
+        Me.txtSource = New FastColoredTextBoxNS.FastColoredTextBox()
         Me.dgvParams = New System.Windows.Forms.DataGridView()
         Me.colParam = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colValue = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -40,6 +42,7 @@ Partial Class ScriptControl
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        CType(Me.txtSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvParams, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowLayoutPanel4.SuspendLayout()
         Me.FlowLayoutPanel2.SuspendLayout()
@@ -68,15 +71,33 @@ Partial Class ScriptControl
         '
         'txtSource
         '
+        Me.txtSource.AutoCompleteBracketsList = New Char() {Global.Microsoft.VisualBasic.ChrW(40), Global.Microsoft.VisualBasic.ChrW(41), Global.Microsoft.VisualBasic.ChrW(123), Global.Microsoft.VisualBasic.ChrW(125), Global.Microsoft.VisualBasic.ChrW(91), Global.Microsoft.VisualBasic.ChrW(93), Global.Microsoft.VisualBasic.ChrW(34), Global.Microsoft.VisualBasic.ChrW(34), Global.Microsoft.VisualBasic.ChrW(39), Global.Microsoft.VisualBasic.ChrW(39)}
+        Me.txtSource.AutoIndentCharsPatterns = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "^\s*[\w\.]+(\s\w+)?\s*(?<range>=)\s*(?<range>[^;]+);" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.txtSource.AutoScrollMinSize = New System.Drawing.Size(27, 14)
+        Me.txtSource.BackBrush = Nothing
+        Me.txtSource.BracketsHighlightStrategy = FastColoredTextBoxNS.BracketsHighlightStrategy.Strategy2
+        Me.txtSource.CharHeight = 14
+        Me.txtSource.CharWidth = 8
+        Me.txtSource.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSource.DisabledColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer), CType(CType(180, Byte), Integer))
         Me.txtSource.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtSource.Font = New System.Drawing.Font("Consolas", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.txtSource.Font = New System.Drawing.Font("Courier New", 9.75!)
+        Me.txtSource.HighlightingRangeType = FastColoredTextBoxNS.HighlightingRangeType.VisibleRange
+        Me.txtSource.IsReplaceMode = False
+        Me.txtSource.Language = FastColoredTextBoxNS.Language.JS
+        Me.txtSource.LeftBracket = Global.Microsoft.VisualBasic.ChrW(40)
+        Me.txtSource.LeftBracket2 = Global.Microsoft.VisualBasic.ChrW(123)
         Me.txtSource.Location = New System.Drawing.Point(0, 0)
-        Me.txtSource.Margin = New System.Windows.Forms.Padding(0)
-        Me.txtSource.Multiline = True
         Me.txtSource.Name = "txtSource"
-        Me.txtSource.ScrollBars = System.Windows.Forms.ScrollBars.Both
+        Me.txtSource.Paddings = New System.Windows.Forms.Padding(0)
+        Me.txtSource.RightBracket = Global.Microsoft.VisualBasic.ChrW(41)
+        Me.txtSource.RightBracket2 = Global.Microsoft.VisualBasic.ChrW(125)
+        Me.txtSource.SelectionColor = System.Drawing.Color.FromArgb(CType(CType(60, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSource.ServiceColors = CType(resources.GetObject("txtSource.ServiceColors"), FastColoredTextBoxNS.ServiceColors)
         Me.txtSource.Size = New System.Drawing.Size(708, 430)
-        Me.txtSource.TabIndex = 8
+        Me.txtSource.TabIndex = 9
+        Me.txtSource.TextAreaBorder = FastColoredTextBoxNS.TextAreaBorderType.[Single]
+        Me.txtSource.Zoom = 100
         '
         'dgvParams
         '
@@ -223,15 +244,13 @@ Partial Class ScriptControl
         Me.Controls.Add(Me.SplitContainer1)
         Me.Controls.Add(Me.FlowLayoutPanel4)
         Me.Controls.Add(Me.FlowLayoutPanel2)
-        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Name = "ScriptControl"
         Me.Size = New System.Drawing.Size(952, 492)
         Me.SplitContainer1.Panel1.ResumeLayout(False)
-        Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        CType(Me.txtSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvParams, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FlowLayoutPanel4.ResumeLayout(False)
         Me.FlowLayoutPanel2.ResumeLayout(False)
@@ -242,7 +261,6 @@ Partial Class ScriptControl
     End Sub
 
     Friend WithEvents SplitContainer1 As SplitContainer
-    Friend WithEvents txtSource As TextBox
     Friend WithEvents dgvParams As DataGridView
     Friend WithEvents colParam As DataGridViewTextBoxColumn
     Friend WithEvents colValue As DataGridViewTextBoxColumn
@@ -255,4 +273,5 @@ Partial Class ScriptControl
     Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
     Friend WithEvents txtScriptId As TextBox
     Friend WithEvents btnGetProject As Button
+    Friend WithEvents txtSource As FastColoredTextBoxNS.FastColoredTextBox
 End Class

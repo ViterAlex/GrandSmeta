@@ -77,6 +77,7 @@ Public Class SheetsControl
     Private Sub cmbSpreadSheets_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbSpreadSheets.SelectedIndexChanged
         cmbSheets.Enabled = True
         lblSheets.Enabled = True
+        'binding to SheetInfo
         cmbSheets.DisplayMember = "Title"
         cmbSheets.ValueMember = "Sheet"
         cmbSheets.DataSource = Gapi.GetSheets(cmbSpreadSheets.SelectedValue.ToString())

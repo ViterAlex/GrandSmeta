@@ -18,6 +18,7 @@ Partial Public Class GoogleAPI
         If dgv.Columns.Count = 0 Then
             Return
         End If
+        'TODO: Передавать массива массивов, а не DataGridView
         'Получение данных из DataGridView в виде массива массивов
         Dim values = dgv.Rows.OfType(Of DataGridViewRow) _
         .Where(Function(r)
