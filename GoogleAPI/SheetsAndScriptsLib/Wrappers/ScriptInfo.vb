@@ -1,5 +1,5 @@
 ﻿''' <summary>
-'''     Wrapper for Google.Apis.Script.v1.Data.File
+'''     Wrapper for <see cref="Google.Apis.Script.v1.Data.File"/>
 ''' </summary>
 Public Class ScriptInfo
 
