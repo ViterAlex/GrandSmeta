@@ -3,17 +3,19 @@ Imports S22.Imap
 
 Public Class EmailFolderConverter
     Inherits StringConverter
+
+#Region "Private Fields"
+
     'Для хранения уже загруженных папок
     Private Shared mailboxes As List(Of String)
+
     'Для хранения старых настроек
     Private Shared oldSettings As EmailSettings
 
-    Public Overrides Function GetStandardValuesSupported(context As ITypeDescriptorContext) As Boolean
-        Return True
-    End Function
-    Public Overrides Function GetStandardValuesExclusive(context As ITypeDescriptorContext) As Boolean
-        Return True
-    End Function
+#End Region
+
+#Region "Public Methods"
+
     Public Overrides Function GetStandardValues(context As ITypeDescriptorContext) As StandardValuesCollection
 
         Dim settings = DirectCast(context.Instance, EmailSettings)
@@ -72,4 +74,15 @@ Public Class EmailFolderConverter
         End Try
         Return New StandardValuesCollection(mailboxes)
     End Function
+
+    Public Overrides Function GetStandardValuesExclusive(context As ITypeDescriptorContext) As Boolean
+        Return True
+    End Function
+
+    Public Overrides Function GetStandardValuesSupported(context As ITypeDescriptorContext) As Boolean
+        Return True
+    End Function
+
+#End Region
+
 End Class

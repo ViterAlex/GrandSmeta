@@ -55,4 +55,16 @@ Public Class Email
         _lastFolder = settings.Inbox
         Return inboxMessage.Body
     End Function
+
+    Public Shared Async Function Test(settings As EmailSettings) As Task(Of Boolean)
+        Return Await Task.Run(Function()
+                                  Try
+                                      Using client = New ImapClient(settings.Hostname, settings.Port, settings.Login, settings.Password, ssl:=True)
+                                          Return client.Authed
+                                      End Using
+                                  Catch ex As Exception
+                                      Return False
+                                  End Try
+                              End Function)
+    End Function
 End Class

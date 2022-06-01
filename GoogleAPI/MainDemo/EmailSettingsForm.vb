@@ -3,6 +3,27 @@
 Public Class EmailSettingsForm
 
     Public Property Settings() As EmailSettings
+    Private ReadOnly btnClear = New ToolStripButton("Очистить папки", Nothing, AddressOf ClearFolders)
+    Private ReadOnly btnTest As New ToolStripButton("Тест", Nothing, AddressOf TestConnection) With {
+        .Alignment = ToolStripItemAlignment.Right
+    }
+    Private ReadOnly lblTest As New ToolStripLabel(String.Empty) With {
+        .Alignment = ToolStripItemAlignment.Right
+    }
+
+    Private Async Sub TestConnection(sender As Object, e As EventArgs)
+        lblTest.Text = "⏱"
+        lblTest.ForeColor = Color.Black
+        btnTest.Enabled = False
+        If Await Email.Test(Settings) Then
+            lblTest.Text = "✔"
+            lblTest.ForeColor = Color.DarkGreen
+        Else
+            lblTest.Text = "✖"
+            lblTest.ForeColor = Color.DarkRed
+        End If
+        btnTest.Enabled = True
+    End Sub
 
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
@@ -14,8 +35,7 @@ Public Class EmailSettingsForm
                 ctrl.Visible = False
             Next
             'Добавляем свою
-            Dim btn = New ToolStripButton("Очистить папки", Nothing, AddressOf ClearFolders)
-            ts.Items.Add(btn)
+            ts.Items.AddRange({btnClear, lblTest, btnTest})
         End If
         EmailPropertyGrid.SelectedObject = Settings
     End Sub
@@ -26,5 +46,9 @@ Public Class EmailSettingsForm
         Settings.JunkMail = String.Empty
         EmailPropertyGrid.SelectedObject = Nothing
         EmailPropertyGrid.SelectedObject = Settings
+    End Sub
+
+    Private Sub EmailPropertyGrid_PropertyValueChanged(s As Object, e As PropertyValueChangedEventArgs) Handles EmailPropertyGrid.PropertyValueChanged
+        lblTest.Text = String.Empty
     End Sub
 End Class
