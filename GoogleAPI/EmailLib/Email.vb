@@ -30,17 +30,19 @@ Public Class Email
     Private Function ReceiveLast() As String
         'Пытаемся подключиться
         Try
-
             imap = New ImapClient(settings.Hostname, settings.Port, settings.Login, settings.Password, ssl:=True)
         Catch ex As Exception
             Return ex.Message
         End Try
+
         If String.IsNullOrEmpty(settings.Inbox) Then
             Return "Не указана папка ""Входящие"""
         End If
+
         If String.IsNullOrEmpty(settings.JunkMail) Then
             Return "Не указана папка ""Спам"""
         End If
+
         Dim inboxMessage As Net.Mail.MailMessage
         Dim junkMessage As Net.Mail.MailMessage
 

@@ -5,13 +5,7 @@ Public Class EmailFolderConverter
     Inherits StringConverter
 
 #Region "Private Fields"
-
-    'Для хранения уже загруженных папок
-    Private Shared mailboxes As List(Of String)
-
-    'Для хранения старых настроек
-    Private Shared oldSettings As EmailSettings
-
+    Private Shared cache As Dictionary(Of EmailSettings, List(Of String)) = New Dictionary(Of EmailSettings, List(Of String))
 #End Region
 
 #Region "Public Methods"
@@ -24,23 +18,18 @@ Public Class EmailFolderConverter
             result.Add("Невозможно получить контекст")
             Return New StandardValuesCollection(result)
         End If
-
-        'Если настройки не изменились с последнего вызова
-        If oldSettings IsNot Nothing AndAlso
-        oldSettings.Login = settings.Login AndAlso
-        oldSettings.Password = settings.Password AndAlso
-        oldSettings.Hostname = settings.Hostname AndAlso
-        oldSettings.Port = settings.Port Then
+        'Если редактируется тот же объект настроек
+        If cache.ContainsKey(settings) Then
+            'Если нужно очищать папки
             If settings.ResetFolders Then
-                mailboxes.Clear()
+                cache.Remove(settings)
                 settings.ResetFolders = False
+            Else
+                'Пробуем использовать уже загруженные ящики
+                Return New StandardValuesCollection(cache(settings))
             End If
-            'Пробуем использовать уже загруженные ящики
-            If mailboxes IsNot Nothing AndAlso mailboxes.Count > 0 Then
-                Return New StandardValuesCollection(mailboxes)
-            End If
-
         End If
+        'Настройки изменились. Подключаемся заново
 
         If String.IsNullOrEmpty(settings.Hostname) Then
             result.Add("Не указан сервер IMAP")
@@ -57,7 +46,6 @@ Public Class EmailFolderConverter
         If result.Count > 0 Then
             Return New StandardValuesCollection(result)
         End If
-        'Настройки изменились. Подключаемся заново
         Try
 
             Using imap As New ImapClient(settings.Hostname, settings.Port, settings.Login, settings.Password, ssl:=True)
@@ -65,14 +53,13 @@ Public Class EmailFolderConverter
                     result.Add("Невозможно авторизоваться")
                     Return New StandardValuesCollection(result)
                 End If
-                mailboxes = imap.ListMailboxes().ToList()
-                oldSettings = settings.Clone()
+                cache.Add(settings, imap.ListMailboxes().ToList())
             End Using
         Catch ex As Exception
             result.Add(ex.Message)
             Return New StandardValuesCollection(result)
         End Try
-        Return New StandardValuesCollection(mailboxes)
+        Return New StandardValuesCollection(cache(settings))
     End Function
 
     Public Overrides Function GetStandardValuesExclusive(context As ITypeDescriptorContext) As Boolean

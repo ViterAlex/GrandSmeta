@@ -40,6 +40,17 @@ Public Class MainForm
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
         lblConnectionStatus.Text = "Disconnected"
+        CheckSettingsVersion()
+    End Sub
+
+    Private Sub CheckSettingsVersion()
+        Dim s = New My.MySettings()
+        Dim v = My.Application.Info.Version
+        If Not String.Equals(s.Version, $"{v.Major}.{v.Minor}.{v.Build}") Then
+            s.Upgrade()
+            s.Version = $"{v.Major}.{v.Minor}.{v.Build}"
+            s.Save()
+        End If
     End Sub
 
 #End Region

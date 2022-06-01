@@ -1,60 +1,49 @@
 ﻿Imports EmailLib
 
 Public Class EmailControl
-    Private email As Email
-    Private emailSettings As New EmailSettings
-    'Таймер анимации загрузки
-    Private ReadOnly t As New Timer() With {.Interval = 200}
-    Private counter As Integer
+    Private settings As List(Of EmailSettings)
 
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
-        emailSettings = My.Settings.EmailSettings
-        AddHandler t.Tick, AddressOf TimerTick
-    End Sub
-
-    Private Sub TimerTick(sender As Object, e As EventArgs)
-        'Добавляем точки анимации
-        txtEmailContent.Text = $"Загружается{New String("."c, counter Mod 4)}"
-        counter += 1
+        settings = My.Settings.EmailSettingsList
     End Sub
 
     Private Async Sub btnGetLastEmail_Click(sender As Object, e As EventArgs) Handles btnGetLastEmail.Click
-        email = New Email(emailSettings)
+        Dim tasks As New List(Of Task)
+        EmailsTabControl.TabPages.Clear()
+        For Each s In settings
+            tasks.Add(Task.Run(Sub()
+                                   EmailsTabControl.Invoke(Sub()
+                                                               GetLastEmail(s)
+                                                           End Sub)
+                               End Sub))
+        Next
+        Await Task.WhenAll(tasks)
+    End Sub
 
-        txtEmailContent.ReadOnly = True
-        t.Start()
-        Dim text = Await email.ReceiveLastAsync()
-        t.Stop()
-        While t.Enabled
-            'Ждём пока таймер выключится
-        End While
-        txtEmailContent.Text = text
-        txtEmailContent.ReadOnly = False
-
-        If email.LastFolder = emailSettings.Inbox Then
-            lblLastFolder.ForeColor = Color.DarkGreen
-        Else
-            lblLastFolder.ForeColor = Color.DarkRed
-        End If
-        lblLastFolder.Text = email.LastFolder
-        lblLastFolder.Visible = True
+    Private Async Sub GetLastEmail(setting As EmailSettings)
+        EmailsTabControl.TabPages.Add(setting.Name)
+        Dim tab = EmailsTabControl.TabPages.Item(EmailsTabControl.TabPages.Count - 1)
+        Dim emailTextBox = New EmailTextBox()
+        tab.Controls.Add(emailTextBox)
+        Await emailTextBox.LoadEmail(setting)
+        tab.Text &= $" ({emailTextBox.LastFolder})"
     End Sub
 
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
         'Показываем диалог редактирования настроек почты
         Using f As New EmailSettingsForm()
-            If emailSettings IsNot Nothing Then
-                f.Settings = emailSettings.Clone()
+            If settings IsNot Nothing AndAlso settings.Count > 0 Then
+                f.Settings = settings.ToList()
             Else
-                f.Settings = New EmailSettings()
+                f.Settings = New List(Of EmailSettings)
             End If
             If f.ShowDialog() <> DialogResult.OK Then
                 Return
             End If
             'Сохраняем настройки
-            emailSettings = f.Settings
-            My.Settings.EmailSettings = emailSettings
+            settings = f.Settings
+            My.Settings.EmailSettingsList = settings
             My.Settings.Save()
         End Using
     End Sub

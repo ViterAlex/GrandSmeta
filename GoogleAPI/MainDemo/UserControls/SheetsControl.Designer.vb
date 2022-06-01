@@ -121,6 +121,8 @@ Partial Class SheetsControl
         'btnRead
         '
         Me.btnRead.Enabled = False
+        Me.btnRead.FlatAppearance.BorderSize = 0
+        Me.btnRead.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRead.Location = New System.Drawing.Point(467, 3)
         Me.btnRead.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnRead.Name = "btnRead"
@@ -132,6 +134,8 @@ Partial Class SheetsControl
         'btnFillIn
         '
         Me.btnFillIn.Enabled = False
+        Me.btnFillIn.FlatAppearance.BorderSize = 0
+        Me.btnFillIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnFillIn.Location = New System.Drawing.Point(563, 3)
         Me.btnFillIn.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnFillIn.Name = "btnFillIn"

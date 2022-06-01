@@ -139,6 +139,12 @@
     <Compile Include="EmailSettingsForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="UserControls\EmailPropertyGrid.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\EmailTextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UserControls\ScriptControl.Designer.vb">
       <DependentUpon>ScriptControl.vb</DependentUpon>
     </Compile>

@@ -26,16 +26,16 @@ Partial Class MainForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me.TabControl = New System.Windows.Forms.TabControl()
         Me.tabSpreadSheets = New System.Windows.Forms.TabPage()
-        Me.SheetsControl1 = New GapiTools.SheetsControl()
         Me.tabSripts = New System.Windows.Forms.TabPage()
-        Me.ScriptControl1 = New GapiTools.ScriptControl()
         Me.tabEmail = New System.Windows.Forms.TabPage()
-        Me.EmailControl1 = New GapiTools.EmailControl()
         Me.menu = New System.Windows.Forms.MenuStrip()
         Me.ConnectToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblConnectionStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.SheetsControl1 = New GapiTools.SheetsControl()
+        Me.ScriptControl1 = New GapiTools.ScriptControl()
+        Me.EmailControl1 = New GapiTools.EmailControl()
         Me.TabControl.SuspendLayout()
         Me.tabSpreadSheets.SuspendLayout()
         Me.tabSripts.SuspendLayout()
@@ -70,55 +70,27 @@ Partial Class MainForm
         Me.tabSpreadSheets.Text = "Spreadsheets"
         Me.tabSpreadSheets.UseVisualStyleBackColor = True
         '
-        'SheetsControl1
-        '
-        Me.SheetsControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SheetsControl1.Location = New System.Drawing.Point(0, 0)
-        Me.SheetsControl1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
-        Me.SheetsControl1.Name = "SheetsControl1"
-        Me.SheetsControl1.Size = New System.Drawing.Size(1140, 566)
-        Me.SheetsControl1.TabIndex = 0
-        '
         'tabSripts
         '
         Me.tabSripts.Controls.Add(Me.ScriptControl1)
-        Me.tabSripts.Location = New System.Drawing.Point(4, 22)
+        Me.tabSripts.Location = New System.Drawing.Point(4, 24)
         Me.tabSripts.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.tabSripts.Name = "tabSripts"
-        Me.tabSripts.Size = New System.Drawing.Size(1140, 568)
+        Me.tabSripts.Size = New System.Drawing.Size(1140, 566)
         Me.tabSripts.TabIndex = 1
         Me.tabSripts.Text = "Scripts"
         Me.tabSripts.UseVisualStyleBackColor = True
         '
-        'ScriptControl1
-        '
-        Me.ScriptControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ScriptControl1.Location = New System.Drawing.Point(0, 0)
-        Me.ScriptControl1.Margin = New System.Windows.Forms.Padding(0)
-        Me.ScriptControl1.Name = "ScriptControl1"
-        Me.ScriptControl1.Size = New System.Drawing.Size(1140, 568)
-        Me.ScriptControl1.TabIndex = 0
-        '
         'tabEmail
         '
         Me.tabEmail.Controls.Add(Me.EmailControl1)
-        Me.tabEmail.Location = New System.Drawing.Point(4, 22)
+        Me.tabEmail.Location = New System.Drawing.Point(4, 24)
         Me.tabEmail.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.tabEmail.Name = "tabEmail"
-        Me.tabEmail.Size = New System.Drawing.Size(1140, 568)
+        Me.tabEmail.Size = New System.Drawing.Size(1140, 566)
         Me.tabEmail.TabIndex = 2
         Me.tabEmail.Text = "Email"
         Me.tabEmail.UseVisualStyleBackColor = True
-        '
-        'EmailControl1
-        '
-        Me.EmailControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.EmailControl1.Location = New System.Drawing.Point(0, 0)
-        Me.EmailControl1.Margin = New System.Windows.Forms.Padding(0)
-        Me.EmailControl1.MinimumSize = New System.Drawing.Size(490, 190)
-        Me.EmailControl1.Name = "EmailControl1"
-        Me.EmailControl1.Size = New System.Drawing.Size(1140, 568)
-        Me.EmailControl1.TabIndex = 0
         '
         'menu
         '
@@ -155,6 +127,37 @@ Partial Class MainForm
         Me.lblConnectionStatus.Size = New System.Drawing.Size(132, 18)
         Me.lblConnectionStatus.Text = "lblConnectionStatus"
         '
+        'SheetsControl1
+        '
+        Me.SheetsControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SheetsControl1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.SheetsControl1.Location = New System.Drawing.Point(0, 0)
+        Me.SheetsControl1.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
+        Me.SheetsControl1.Name = "SheetsControl1"
+        Me.SheetsControl1.Size = New System.Drawing.Size(1140, 566)
+        Me.SheetsControl1.TabIndex = 0
+        '
+        'ScriptControl1
+        '
+        Me.ScriptControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ScriptControl1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.ScriptControl1.Location = New System.Drawing.Point(0, 0)
+        Me.ScriptControl1.Margin = New System.Windows.Forms.Padding(0)
+        Me.ScriptControl1.Name = "ScriptControl1"
+        Me.ScriptControl1.Size = New System.Drawing.Size(1140, 568)
+        Me.ScriptControl1.TabIndex = 0
+        '
+        'EmailControl1
+        '
+        Me.EmailControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.EmailControl1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.EmailControl1.Location = New System.Drawing.Point(0, 0)
+        Me.EmailControl1.Margin = New System.Windows.Forms.Padding(0)
+        Me.EmailControl1.MinimumSize = New System.Drawing.Size(490, 190)
+        Me.EmailControl1.Name = "EmailControl1"
+        Me.EmailControl1.Size = New System.Drawing.Size(1140, 566)
+        Me.EmailControl1.TabIndex = 0
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -189,8 +192,8 @@ Partial Class MainForm
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents lblConnectionStatus As ToolStripStatusLabel
     Friend WithEvents ToolTip1 As ToolTip
-    Friend WithEvents SheetsControl1 As SheetsControl
     Friend WithEvents ScriptControl1 As ScriptControl
     Friend WithEvents tabEmail As TabPage
     Friend WithEvents EmailControl1 As EmailControl
+    Friend WithEvents SheetsControl1 As SheetsControl
 End Class
