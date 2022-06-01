@@ -11,7 +11,7 @@ Public Class SheetsControl
         FillWithRandomData()
 #End If
         ' Add any initialization after the InitializeComponent() call.
-
+        dgvSpreadSheet.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
     End Sub
 
     Public Overrides Sub Connect(gapi As GoogleAPI)
@@ -99,5 +99,13 @@ Public Class SheetsControl
 
     Private Sub dgvSpreadSheet_ColumnAdded(sender As Object, e As DataGridViewColumnEventArgs) Handles dgvSpreadSheet.ColumnAdded
         e.Column.HeaderText = $"{ChrW(e.Column.DisplayIndex + 65)}"
+    End Sub
+
+    Private Sub dgvSpreadSheet_RowsAdded(sender As Object, e As DataGridViewRowsAddedEventArgs) Handles dgvSpreadSheet.RowsAdded
+        For i = 0 To e.RowCount - 1
+            Dim row = dgvSpreadSheet.Rows(i + e.RowIndex)
+            row.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft
+            row.HeaderCell.Value = row.Index.ToString()
+        Next
     End Sub
 End Class

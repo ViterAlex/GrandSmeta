@@ -22,6 +22,7 @@ Partial Class SheetsControl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.dgvSpreadSheet = New System.Windows.Forms.DataGridView()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.lblOne = New System.Windows.Forms.Label()
@@ -37,6 +38,14 @@ Partial Class SheetsControl
         'dgvSpreadSheet
         '
         Me.dgvSpreadSheet.AllowUserToAddRows = False
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvSpreadSheet.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvSpreadSheet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvSpreadSheet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.dgvSpreadSheet.Location = New System.Drawing.Point(0, 30)
@@ -137,8 +146,6 @@ Partial Class SheetsControl
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.dgvSpreadSheet)
         Me.Controls.Add(Me.FlowLayoutPanel1)
-        Me.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.Name = "SheetsControl"
         Me.Size = New System.Drawing.Size(968, 564)
         CType(Me.dgvSpreadSheet, System.ComponentModel.ISupportInitialize).EndInit()

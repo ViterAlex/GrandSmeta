@@ -33,6 +33,7 @@ Partial Class EmailControl
         Me.btnGetLastEmail.AutoSize = True
         Me.btnGetLastEmail.FlatAppearance.BorderSize = 0
         Me.btnGetLastEmail.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnGetLastEmail.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.btnGetLastEmail.Location = New System.Drawing.Point(4, 3)
         Me.btnGetLastEmail.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.btnGetLastEmail.Name = "btnGetLastEmail"
@@ -46,6 +47,7 @@ Partial Class EmailControl
         Me.txtEmailContent.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtEmailContent.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.txtEmailContent.Location = New System.Drawing.Point(4, 47)
         Me.txtEmailContent.Margin = New System.Windows.Forms.Padding(4, 3, 4, 3)
         Me.txtEmailContent.Multiline = True
@@ -73,11 +75,11 @@ Partial Class EmailControl
         'lblFolder
         '
         Me.lblFolder.AutoSize = True
-        Me.lblFolder.Font = New System.Drawing.Font("Segoe UI", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.lblFolder.Font = New System.Drawing.Font("Segoe UI Semibold", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
         Me.lblFolder.Location = New System.Drawing.Point(206, 11)
         Me.lblFolder.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblFolder.Name = "lblFolder"
-        Me.lblFolder.Size = New System.Drawing.Size(67, 25)
+        Me.lblFolder.Size = New System.Drawing.Size(65, 25)
         Me.lblFolder.TabIndex = 5
         Me.lblFolder.Text = "Label1"
         Me.lblFolder.Visible = False
