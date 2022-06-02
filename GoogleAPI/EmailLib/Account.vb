@@ -8,14 +8,14 @@ Public Class Account
     '''     Адрес IMAP-сервера. DNS-имя или IP-адрес.
     ''' </summary>
     <DisplayName("Адрес сервера")>
-    <Description("Адрес IMAP-сервера.")>
+    <Description("Адрес IMAP-сервера. DNS-имя или IP-адрес.")>
     <OrderedCategory("Подключение", 1, 4)>
     Public Property Hostname() As String
 
     ''' <summary>
     '''     Название папки «Входящие».
     ''' </summary>
-    <DisplayName("Папка ""Входящие""")>
+    <DisplayName("Папка «Входящие»")>
     <Description("Название папки «Входящие».")>
     <OrderedCategory("Настройки получения", 3, 4)>
     <TypeConverter(GetType(EmailFolderConverter))>
@@ -24,7 +24,7 @@ Public Class Account
     ''' <summary>
     '''     Название папки «Спам».
     ''' </summary>
-    <DisplayName("Папка ""Спам""")>
+    <DisplayName("Папка «Спам»")>
     <Description("Название папки «Спам».")>
     <TypeConverter(GetType(EmailFolderConverter))>
     <OrderedCategory("Настройки получения", 3, 4)>

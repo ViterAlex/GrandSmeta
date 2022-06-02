@@ -59,7 +59,7 @@ Public Class EmailSettingsForm
         Accounts.RemoveAt(lastSelectedNodeIndex)
         BuildUp()
         If indexAfterDelete = -1 Then
-            EmailPropertyGrid1.Accounts = Nothing
+            EmailPropertyGrid1.Account = Nothing
             Return
         End If
         tvwNames.SelectedNode = tvwNames.Nodes(indexAfterDelete)
@@ -67,7 +67,7 @@ Public Class EmailSettingsForm
 
     Private Sub tvwAccounts_AfterSelect(sender As Object, e As TreeViewEventArgs) Handles tvwNames.AfterSelect
         lastSelectedNodeIndex = tvwNames.SelectedNode.Index
-        EmailPropertyGrid1.Accounts = Accounts(lastSelectedNodeIndex)
+        EmailPropertyGrid1.Account = Accounts(lastSelectedNodeIndex)
     End Sub
 
 #End Region
