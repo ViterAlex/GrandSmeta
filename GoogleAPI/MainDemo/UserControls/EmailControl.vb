@@ -1,17 +1,19 @@
 ﻿Imports EmailLib
 
 Public Class EmailControl
-    Private settings As List(Of EmailSettings)
 
-    Protected Overrides Sub OnLoad(e As EventArgs)
-        MyBase.OnLoad(e)
-        settings = My.Settings.EmailSettingsList
-    End Sub
+#Region "Private Fields"
+
+    Private accounts As Accounts
+
+#End Region
+
+#Region "Private Methods"
 
     Private Async Sub btnGetLastEmail_Click(sender As Object, e As EventArgs) Handles btnGetLastEmail.Click
         Dim tasks As New List(Of Task)
         EmailsTabControl.TabPages.Clear()
-        For Each s In settings
+        For Each s In accounts
             tasks.Add(Task.Run(Sub()
                                    EmailsTabControl.Invoke(Sub()
                                                                GetLastEmail(s)
@@ -21,7 +23,25 @@ Public Class EmailControl
         Await Task.WhenAll(tasks)
     End Sub
 
-    Private Async Sub GetLastEmail(setting As EmailSettings)
+    Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
+        'Показываем диалог редактирования настроек почты
+        Using f As New EmailSettingsForm()
+            If accounts IsNot Nothing AndAlso accounts.Count > 0 Then
+                f.Accounts = accounts
+            Else
+                f.Accounts = New Accounts()
+            End If
+            If f.ShowDialog() <> DialogResult.OK Then
+                Return
+            End If
+            'Сохраняем настройки
+            accounts = f.Accounts
+            My.Settings.Accounts = accounts
+            My.Settings.Save()
+        End Using
+    End Sub
+
+    Private Async Sub GetLastEmail(setting As Account)
         EmailsTabControl.TabPages.Add(setting.Name)
         Dim tab = EmailsTabControl.TabPages.Item(EmailsTabControl.TabPages.Count - 1)
         Dim emailTextBox = New EmailTextBox()
@@ -30,21 +50,15 @@ Public Class EmailControl
         tab.Text &= $" ({emailTextBox.LastFolder})"
     End Sub
 
-    Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
-        'Показываем диалог редактирования настроек почты
-        Using f As New EmailSettingsForm()
-            If settings IsNot Nothing AndAlso settings.Count > 0 Then
-                f.Settings = settings.ToList()
-            Else
-                f.Settings = New List(Of EmailSettings)
-            End If
-            If f.ShowDialog() <> DialogResult.OK Then
-                Return
-            End If
-            'Сохраняем настройки
-            settings = f.Settings
-            My.Settings.EmailSettingsList = settings
-            My.Settings.Save()
-        End Using
+#End Region
+
+#Region "Protected Methods"
+
+    Protected Overrides Sub OnLoad(e As EventArgs)
+        MyBase.OnLoad(e)
+        accounts = My.Settings.Accounts
     End Sub
+
+#End Region
+
 End Class

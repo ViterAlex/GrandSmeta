@@ -53,27 +53,27 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(),
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>
-        Public Property EmailSettingsList() As List(Of Global.EmailLib.EmailSettings)
-            Get
-                Return CType(Me("EmailSettingsList"), List(Of Global.EmailLib.EmailSettings))
-            End Get
-            Set
-                Me("EmailSettingsList") = Value
-            End Set
-        End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(),
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.Configuration.DefaultSettingValueAttribute("")>
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
         Public Property Version() As String
             Get
-                Return CType(Me("Version"), String)
+                Return CType(Me("Version"),String)
             End Get
             Set
-                Me("Version") = Value
+                Me("Version") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property Accounts() As Global.EmailLib.Accounts
+            Get
+                Return CType(Me("Accounts"),Global.EmailLib.Accounts)
+            End Get
+            Set
+                Me("Accounts") = value
             End Set
         End Property
     End Class

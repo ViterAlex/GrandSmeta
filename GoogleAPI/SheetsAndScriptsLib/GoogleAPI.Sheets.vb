@@ -2,7 +2,6 @@
 Imports Google.Apis.Drive.v3
 Imports Google.Apis.Sheets.v4.Data
 Imports Google.Apis.Sheets.v4.SpreadsheetsResource.ValuesResource.UpdateRequest
-Imports File = Google.Apis.Drive.v3.Data.File
 
 Partial Public Class GoogleAPI
 

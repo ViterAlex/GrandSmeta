@@ -3,6 +3,7 @@
 Public Class SheetsControl
 
     Private tableData()() As String
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -111,4 +112,5 @@ Public Class SheetsControl
             row.HeaderCell.Value = row.Index.ToString()
         Next
     End Sub
+
 End Class

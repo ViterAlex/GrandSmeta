@@ -2,6 +2,12 @@
 
 Module MainModule
 
+    Sub ClearReminders(r As Reminder)
+        For Each re In r.List()
+            r.Delete(r.Id)
+        Next
+    End Sub
+
     Sub Main()
         Dim reminder = New Reminder("cred.json")
         reminder.Connect().Wait()
@@ -10,10 +16,9 @@ Module MainModule
         PrettyPrint(reminder)
     End Sub
 
-
     Sub PrettyPrint(reminder As Reminder)
         Dim i = 1
-        For Each r In reminder.List()
+        For Each r In Reminder.List()
             i = i Mod 16
             Console.ForegroundColor = i
             Console.WriteLine(r)
@@ -22,13 +27,5 @@ Module MainModule
             i = IIf(i = 15, 1, i + 1)
         Next
     End Sub
-
-    Sub ClearReminders(r As Reminder)
-        For Each re In r.List()
-            r.Delete(r.Id)
-        Next
-    End Sub
-
-
 
 End Module

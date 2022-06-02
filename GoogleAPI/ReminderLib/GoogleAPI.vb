@@ -5,16 +5,28 @@ Imports Google.Apis.Util.Store
 
 Partial Public Class GoogleAPI
 
-    Private ReadOnly Scopes As IEnumerable(Of String) = New String() {
-        "https://www.googleapis.com/auth/reminders"
-    }
-    Private ReadOnly token As String
+#Region "Private Fields"
+
     Private ReadOnly path As String
+
+    Private ReadOnly Scopes As IEnumerable(Of String) = New String() {
+            "https://www.googleapis.com/auth/reminders"
+    }
+
+    Private ReadOnly token As String
     Private credentials As UserCredential
+
+#End Region
+
+#Region "Internal Constructors"
 
     Friend Sub New(path As String)
         Me.path = path
     End Sub
+
+#End Region
+
+#Region "Internal Methods"
 
     Friend Async Function Connect(Optional toolName As String = "") As Task(Of String)
         Dim productName As String = My.Application.Info.ProductName
@@ -34,5 +46,7 @@ Partial Public Class GoogleAPI
         End Try
         Return credentials.Token.AccessToken
     End Function
+
+#End Region
 
 End Class

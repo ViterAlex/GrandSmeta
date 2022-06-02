@@ -3,7 +3,7 @@ Imports SheetsAndScriptsLib
 
 Public Class MainForm
 
-#Region "Fields"
+#Region "Private Fields"
 
     Private Const CREDENTIALS As String = "cred.json"
 
@@ -27,6 +27,17 @@ Public Class MainForm
         SheetsControl1.Connect(gapi)
     End Sub
 
+    'Переносим настройки при смене версии
+    Private Sub CheckSettingsVersion()
+        Dim s = New My.MySettings()
+        Dim v = My.Application.Info.Version
+        If Not String.Equals(s.Version, $"{v.Major}.{v.Minor}.{v.Build}") Then
+            s.Upgrade()
+            s.Version = $"{v.Major}.{v.Minor}.{v.Build}"
+            s.Save()
+        End If
+    End Sub
+
     'Смена надписи на метке статуса подключения
     Private Sub lblConnectionStatus_TextChanged(sender As Object, e As EventArgs) Handles lblConnectionStatus.TextChanged
         lblConnectionStatus.Image = DirectCast(My.Resources.ResourceManager.GetObject(lblConnectionStatus.Text), Bitmap)
@@ -41,17 +52,6 @@ Public Class MainForm
         MyBase.OnLoad(e)
         lblConnectionStatus.Text = "Disconnected"
         CheckSettingsVersion()
-    End Sub
-
-    'Переносим настройки при смене версии
-    Private Sub CheckSettingsVersion()
-        Dim s = New My.MySettings()
-        Dim v = My.Application.Info.Version
-        If Not String.Equals(s.Version, $"{v.Major}.{v.Minor}.{v.Build}") Then
-            s.Upgrade()
-            s.Version = $"{v.Major}.{v.Minor}.{v.Build}"
-            s.Save()
-        End If
     End Sub
 
 #End Region

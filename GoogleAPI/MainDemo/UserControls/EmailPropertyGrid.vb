@@ -15,13 +15,14 @@ Public Class EmailPropertyGrid
         .Alignment = ToolStripItemAlignment.Right
     }
 
-    Private _Settings As EmailSettings
+    Private _accounts As Account
+
 #End Region
 
 #Region "Public Constructors"
 
     Public Sub New()
-        PropertySort = PropertySort.NoSort
+        PropertySort = PropertySort.Categorized
         'Скрыть стандартные кнопки PropertyGrid. Добавить свою для сброса списка папок
         Dim ts = Controls.OfType(Of ToolStrip)().FirstOrDefault()
         If ts IsNot Nothing Then
@@ -32,20 +33,20 @@ Public Class EmailPropertyGrid
             'Добавляем свою
             ts.Items.AddRange({btnClear, lblTest, btnTest})
         End If
-        SelectedObject = Settings
+        SelectedObject = Accounts
     End Sub
 
 #End Region
 
 #Region "Public Properties"
 
-    Public Property Settings() As EmailSettings
+    Public Property Accounts() As Account
         Get
-            Return _Settings
+            Return _accounts
         End Get
         Set
-            _Settings = Value
-            SelectedObject = _Settings
+            _accounts = Value
+            SelectedObject = _accounts
         End Set
     End Property
 
@@ -54,18 +55,18 @@ Public Class EmailPropertyGrid
 #Region "Private Methods"
 
     Private Sub ClearFolders(sender As Object, e As EventArgs)
-        Settings.ResetFolders = True
-        Settings.Inbox = String.Empty
-        Settings.JunkMail = String.Empty
+        Accounts.ResetFolders = True
+        Accounts.Inbox = String.Empty
+        Accounts.JunkMail = String.Empty
         SelectedObject = Nothing
-        SelectedObject = Settings
+        SelectedObject = Accounts
     End Sub
 
     Private Async Sub TestConnection(sender As Object, e As EventArgs)
         lblTest.Text = "⏱"
         lblTest.ForeColor = Color.Black
         btnTest.Enabled = False
-        If Await Email.Test(Settings) Then
+        If Await Email.Test(Accounts) Then
             lblTest.Text = "✔"
             lblTest.ForeColor = Color.DarkGreen
         Else

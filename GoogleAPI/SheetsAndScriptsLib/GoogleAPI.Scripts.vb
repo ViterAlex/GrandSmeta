@@ -1,10 +1,32 @@
 ﻿Imports Google.Apis.Script.v1.Data
 Imports GoogleScriptFile = Google.Apis.Script.v1.Data.File
+
 Partial Public Class GoogleAPI
 
-#Region "Fields"
+#Region "Private Fields"
 
     Private loadedScriptFiles As IList(Of GoogleScriptFile)
+
+#End Region
+
+#Region "Private Methods"
+
+    Private Function GetScriptInfo(file As GoogleScriptFile) As ScriptInfo
+        Dim result = New ScriptInfo With {
+            .Name = file.Name,
+            .Source = file.Source,
+            .Type = file.Type
+            }
+        If file.FunctionSet IsNot Nothing AndAlso file.FunctionSet.Values IsNot Nothing Then
+            result.Functions = file.FunctionSet.Values.Select(Function(v)
+                                                                  Return New FunctionInfo With {
+                                                                                        .Name = v.Name,
+                                                                                        .Parameters = v.Parameters
+                                                                                      }
+                                                              End Function).ToList()
+        End If
+        Return result
+    End Function
 
 #End Region
 
@@ -37,23 +59,6 @@ Partial Public Class GoogleAPI
         Return loadedScriptFiles.Select(Function(f)
                                             Return GetScriptInfo(f)
                                         End Function).ToList()
-    End Function
-
-    Private Function GetScriptInfo(file As GoogleScriptFile) As ScriptInfo
-        Dim result = New ScriptInfo With {
-            .Name = file.Name,
-            .Source = file.Source,
-            .Type = file.Type
-            }
-        If file.FunctionSet IsNot Nothing AndAlso file.FunctionSet.Values IsNot Nothing Then
-            result.Functions = file.FunctionSet.Values.Select(Function(v)
-                                                                  Return New FunctionInfo With {
-                                                                                        .Name = v.Name,
-                                                                                        .Parameters = v.Parameters
-                                                                                      }
-                                                              End Function).ToList()
-        End If
-        Return result
     End Function
 
     ''' <summary>

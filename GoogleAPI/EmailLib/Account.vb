@@ -1,45 +1,67 @@
 ﻿Imports System.ComponentModel
-Imports System.ComponentModel.DataAnnotations
+<DefaultProperty("Name")>
+Public Class Account
 
-Public Class EmailSettings
+#Region "Public Properties"
+
     ''' <summary>
     '''     Адрес IMAP-сервера. DNS-имя или IP-адрес.
     ''' </summary>
     <DisplayName("Адрес сервера")>
     <Description("Адрес IMAP-сервера.")>
+    <OrderedCategory("Подключение", 1, 4)>
     Public Property Hostname() As String
-    ''' <summary>
-    '''     Порт сервера для SSL-соединения. Не SSL не поддерживается.
-    ''' </summary>
-    <DisplayName("Порт")>
-    <Description("Порт SSL.")>
-    Public Property Port() As Integer
-    ''' <summary>
-    '''     Почтовый ящик пользователя.
-    ''' </summary>
-    <DisplayName("Почта")>
-    <Description("Почтовый ящик пользователя.")>
-    Public Property Login() As String
-    ''' <summary>
-    '''     Пароль к почтовому ящику.
-    ''' </summary>
-    <DisplayName("Пароль")>
-    <Description("Пароль к учётной записи. При двухфакторной аутентификации нужно генерировать пароль приложения.")>
-    Public Property Password() As String
+
     ''' <summary>
     '''     Название папки «Входящие».
     ''' </summary>
     <DisplayName("Папка ""Входящие""")>
     <Description("Название папки «Входящие».")>
+    <OrderedCategory("Настройки получения", 3, 4)>
     <TypeConverter(GetType(EmailFolderConverter))>
     Public Property Inbox() As String
+
     ''' <summary>
     '''     Название папки «Спам».
     ''' </summary>
     <DisplayName("Папка ""Спам""")>
     <Description("Название папки «Спам».")>
     <TypeConverter(GetType(EmailFolderConverter))>
+    <OrderedCategory("Настройки получения", 3, 4)>
     Public Property JunkMail() As String
+
+    ''' <summary>
+    '''     Почтовый ящик пользователя.
+    ''' </summary>
+    <DisplayName("Почта")>
+    <Description("Почтовый ящик пользователя.")>
+    <OrderedCategory("Учётная запись", 2, 4)>
+    Public Property Login() As String
+
+    ''' <summary>
+    '''     Имя учётной записи.
+    ''' </summary>
+    <DisplayName("Имя")>
+    <Description("Имя учётной записи для удобства пользования")>
+    <OrderedCategory("Разное", 0, 4)>
+    Public Property Name() As String
+
+    ''' <summary>
+    '''     Пароль к почтовому ящику.
+    ''' </summary>
+    <DisplayName("Пароль")>
+    <Description("Пароль к учётной записи. При двухфакторной аутентификации нужно генерировать пароль приложения.")>
+    <OrderedCategory("Учётная запись", 2, 4)>
+    Public Property Password() As String
+
+    ''' <summary>
+    '''     Порт сервера для SSL-соединения. Не SSL не поддерживается.
+    ''' </summary>
+    <DisplayName("Порт")>
+    <Description("Порт SSL.")>
+    <OrderedCategory("Подключение", 1, 4)>
+    Public Property Port() As Integer
+
     ''' <summary>
     '''     Флаг для сброса сохранённого списка папок.
     ''' </summary>
@@ -48,25 +70,23 @@ Public Class EmailSettings
     <DefaultValue(False)>
     <DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)>
     Public Property ResetFolders() As Boolean
-    ''' <summary>
-    '''     Имя учётной записи.
-    ''' </summary>
-    <DisplayName("Имя")>
-    <Description("Имя учётной записи для удобства пользования")>
-    Public Property Name() As String
+
+#End Region
+
+#Region "Public Methods"
 
     ''' <summary>
     '''     Создание независимой копии класса.
     ''' </summary>
-    Public Function Clone() As EmailSettings
-        Return DirectCast(Me.MemberwiseClone(), EmailSettings)
+    Public Function Clone() As Account
+        Return DirectCast(Me.MemberwiseClone(), Account)
     End Function
 
     Public Overrides Function Equals(obj As Object) As Boolean
-        If obj.GetType IsNot GetType(EmailSettings) Then
+        If obj.GetType IsNot GetType(Account) Then
             Return False
         End If
-        Dim s = DirectCast(obj, EmailSettings)
+        Dim s = DirectCast(obj, Account)
         Return s.Hostname = Hostname AndAlso
             s.Port = Port AndAlso
             s.Name = Name AndAlso
@@ -79,4 +99,7 @@ Public Class EmailSettings
     Public Overrides Function ToString() As String
         Return $"{Name}:{Login}"
     End Function
+
+#End Region
+
 End Class

@@ -10,7 +10,7 @@ Imports Google.Apis.Util.Store
 
 Partial Public Class GoogleAPI
 
-#Region "Fields"
+#Region "Private Fields"
 
     Private ReadOnly Scopes As IEnumerable(Of String) = New String() {
         DriveService.Scope.Drive,

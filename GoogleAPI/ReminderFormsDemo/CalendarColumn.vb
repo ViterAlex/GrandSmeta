@@ -1,11 +1,15 @@
-﻿Imports System.Windows.Forms
-
-Public Class CalendarColumn
+﻿Public Class CalendarColumn
     Inherits DataGridViewColumn
+
+#Region "Public Constructors"
 
     Public Sub New()
         MyBase.New(New CalendarCell())
     End Sub
+
+#End Region
+
+#Region "Public Properties"
 
     Public Overrides Property CellTemplate() As DataGridViewCell
         Get
@@ -23,5 +27,7 @@ Public Class CalendarColumn
 
         End Set
     End Property
+
+#End Region
 
 End Class

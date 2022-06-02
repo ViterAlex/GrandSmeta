@@ -5,14 +5,16 @@ Public Class EmailFolderConverter
     Inherits StringConverter
 
 #Region "Private Fields"
-    Private Shared cache As Dictionary(Of EmailSettings, List(Of String)) = New Dictionary(Of EmailSettings, List(Of String))
+
+    Private Shared cache As Dictionary(Of Account, List(Of String)) = New Dictionary(Of Account, List(Of String))
+
 #End Region
 
 #Region "Public Methods"
 
     Public Overrides Function GetStandardValues(context As ITypeDescriptorContext) As StandardValuesCollection
 
-        Dim settings = DirectCast(context.Instance, EmailSettings)
+        Dim settings = DirectCast(context.Instance, Account)
         Dim result = New List(Of String)
         If settings Is Nothing Then
             result.Add("Невозможно получить контекст")

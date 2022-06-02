@@ -1,31 +1,30 @@
 ﻿Partial Public Class RemindersDataTable
+
+#Region "Public Classes"
+
     Public Class ReminderDataRow
         Inherits DataRow
 
-        Public Property Id() As String
-            Get
-                Return Item(NameOf(Id))
-            End Get
-            Set
-                Item(NameOf(Id)) = Value
-            End Set
-        End Property
+#Region "Protected Internal Constructors"
 
-        Public Property Title() As String
-            Get
-                Return Item(NameOf(Title))
-            End Get
-            Set
-                Item(NameOf(Title)) = Value
-            End Set
-        End Property
+        Protected Friend Sub New(builder As DataRowBuilder)
+            MyBase.New(builder)
+            Id = ReminderAPI.Reminder.NewId()
+        End Sub
 
-        Public Property RemindAt() As DateTimeOffset
+#End Region
+
+#Region "Public Properties"
+
+        Public Property AllDay() As Boolean
             Get
-                Return Item(NameOf(RemindAt))
+                If IsDBNull(Item(NameOf(AllDay))) Then
+                    Return False
+                End If
+                Return Item(NameOf(AllDay))
             End Get
             Set
-                Item(NameOf(RemindAt)) = Value
+                Item(NameOf(AllDay)) = Value
             End Set
         End Property
 
@@ -50,22 +49,37 @@
             End Set
         End Property
 
-        Public Property AllDay() As Boolean
+        Public Property Id() As String
             Get
-                If IsDBNull(Item(NameOf(AllDay))) Then
-                    Return False
-                End If
-                Return Item(NameOf(AllDay))
+                Return Item(NameOf(Id))
             End Get
             Set
-                Item(NameOf(AllDay)) = Value
+                Item(NameOf(Id)) = Value
             End Set
         End Property
 
+        Public Property RemindAt() As DateTimeOffset
+            Get
+                Return Item(NameOf(RemindAt))
+            End Get
+            Set
+                Item(NameOf(RemindAt)) = Value
+            End Set
+        End Property
 
-        Protected Friend Sub New(builder As DataRowBuilder)
-            MyBase.New(builder)
-            Id = ReminderAPI.Reminder.NewId()
-        End Sub
+        Public Property Title() As String
+            Get
+                Return Item(NameOf(Title))
+            End Get
+            Set
+                Item(NameOf(Title)) = Value
+            End Set
+        End Property
+
+#End Region
+
     End Class
+
+#End Region
+
 End Class

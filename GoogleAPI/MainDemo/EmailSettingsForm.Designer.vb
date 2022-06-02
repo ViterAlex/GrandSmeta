@@ -114,11 +114,11 @@ Partial Class EmailSettingsForm
         '
         'EmailPropertyGrid1
         '
+        Me.EmailPropertyGrid1.Accounts = Nothing
         Me.EmailPropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.EmailPropertyGrid1.Location = New System.Drawing.Point(0, 0)
         Me.EmailPropertyGrid1.Name = "EmailPropertyGrid1"
-        Me.EmailPropertyGrid1.PropertySort = System.Windows.Forms.PropertySort.NoSort
-        Me.EmailPropertyGrid1.Settings = Nothing
+        Me.EmailPropertyGrid1.PropertySort = System.Windows.Forms.PropertySort.Categorized
         Me.EmailPropertyGrid1.Size = New System.Drawing.Size(301, 327)
         Me.EmailPropertyGrid1.TabIndex = 0
         '

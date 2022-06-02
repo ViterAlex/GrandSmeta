@@ -1,13 +1,53 @@
 ﻿Public Class CalendarCell
     Inherits DataGridViewTextBoxCell
 
+#Region "Public Constructors"
+
     Public Sub New()
         ' Use the short date format.
         Me.Style.Format = "dd.MM.yyyy HH:mm:ss"
     End Sub
 
+#End Region
+
+#Region "Public Properties"
+
+    Public Overrides ReadOnly Property DefaultNewRowValue() As Object
+        Get
+            ' Use the current date and time as the default value.
+            Return DateTimeOffset.Now
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property EditType() As Type
+        Get
+            ' Return the type of the editing control that CalendarCell uses.
+            Return GetType(CalendarEditingControl)
+        End Get
+    End Property
+
+    Public Overrides ReadOnly Property ValueType() As Type
+        Get
+            ' Return the type of the value that CalendarCell contains.
+            Return GetType(DateTimeOffset)
+        End Get
+    End Property
+
+#End Region
+
+#Region "Protected Methods"
+
+    Protected Overrides Sub OnEnter(rowIndex As Integer, throughMouseClick As Boolean)
+        MyBase.OnEnter(rowIndex, throughMouseClick)
+        DataGridView.BeginEdit(False)
+    End Sub
+
+#End Region
+
+#Region "Public Methods"
+
     Public Overrides Sub InitializeEditingControl(ByVal rowIndex As Integer,
-        ByVal initialFormattedValue As Object,
+                        ByVal initialFormattedValue As Object,
         ByVal dataGridViewCellStyle As DataGridViewCellStyle)
 
         ' Set the value of the editing control to the current cell value.
@@ -36,30 +76,6 @@
         MyBase.PositionEditingControl(setLocation, setSize, cellBounds, cellBounds, cellStyle, singleVerticalBorderAdded, singleHorizontalBorderAdded, isFirstDisplayedColumn, isFirstDisplayedRow)
     End Sub
 
-    Public Overrides ReadOnly Property EditType() As Type
-        Get
-            ' Return the type of the editing control that CalendarCell uses.
-            Return GetType(CalendarEditingControl)
-        End Get
-    End Property
-
-    Public Overrides ReadOnly Property ValueType() As Type
-        Get
-            ' Return the type of the value that CalendarCell contains.
-            Return GetType(DateTimeOffset)
-        End Get
-    End Property
-
-    Public Overrides ReadOnly Property DefaultNewRowValue() As Object
-        Get
-            ' Use the current date and time as the default value.
-            Return DateTimeOffset.Now
-        End Get
-    End Property
-
-    Protected Overrides Sub OnEnter(rowIndex As Integer, throughMouseClick As Boolean)
-        MyBase.OnEnter(rowIndex, throughMouseClick)
-        DataGridView.BeginEdit(False)
-    End Sub
+#End Region
 
 End Class
