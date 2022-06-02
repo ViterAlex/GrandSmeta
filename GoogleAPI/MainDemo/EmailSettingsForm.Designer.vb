@@ -83,7 +83,7 @@ Partial Class EmailSettingsForm
         'lblDeleteAccount
         '
         Me.lblDeleteAccount.AutoSize = True
-        Me.lblDeleteAccount.Location = New System.Drawing.Point(109, 4)
+        Me.lblDeleteAccount.Location = New System.Drawing.Point(109, 5)
         Me.lblDeleteAccount.Name = "lblDeleteAccount"
         Me.lblDeleteAccount.Size = New System.Drawing.Size(96, 15)
         Me.lblDeleteAccount.TabIndex = 1
@@ -93,7 +93,7 @@ Partial Class EmailSettingsForm
         'lblAddAccount
         '
         Me.lblAddAccount.AutoSize = True
-        Me.lblAddAccount.Location = New System.Drawing.Point(3, 4)
+        Me.lblAddAccount.Location = New System.Drawing.Point(3, 5)
         Me.lblAddAccount.Name = "lblAddAccount"
         Me.lblAddAccount.Size = New System.Drawing.Size(104, 15)
         Me.lblAddAccount.TabIndex = 0
@@ -114,13 +114,14 @@ Partial Class EmailSettingsForm
         '
         'EmailPropertyGrid1
         '
-        Me.EmailPropertyGrid1.Accounts = Nothing
+        Me.EmailPropertyGrid1.Account = Nothing
         Me.EmailPropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.EmailPropertyGrid1.Location = New System.Drawing.Point(0, 0)
         Me.EmailPropertyGrid1.Name = "EmailPropertyGrid1"
         Me.EmailPropertyGrid1.PropertySort = System.Windows.Forms.PropertySort.Categorized
         Me.EmailPropertyGrid1.Size = New System.Drawing.Size(301, 327)
         Me.EmailPropertyGrid1.TabIndex = 0
+        Me.EmailPropertyGrid1.UseCompatibleTextRendering = True
         '
         'EmailSettingsForm
         '

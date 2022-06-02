@@ -40,9 +40,9 @@ Public Class EmailTextBox
 
 #Region "Public Methods"
 
-    Public Async Function LoadEmail(settings As Account) As Task
+    Public Async Function LoadEmail(account As Account) As Task
         [ReadOnly] = True
-        Dim email = New Email(settings)
+        Dim email = New Email(account)
         t.Start()
         Text = Await email.ReceiveLastAsync()
         t.Stop()

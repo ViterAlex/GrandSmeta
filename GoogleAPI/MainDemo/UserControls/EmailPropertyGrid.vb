@@ -1,13 +1,17 @@
-﻿Imports EmailLib
-
+﻿Imports System.ComponentModel
+Imports System.ComponentModel.Design
+Imports EmailLib
+''' <summary>
+'''     <see cref="PropertyGrid"/> для отображения класса <see cref="EmailLib.Account"/>
+''' </summary>
 Public Class EmailPropertyGrid
     Inherits PropertyGrid
 
 #Region "Private Fields"
 
-    Private ReadOnly btnClear As New ToolStripButton("Очистить папки", Nothing, AddressOf ClearFolders)
+    Private ReadOnly btnClear As New ToolStripLabel("Очистить папки", Nothing, True, AddressOf ClearFolders)
 
-    Private ReadOnly btnTest As New ToolStripButton("Тест", Nothing, AddressOf TestConnection) With {
+    Private ReadOnly btnTest As New ToolStripLabel("Тест", Nothing, True, AddressOf TestConnection) With {
         .Alignment = ToolStripItemAlignment.Right
     }
 
@@ -15,14 +19,13 @@ Public Class EmailPropertyGrid
         .Alignment = ToolStripItemAlignment.Right
     }
 
-    Private _accounts As Account
+    Private _account As Account
 
 #End Region
 
 #Region "Public Constructors"
 
     Public Sub New()
-        PropertySort = PropertySort.Categorized
         'Скрыть стандартные кнопки PropertyGrid. Добавить свою для сброса списка папок
         Dim ts = Controls.OfType(Of ToolStrip)().FirstOrDefault()
         If ts IsNot Nothing Then
@@ -33,20 +36,31 @@ Public Class EmailPropertyGrid
             'Добавляем свою
             ts.Items.AddRange({btnClear, lblTest, btnTest})
         End If
-        SelectedObject = Accounts
+        SelectedObject = Account
     End Sub
 
 #End Region
 
 #Region "Public Properties"
 
-    Public Property Accounts() As Account
+    <Browsable(False)>
+    Public Property Account() As Account
         Get
-            Return _accounts
+            Return _account
         End Get
         Set
-            _accounts = Value
-            SelectedObject = _accounts
+            _account = Value
+            SelectedObject = _account
+        End Set
+    End Property
+
+    <Browsable(False)>
+    Public Overloads Property PropertySort As PropertySort
+        Get
+            Return PropertySort.Categorized
+        End Get
+        Set(value As PropertySort)
+            MyBase.PropertySort = PropertySort.Categorized
         End Set
     End Property
 
@@ -55,18 +69,18 @@ Public Class EmailPropertyGrid
 #Region "Private Methods"
 
     Private Sub ClearFolders(sender As Object, e As EventArgs)
-        Accounts.ResetFolders = True
-        Accounts.Inbox = String.Empty
-        Accounts.JunkMail = String.Empty
+        Account.ResetFolders = True
+        Account.Inbox = String.Empty
+        Account.JunkMail = String.Empty
         SelectedObject = Nothing
-        SelectedObject = Accounts
+        SelectedObject = Account
     End Sub
 
     Private Async Sub TestConnection(sender As Object, e As EventArgs)
         lblTest.Text = "⏱"
         lblTest.ForeColor = Color.Black
         btnTest.Enabled = False
-        If Await Email.Test(Accounts) Then
+        If Await Email.Test(Account) Then
             lblTest.Text = "✔"
             lblTest.ForeColor = Color.DarkGreen
         Else

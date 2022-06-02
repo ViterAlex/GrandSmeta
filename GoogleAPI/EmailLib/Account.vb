@@ -15,7 +15,7 @@ Public Class Account
     ''' <summary>
     '''     Название папки «Входящие».
     ''' </summary>
-    <DisplayName("Папка ""Входящие""")>
+    <DisplayName("Папка «Входящие»")>
     <Description("Название папки «Входящие».")>
     <OrderedCategory("Настройки получения", 3, 4)>
     <TypeConverter(GetType(EmailFolderConverter))>
@@ -24,7 +24,7 @@ Public Class Account
     ''' <summary>
     '''     Название папки «Спам».
     ''' </summary>
-    <DisplayName("Папка ""Спам""")>
+    <DisplayName("Папка «Спам»")>
     <Description("Название папки «Спам».")>
     <TypeConverter(GetType(EmailFolderConverter))>
     <OrderedCategory("Настройки получения", 3, 4)>
