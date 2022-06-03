@@ -41,13 +41,13 @@ Public Class EmailControl
         End Using
     End Sub
 
-    Private Async Sub GetLastEmail(setting As Account)
-        EmailsTabControl.TabPages.Add(setting.Name)
+    Private Async Sub GetLastEmail(account As Account)
+        EmailsTabControl.TabPages.Add($"{account.Name} ⏱")
         Dim tab = EmailsTabControl.TabPages.Item(EmailsTabControl.TabPages.Count - 1)
         Dim emailTextBox = New EmailTextBox()
         tab.Controls.Add(emailTextBox)
-        Await emailTextBox.LoadEmail(setting)
-        tab.Text &= $" ({emailTextBox.LastFolder})"
+        Await emailTextBox.LoadEmail(account)
+        tab.Text = $"{account.Name} ({emailTextBox.LastFolder})"
     End Sub
 
 #End Region
@@ -57,6 +57,17 @@ Public Class EmailControl
     Protected Overrides Sub OnLoad(e As EventArgs)
         MyBase.OnLoad(e)
         accounts = My.Settings.Accounts
+    End Sub
+
+    Private Sub EmailsTabControl_MouseClick(sender As Object, e As MouseEventArgs) Handles EmailsTabControl.MouseClick
+        If e.Button = MouseButtons.Middle Then
+            For i = 0 To EmailsTabControl.TabPages.Count - 1
+                If EmailsTabControl.GetTabRect(i).Contains(e.X, e.Y) Then
+                    EmailsTabControl.TabPages.RemoveAt(i)
+                    Exit For
+                End If
+            Next
+        End If
     End Sub
 
 #End Region
