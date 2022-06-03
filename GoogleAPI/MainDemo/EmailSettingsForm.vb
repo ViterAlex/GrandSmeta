@@ -1,6 +1,8 @@
 ﻿Imports System.Text.RegularExpressions
 Imports EmailLib
-
+''' <summary>
+'''     Форма для редактирования почтовых аккаунтов.
+''' </summary>
 Public Class EmailSettingsForm
 
 #Region "Private Fields"

@@ -1,5 +1,7 @@
 ﻿Imports EmailLib
-
+''' <summary>
+'''     Контрол для работы с почтой.
+''' </summary>
 Public Class EmailControl
 
 #Region "Private Fields"
@@ -45,6 +47,7 @@ Public Class EmailControl
     Private Async Sub GetLastEmail(account As Account, index As Integer)
         'Получить ссылку на вкладку
         Dim tab = EmailsTabControl.TabPages.Item(index)
+        tab.Text = $"{account.Name} {My.Resources.TimerMark}"
         Dim emailTextBox = New EmailTextBox()
         tab.Controls.Add(emailTextBox)
         Await emailTextBox.LoadEmail(account)

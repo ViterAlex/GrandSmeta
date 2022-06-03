@@ -1,4 +1,8 @@
 ﻿Imports System.ComponentModel
+Imports System.Security
+''' <summary>
+'''     Класс для хранения учётных данных почты.
+''' </summary>
 <DefaultProperty("Name")>
 Public Class Account
 
@@ -49,9 +53,13 @@ Public Class Account
     ''' <summary>
     '''     Пароль к почтовому ящику.
     ''' </summary>
+    ''' <remarks>
+    '''     Хранится в виде base64-строки, полученной из <see cref="SecureString"/>.
+    ''' </remarks>
     <DisplayName("Пароль")>
     <Description("Пароль к учётной записи. При двухфакторной аутентификации нужно генерировать пароль приложения.")>
     <OrderedCategory("Учётная запись", 2, 4)>
+    <TypeConverter(GetType(AccountPasswordConverter))>
     Public Property Password() As String
 
     ''' <summary>

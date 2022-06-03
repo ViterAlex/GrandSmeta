@@ -1,11 +1,13 @@
 ﻿Imports EmailLib
-
+''' <summary>
+'''     Контрол для показа содержимого письма и процесса его загрузки.
+''' </summary>
 Public Class EmailTextBox
     Inherits TextBox
 
 #Region "Private Fields"
 
-    Private ReadOnly t As New Timer With {.Interval = 200}
+    Private ReadOnly aminationTimer As New Timer With {.Interval = 200}
     Private counter As Integer
 
 #End Region
@@ -13,7 +15,7 @@ Public Class EmailTextBox
 #Region "Public Constructors"
 
     Public Sub New()
-        AddHandler t.Tick, AddressOf TimerTick
+        AddHandler aminationTimer.Tick, AddressOf TimerTick
         Font = New Font(Font.FontFamily, 12)
         Dock = DockStyle.Fill
         Margin = New Padding(0)
@@ -43,11 +45,11 @@ Public Class EmailTextBox
     Public Async Function LoadEmail(account As Account) As Task
         [ReadOnly] = True
         Dim email = New Email(account)
-        t.Start()
+        aminationTimer.Start()
         Text = Await email.ReceiveLastAsync()
-        t.Stop()
+        aminationTimer.Stop()
         'Ждём окончания таймера
-        While t.Enabled
+        While aminationTimer.Enabled
 
         End While
         [ReadOnly] = False

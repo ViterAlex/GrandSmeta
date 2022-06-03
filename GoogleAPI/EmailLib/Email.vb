@@ -1,10 +1,10 @@
 ﻿Imports System.Net.Mail
 Imports System.Text
 Imports System.Text.RegularExpressions
-Imports System.Windows.Forms
-Imports System.Xml
 Imports S22.Imap
-
+''' <summary>
+'''     Класс для получения последнего по времени письма из указанного <see cref="Account"/>.
+''' </summary>
 Public Class Email
 
 #Region "Private Fields"
@@ -41,7 +41,7 @@ Public Class Email
     Private Function ReceiveLast() As String
         'Пытаемся подключиться
         Try
-            imap = New ImapClient(account.Hostname, account.Port, account.Login, account.Password, ssl:=True)
+            imap = New ImapClient(account.Hostname, account.Port, account.Login, account.Password.FromBase64().ToUnsecure(), ssl:=True)
         Catch ex As Exception
             Return ex.Message
         End Try
@@ -116,12 +116,15 @@ Public Class Email
     '''     Метод для тестирования настроек аккаунта.
     ''' </summary>
     ''' <param name="account">Аккаунт, который нужно протестировать.</param>
-    ''' <returns>Возвращает <code>True</code>, если удалось подключиться и авторизоваться.
-    ''' Возвращает <code>False</code>, если не удалось или подключиться или авторизоваться.</returns>
+    ''' <returns>
+    ''' Возвращает <code>True</code>, если удалось подключиться и авторизоваться.
+    ''' Возвращает <code>False</code>, если не удалось или подключиться или авторизоваться.
+    ''' </returns>
     Public Shared Async Function Test(account As Account) As Task(Of Boolean)
         Return Await Task.Run(Function()
                                   Try
-                                      Using client = New ImapClient(account.Hostname, account.Port, account.Login, account.Password, ssl:=True)
+                                      Dim pass = account.Password.FromBase64().ToUnsecure()
+                                      Using client = New ImapClient(account.Hostname, account.Port, account.Login, pass, ssl:=True)
                                           Return client.Authed
                                       End Using
                                   Catch ex As Exception
