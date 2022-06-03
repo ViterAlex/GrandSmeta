@@ -112,7 +112,12 @@ Public Class Email
 #End Region
 
 #Region "Public Methods"
-
+    ''' <summary>
+    '''     Метод для тестирования настроек аккаунта.
+    ''' </summary>
+    ''' <param name="account">Аккаунт, который нужно протестировать.</param>
+    ''' <returns>Возвращает <code>True</code>, если удалось подключиться и авторизоваться.
+    ''' Возвращает <code>False</code>, если не удалось или подключиться или авторизоваться.</returns>
     Public Shared Async Function Test(account As Account) As Task(Of Boolean)
         Return Await Task.Run(Function()
                                   Try

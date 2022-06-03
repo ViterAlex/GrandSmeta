@@ -14,9 +14,10 @@ Public Class EmailControl
         Dim tasks As New List(Of Task)
         EmailsTabControl.TabPages.Clear()
         For Each s In accounts
+            EmailsTabControl.TabPages.Add(s.Name)
             tasks.Add(Task.Run(Sub()
                                    EmailsTabControl.Invoke(Sub()
-                                                               GetLastEmail(s)
+                                                               GetLastEmail(s, accounts.IndexOf(s))
                                                            End Sub)
                                End Sub))
         Next
@@ -41,9 +42,9 @@ Public Class EmailControl
         End Using
     End Sub
 
-    Private Async Sub GetLastEmail(account As Account)
-        EmailsTabControl.TabPages.Add($"{account.Name} ⏱")
-        Dim tab = EmailsTabControl.TabPages.Item(EmailsTabControl.TabPages.Count - 1)
+    Private Async Sub GetLastEmail(account As Account, index As Integer)
+        'Получить ссылку на вкладку
+        Dim tab = EmailsTabControl.TabPages.Item(index)
         Dim emailTextBox = New EmailTextBox()
         tab.Controls.Add(emailTextBox)
         Await emailTextBox.LoadEmail(account)
