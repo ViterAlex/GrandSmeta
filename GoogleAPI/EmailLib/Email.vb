@@ -1,4 +1,9 @@
-﻿Imports S22.Imap
+﻿Imports System.Net.Mail
+Imports System.Text
+Imports System.Text.RegularExpressions
+Imports System.Windows.Forms
+Imports System.Xml
+Imports S22.Imap
 
 Public Class Email
 
@@ -66,19 +71,42 @@ Public Class Email
 
         If junkMessage Is Nothing Then
             _lastFolder = account.Inbox
-            Return inboxMessage.Body
+            Return GetMessageText(inboxMessage)
         End If
         If inboxMessage Is Nothing Then
             _lastFolder = account.JunkMail
-            Return junkMessage.Body
+            Return GetMessageText(junkMessage)
         End If
         'Возвращаем то, которое пришло позже и запоминаем последнюю папку
         If inboxMessage.Date < junkMessage.Date Then
             _lastFolder = account.JunkMail
-            Return junkMessage.Body
+            Return GetMessageText(junkMessage)
         End If
         _lastFolder = account.Inbox
-        Return inboxMessage.Body
+        Return GetMessageText(inboxMessage)
+    End Function
+
+    Private Function GetMessageText(m As MailMessage) As String
+        If Not m.IsBodyHtml Then
+            Return m.Body
+        End If
+        Dim result As String
+        result = m.Body.Replace(vbCr, vbCrLf)
+        result = result.Replace(vbTab, " ")
+        result = Regex.Replace(result, "\\s+", " ")
+        result = Regex.Replace(result, "<head.*?</head>", "", RegexOptions.IgnoreCase Or RegexOptions.Singleline)
+        result = Regex.Replace(result, " < script.*?</script>", "", RegexOptions.IgnoreCase Or RegexOptions.Singleline)
+        Dim sb = New StringBuilder(result)
+        Dim oldWords = {"&nbsp;", "&amp;", "&quot;", "&lt;", "&gt;", "&reg;", "&copy;", "&bull;", "&trade;", "&#39;", "&zwnj;"}
+        Dim newWords = {ChrW(160), "&", """", "<", ">", "®", "©", "•", "™", "'", "😭"}
+        For i = 0 To oldWords.Length - 1
+            sb.Replace(oldWords(i), newWords(i))
+        Next
+        sb.Replace("<br>", "\n<br>")
+        sb.Replace("<br ", "\n<br ")
+        sb.Replace("<p ", "\n<p ")
+        result = Regex.Replace(sb.ToString(), "<[^>]*>", "")
+        Return result
     End Function
 
 #End Region
