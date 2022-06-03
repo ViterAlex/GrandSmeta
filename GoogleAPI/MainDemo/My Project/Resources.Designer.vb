@@ -79,5 +79,32 @@ Namespace My.Resources
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to ✖.
+        '''</summary>
+        Friend ReadOnly Property FailMark() As String
+            Get
+                Return ResourceManager.GetString("FailMark", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to ✔.
+        '''</summary>
+        Friend ReadOnly Property OkMark() As String
+            Get
+                Return ResourceManager.GetString("OkMark", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to ⏱.
+        '''</summary>
+        Friend ReadOnly Property TimerMark() As String
+            Get
+                Return ResourceManager.GetString("TimerMark", resourceCulture)
+            End Get
+        End Property
     End Module
 End Namespace

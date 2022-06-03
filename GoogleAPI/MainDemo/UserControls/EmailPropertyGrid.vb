@@ -1,5 +1,4 @@
 ﻿Imports System.ComponentModel
-Imports System.ComponentModel.Design
 Imports EmailLib
 ''' <summary>
 '''     <see cref="PropertyGrid"/> для отображения класса <see cref="EmailLib.Account"/>
@@ -77,14 +76,14 @@ Public Class EmailPropertyGrid
     End Sub
 
     Private Async Sub TestConnection(sender As Object, e As EventArgs)
-        lblTest.Text = "⏱"
+        lblTest.Text = My.Resources.TimerMark
         lblTest.ForeColor = Color.Black
         btnTest.Enabled = False
         If Await Email.Test(Account) Then
-            lblTest.Text = "✔"
+            lblTest.Text = My.Resources.OkMark
             lblTest.ForeColor = Color.DarkGreen
         Else
-            lblTest.Text = "✖"
+            lblTest.Text = My.Resources.FailMark
             lblTest.ForeColor = Color.DarkRed
         End If
         btnTest.Enabled = True
