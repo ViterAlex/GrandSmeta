@@ -17,6 +17,9 @@ Public Class AccountPasswordConverter
 
     Public Overrides Function ConvertFrom(context As ITypeDescriptorContext, culture As CultureInfo, value As Object) As Object
         'Пользователь вводит обычную строку. Она преобразовывается в SecureString и затем в base64 для хранения
+        If value Is Nothing Then
+            Return String.Empty
+        End If
         Return value.ToString().
             ToSecure().
             ToBase64()
@@ -25,6 +28,9 @@ Public Class AccountPasswordConverter
     Public Overrides Function ConvertTo(context As ITypeDescriptorContext, culture As CultureInfo, value As Object, destinationType As Type) As Object
         'Пароль хранится в виде base64 строки. Поэтому для отображения в PropertyGrid нужно его перевести сначала
         'в SecureString, затем в обычную строку
+        If value Is Nothing Then
+            Return String.Empty
+        End If
         Return value.ToString().
             FromBase64().
             ToUnsecure()
